@@ -9,6 +9,7 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.FoodDonationEnterpriseAdmin;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -284,13 +285,15 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void changePanel1() {
-
+        System.out.println("mainjframe line number 370" + userAccount.getUsername() + userAccount.getRole().toString());
         if (userAccount != null && userAccount.getRole() != null) {
             String greetings = "Hi";
-            if (userAccount.getRole() instanceof SystemAdminRole) {
-                greetings = greetings + " " + userAccount.getUsername();
-                container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise , inNetwork, system));
-            } 
+            
+            greetings = greetings + " " + userAccount.getUsername();
+            System.out.println("mainjfram line number 292");
+            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise , inNetwork, system));
+            
+            
             greetingUserLabel.setText(greetings + " !!!");
             CardLayout layout = (CardLayout) container.getLayout();
             layout.next(container);
@@ -366,6 +369,7 @@ public class MainJFrame extends javax.swing.JFrame {
             btnBackLabel.setVisible(false);
             userNameJTextField.setText("");
             passwordField.setText("");
+            System.out.println("mainjframe line number 370" + userAccount.getUsername() + userAccount.getRole().toString());
             changePanel1();
         }
 
@@ -382,6 +386,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLogoutLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutLabelMousePressed
         //logout();
+        container.removeAll();
+        dB4OUtil.storeSystem(system);
+        loginJPanel.setVisible(true);
+        container.setVisible(false);
+        leftPanel.setVisible(false);
     }//GEN-LAST:event_btnLogoutLabelMousePressed
 
     private void btnBackLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackLabelMousePressed

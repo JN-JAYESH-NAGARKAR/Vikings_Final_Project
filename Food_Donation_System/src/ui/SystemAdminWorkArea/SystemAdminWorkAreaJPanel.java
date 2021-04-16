@@ -33,6 +33,19 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem=ecosystem;
        
     }
+    private void manageEnterpriseAdmin(){
+        
+        manageEnterpriseAdmin.setBackground(new Color(236,113,107));
+        manageEnterprise.setBackground(new Color(215,81,81));
+        manageNetworkPanel.setBackground(new Color(215,81,81));
+        viewGraphScene.setBackground(new Color(215,81,81));
+        noOfSceneGraph.setBackground(new Color(215,81,81));
+        ui.SystemAdminWorkArea.ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ui.SystemAdminWorkArea.ManageEnterpriseAdminJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }
+    
     private void manageNetwork(){
         manageNetworkPanel.setBackground(new Color(236,113,107));
         manageEnterprise.setBackground(new Color(215,81,81));
@@ -44,6 +57,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
      }
+    private void manageEnterprise(){
+        manageEnterprise.setBackground(new Color(236,113,107));
+        manageNetworkPanel.setBackground(new Color(215,81,81));
+        manageEnterpriseAdmin.setBackground(new Color(215,81,81));
+        viewGraphScene.setBackground(new Color(215,81,81));
+        noOfSceneGraph.setBackground(new Color(215,81,81));
+        ui.SystemAdminWorkArea.ManageEnterpriseJPanel manageEnterprise = new ui.SystemAdminWorkArea.ManageEnterpriseJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("ManageEnterpriseJPanel",manageEnterprise);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+        
+    }
     
         
     /**
@@ -331,16 +356,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_manageNetworkPanelMousePressed
 
     private void manageEnterpriseLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEnterpriseLabelMousePressed
-        
+        manageEnterprise();
     }//GEN-LAST:event_manageEnterpriseLabelMousePressed
 
     private void manageEnterpriseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEnterpriseMousePressed
         // TODO add your handling code here:
-        
+        manageEnterprise();
     }//GEN-LAST:event_manageEnterpriseMousePressed
 
     private void manageEnterpriseAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEnterpriseAdminMousePressed
-        
+        manageEnterpriseAdmin();
     }//GEN-LAST:event_manageEnterpriseAdminMousePressed
 
     private void noOfGraphSceneLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noOfGraphSceneLabelMousePressed

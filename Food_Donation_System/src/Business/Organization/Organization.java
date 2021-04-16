@@ -15,16 +15,19 @@ import java.util.ArrayList;
  * @author raunak
  */
 public abstract class Organization {
-
+    
+    private String locationPoint;
     private String name;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
+    private Type type;
+    
     
     public enum Type{
-        Admin("Admin Organization"), Customer("Customer Organization"), Manager("Manager Organization");
+        Restaurant("Restaurant Organization"), PartyOrganizer("Party Organizer Organization"), IndividualDonator("Individual Donator Organization");
         private String value;
         private Type(String value) {
             this.value = value;
@@ -48,7 +51,12 @@ public abstract class Organization {
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
-
+    public Type getType() {
+        return type;
+    }
+    public void setType(Type type){
+        this.type = type;
+    }
     public int getOrganizationID() {
         return organizationID;
     }
@@ -63,6 +71,13 @@ public abstract class Organization {
 
     public WorkQueue getWorkQueue() {
         return workQueue;
+    }
+    
+    public void setLocationPoint(String locationPoint){
+        this.locationPoint = locationPoint;
+    }
+    public String getLocationPoint(){
+        return locationPoint;
     }
 
     public void setName(String name) {

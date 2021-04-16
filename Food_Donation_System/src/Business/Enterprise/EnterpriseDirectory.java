@@ -31,8 +31,21 @@ public class EnterpriseDirectory {
     //Create enterprise
     public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
         Enterprise enterprise=null;
-        if(type==Enterprise.EnterpriseType.FoodDelivery){
-            enterprise=new FoodDeliveryEnterprise(name);
+        if(type==Enterprise.EnterpriseType.FoodDonation){
+            enterprise =new FoodDonation(name);
+            enterpriseList.add(enterprise);
+              System.out.println("enterprise directory line number 37");
+        }
+        else if(type==Enterprise.EnterpriseType.FoodSafety){
+            enterprise=new FoodSafety(name);
+            enterpriseList.add(enterprise);
+        }
+        else if(type==Enterprise.EnterpriseType.Delivery){
+            enterprise=new Delivery(name);
+            enterpriseList.add(enterprise);
+        }
+        else if(type==Enterprise.EnterpriseType.FoodReceiver){
+            enterprise=new FoodReceiver(name);
             enterpriseList.add(enterprise);
         }
         return enterprise;

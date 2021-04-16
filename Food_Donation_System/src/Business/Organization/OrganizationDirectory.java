@@ -23,17 +23,14 @@ public class OrganizationDirectory {
         return organizationList;
     }
     
-    public Organization createOrganization(Type type){
+    public Organization createOrganization(Type type,String name, String locationPoint){
         Organization organization = null;
-        if (type.getValue().equals(Type.Customer.getValue())){
-            organization = new CustomerOrganization();
+        if (type.getValue().equals(Type.Restaurant.getValue())) {
+            organization = new RestaurantOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
             organizationList.add(organization);
         }
-        else if (type.getValue().equals(Type.Manager.getValue())){
-            organization = new RestaurantManagerOrganization();
-            organizationList.add(organization);
-        }
-        
         return organization;
     }
 }

@@ -19,10 +19,11 @@ public abstract class Role {
     
     public enum RoleType{
         Systemadmin("System Admin"),
-        Admin("Admin"),
-        Customer("Doctor"),
-        DeliveryMan("Lab Assistant"),
-        RestaurantManager("Restaurant Manager");
+        FoodDonationEnterpriseAdmin("Food Donation Enterprise Admin"),
+        FoodSafetyEnterpriseAdmin("Food Safety Enterprise Admin"),
+        FoodDeliveryEnterpriseAdmin("Food Delivery Enterprise Admin"),
+        FoodReceiverEnterpriseAdmin("Food Receiver Enterprise Admin");
+        
         
         private String value;
         private RoleType(String value){
