@@ -22,7 +22,11 @@ public abstract class Role {
         FoodDonationEnterpriseAdmin("Food Donation Enterprise Admin"),
         FoodSafetyEnterpriseAdmin("Food Safety Enterprise Admin"),
         FoodDeliveryEnterpriseAdmin("Food Delivery Enterprise Admin"),
-        FoodReceiverEnterpriseAdmin("Food Receiver Enterprise Admin");
+        FoodReceiverEnterpriseAdmin("Food Receiver Enterprise Admin"),
+        RestaurantAdminRole("Restaurant Admin"),
+        PartyOrganizerAdminRole("Party Organizer Admin"),
+        IndividualDonorRole("Individual Donor"),
+        FoodInspector("Food Inspector");
         
         
         private String value;

@@ -25,14 +25,8 @@ public class TableColors extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable myTable, Object value, boolean selected, boolean focused, int row, int column) {
         super.getTableCellRendererComponent(myTable, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(215, 81, 81));
-        setForeground(new java.awt.Color(255, 255, 255));
-        myTable.setFillsViewportHeight(true);
-        setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        myTable.setShowGrid(true);
-        TableCellRenderer rendererFromHeader = myTable.getTableHeader().getDefaultRenderer();
-        JLabel headerLabel = (JLabel) rendererFromHeader;
-        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        setBackground(new java.awt.Color(100, 122, 122));
+        setForeground(new java.awt.Color(255,255,255));
         return this;
     }
 }

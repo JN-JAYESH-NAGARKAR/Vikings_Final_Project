@@ -9,7 +9,8 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 //import Business.Role.AdminRole;
-import Business.Role.FoodDonationEnterpriseAdmin;
+import Business.Role.FoodDonationEnterpriseAdminRole;
+import Business.Role.FoodSafetyEnterpriseAdminRole;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import java.awt.CardLayout;
@@ -101,6 +102,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         enterpriseJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -235,10 +237,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 System.out.println(enterprise.getEnterpriseType());
                 UserAccount account = null;
                 if (enterprise.getEnterpriseType().getValue() == Enterprise.EnterpriseType.FoodDonation.getValue()) {
-                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new FoodDonationEnterpriseAdmin());
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new FoodDonationEnterpriseAdminRole());
                     System.out.println("ManageEnterprise line number 237");
                 } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.FoodSafety) {
-                    //account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new IncidentUnitManager());
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new FoodSafetyEnterpriseAdminRole());
                 } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Delivery) {
                     //account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new VoluntaryUnitAdmin());
                 }else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.FoodReceiver) {

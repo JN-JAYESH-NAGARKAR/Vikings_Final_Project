@@ -5,6 +5,7 @@
  */
 package Business.Organization;
 
+import Business.Role.RestaurantAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -18,7 +19,9 @@ public class RestaurantOrganization extends Organization {
     }
     @Override
     public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> roles = new ArrayList();
+        roles.add(new RestaurantAdminRole());
+        return roles;
     }
     
 }

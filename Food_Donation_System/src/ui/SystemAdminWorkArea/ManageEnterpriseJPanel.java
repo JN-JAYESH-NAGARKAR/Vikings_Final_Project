@@ -89,6 +89,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         enterpriseJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N

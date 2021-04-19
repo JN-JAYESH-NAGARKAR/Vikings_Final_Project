@@ -71,6 +71,8 @@ public class DB4OUtil {
             system = systems.get(systems.size() - 1);
         }
         conn.close();
+        System.out.println("db4ou linenumber 75 line number 215" + system);
         return system;
+        
     }
 }

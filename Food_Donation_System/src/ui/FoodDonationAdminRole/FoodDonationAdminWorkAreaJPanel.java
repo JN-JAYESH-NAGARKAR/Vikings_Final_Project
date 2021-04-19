@@ -27,33 +27,43 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        this.ecosystem = ecosystem;
+        this.ecosystem = business;
+        System.out.println("fooddonationadminworkarea line number 31" + ecosystem);
         manageOrganization();
     }
     private void manageOrganization(){
-        manageOrganizationPanel.setBackground(new Color(236,113,107));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
+//        manageOrganizationPanel.setBackground(new Color(236,113,107));
+//        manageEmployee.setBackground(new Color(215,81,81));
+//        manageUserRequest.setBackground(new Color(215,81,81));
         FoodDonationManageOrganizationJPanel manageOrganizationJPanel = new FoodDonationManageOrganizationJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory(),enterprise);        
         rightSystemAdminPanel.add("manageOrganizationJPanel",manageOrganizationJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageEmployee(){
-        manageEmployee.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
+//        manageEmployee.setBackground(new Color(236,113,107));
+//        manageOrganizationPanel.setBackground(new Color(215,81,81));
+//        manageUserRequest.setBackground(new Color(215,81,81));
         FoodDonationManageEmployeeJPanel manageEmployeeJPanel = new FoodDonationManageEmployeeJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory());
         rightSystemAdminPanel.add("manageEmployeeJPanel",manageEmployeeJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageUser(){
-        manageUserAccount.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
+//        manageUserRequest.setBackground(new Color(236,113,107));
+//        manageOrganizationPanel.setBackground(new Color(215,81,81));
+//        manageEmployee.setBackground(new Color(215,81,81));
         FoodDonationManageUserAccountJPanel muajp = new FoodDonationManageUserAccountJPanel(rightSystemAdminPanel, enterprise, ecosystem);
         rightSystemAdminPanel.add("FoodDonationManageUserAccountJPanel",muajp);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }
+    private void manageRequest(){
+//        manageEmployee.setBackground(new Color(236,113,107));
+//        manageOrganizationPanel.setBackground(new Color(215,81,81));
+//        manageUserRequest.setBackground(new Color(215,81,81));
+        FoodDonationManageRequest manageRequestJPanel = new FoodDonationManageRequest(rightSystemAdminPanel, enterprise.getOrganizationDirectory());
+        rightSystemAdminPanel.add("manageRequestJPanel",manageRequestJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
@@ -74,12 +84,15 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEmployee = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         manageEmployeeLabel = new javax.swing.JLabel();
-        manageUserAccount = new javax.swing.JPanel();
+        manageUserRequest = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        manageUserAccountLabel = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        manageUserRequestLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        manageUserAccount = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        manageUserAccountLabel = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,12 +100,12 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setBackground(new java.awt.Color(215, 81, 81));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(51, 255, 204));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganizationPanel.setBackground(new java.awt.Color(51, 255, 204));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -100,12 +113,12 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel2.setBackground(new java.awt.Color(51, 255, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/department.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
-        manageOrganization.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganization.setBackground(new java.awt.Color(51, 255, 204));
         manageOrganization.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageOrganization.setText("Manage Organization");
         manageOrganization.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,7 +150,7 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployee.setBackground(new java.awt.Color(51, 255, 204));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,11 +159,11 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel4.setBackground(new java.awt.Color(51, 255, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeesmallicon24x.png"))); // NOI18N
 
-        manageEmployeeLabel.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployeeLabel.setBackground(new java.awt.Color(51, 255, 204));
         manageEmployeeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageEmployeeLabel.setText("Manage Employee");
         manageEmployeeLabel.setAutoscrolls(true);
@@ -184,21 +197,83 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
-        manageUserAccount.setBackground(new java.awt.Color(215, 81, 81));
+        manageUserRequest.setBackground(new java.awt.Color(51, 255, 204));
+        manageUserRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageUserRequestMousePressed(evt);
+            }
+        });
+
+        jLabel6.setBackground(new java.awt.Color(51, 255, 204));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser24x.png"))); // NOI18N
+
+        manageUserRequestLabel.setBackground(new java.awt.Color(51, 255, 204));
+        manageUserRequestLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        manageUserRequestLabel.setText("Manage Request");
+        manageUserRequestLabel.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageUserRequestLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageUserRequestLabelMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout manageUserRequestLayout = new javax.swing.GroupLayout(manageUserRequest);
+        manageUserRequest.setLayout(manageUserRequestLayout);
+        manageUserRequestLayout.setHorizontalGroup(
+            manageUserRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageUserRequestLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(manageUserRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        manageUserRequestLayout.setVerticalGroup(
+            manageUserRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageUserRequestLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(manageUserRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageUserRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel3.add(manageUserRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 280, 40));
+
+        jLabel1.setBackground(new java.awt.Color(51, 255, 204));
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setText("Manage Food Organizaiton");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(51, 255, 204));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 10));
+
+        jSeparator1.setBackground(new java.awt.Color(51, 255, 204));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 280, -1));
+
+        manageUserAccount.setBackground(new java.awt.Color(51, 255, 204));
         manageUserAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserAccountMousePressed(evt);
             }
         });
 
-        jLabel6.setBackground(new java.awt.Color(215, 81, 81));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser24x.png"))); // NOI18N
+        jLabel7.setBackground(new java.awt.Color(51, 255, 204));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser24x.png"))); // NOI18N
 
-        manageUserAccountLabel.setBackground(new java.awt.Color(215, 81, 81));
+        manageUserAccountLabel.setBackground(new java.awt.Color(51, 255, 204));
         manageUserAccountLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageUserAccountLabel.setText("Manage User Account");
         manageUserAccountLabel.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageUserAccountLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageUserAccountLabelMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout manageUserAccountLayout = new javax.swing.GroupLayout(manageUserAccount);
         manageUserAccount.setLayout(manageUserAccountLayout);
@@ -206,7 +281,7 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
             manageUserAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageUserAccountLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manageUserAccountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                 .addContainerGap())
@@ -216,25 +291,12 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageUserAccountLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(manageUserAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageUserAccountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel3.add(manageUserAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 280, 40));
-
-        jSeparator1.setBackground(new java.awt.Color(0, 51, 51));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 280, -1));
-
-        jLabel1.setBackground(new java.awt.Color(215, 81, 81));
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setText("Manage Food Organizaiton");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-
-        jSeparator2.setBackground(new java.awt.Color(0, 51, 51));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 10));
 
         rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
@@ -277,9 +339,23 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEmployee();
     }//GEN-LAST:event_manageEmployeeMousePressed
 
+    private void manageUserRequestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserRequestMousePressed
+        
+    }//GEN-LAST:event_manageUserRequestMousePressed
+
     private void manageUserAccountMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserAccountMousePressed
-        manageUser();
+        // TODO add your handling code here:
     }//GEN-LAST:event_manageUserAccountMousePressed
+
+    private void manageUserAccountLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserAccountLabelMousePressed
+        // TODO add your handling code here:4
+        manageUser();
+    }//GEN-LAST:event_manageUserAccountLabelMousePressed
+
+    private void manageUserRequestLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserRequestLabelMousePressed
+        // TODO add your handling code here:
+        manageRequest();
+    }//GEN-LAST:event_manageUserRequestLabelMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,6 +363,7 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -296,6 +373,8 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel manageOrganizationPanel;
     private javax.swing.JPanel manageUserAccount;
     private javax.swing.JLabel manageUserAccountLabel;
+    private javax.swing.JPanel manageUserRequest;
+    private javax.swing.JLabel manageUserRequestLabel;
     private javax.swing.JPanel rightSystemAdminPanel;
     private javax.swing.JPanel systemAdminPanel;
     // End of variables declaration//GEN-END:variables

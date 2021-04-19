@@ -9,7 +9,7 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Role.FoodDonationEnterpriseAdmin;
+import Business.Role.FoodDonationEnterpriseAdminRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -37,7 +37,9 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-//        EcoSystem.setInstance(system);
+        //system = new EcoSystem().get
+        EcoSystem.setInstance(system);
+        System.out.println("Mainjfram line number 41" + system);
         loginJPanel.setVisible(true);
         container.setVisible(false);
         leftPanel.setVisible(false);
@@ -74,11 +76,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1338, 900));
-        setPreferredSize(new java.awt.Dimension(1338, 900));
         setSize(new java.awt.Dimension(1338, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginJPanel.setBackground(new java.awt.Color(25, 56, 82));
+        loginJPanel.setBackground(new java.awt.Color(204, 255, 204));
         loginJPanel.setPreferredSize(new java.awt.Dimension(1338, 900));
 
         jPanel2.setBackground(new java.awt.Color(227, 73, 78));
@@ -99,15 +100,15 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(25, 56, 82));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
         jPanel3.setPreferredSize(new java.awt.Dimension(302, 34));
 
-        jLabel3.setBackground(new java.awt.Color(25, 56, 82));
+        jLabel3.setBackground(new java.awt.Color(204, 255, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user (6).png"))); // NOI18N
 
-        userNameJTextField.setBackground(new java.awt.Color(25, 56, 82));
+        userNameJTextField.setBackground(new java.awt.Color(204, 255, 204));
         userNameJTextField.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         userNameJTextField.setForeground(new java.awt.Color(255, 255, 255));
         userNameJTextField.setToolTipText("");
@@ -140,15 +141,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(25, 56, 82));
+        jPanel4.setBackground(new java.awt.Color(204, 255, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
         jPanel4.setPreferredSize(new java.awt.Dimension(302, 34));
 
-        jLabel4.setBackground(new java.awt.Color(25, 56, 82));
+        jLabel4.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel4.setForeground(new java.awt.Color(204, 255, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/house-key (1).png"))); // NOI18N
+        jLabel4.setOpaque(true);
 
-        passwordField.setBackground(new java.awt.Color(25, 56, 82));
+        passwordField.setBackground(new java.awt.Color(204, 255, 204));
         passwordField.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
         passwordField.setBorder(null);
@@ -229,7 +232,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginJPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton)
-                        .addGap(37, 37, 37))))
+                        .addContainerGap())))
         );
         loginJPanelLayout.setVerticalGroup(
             loginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +295,7 @@ public class MainJFrame extends javax.swing.JFrame {
             greetings = greetings + " " + userAccount.getUsername();
             System.out.println("mainjfram line number 292");
             container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise , inNetwork, system));
-            
+            System.out.println("Mainjfram line number 295" + system);
             
             greetingUserLabel.setText(greetings + " !!!");
             CardLayout layout = (CardLayout) container.getLayout();

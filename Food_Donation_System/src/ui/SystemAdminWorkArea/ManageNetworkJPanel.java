@@ -6,6 +6,7 @@ package ui.SystemAdminWorkArea;
 
 import Business.EcoSystem;
 import Business.Network.Network;
+import Business.Utils.TableColors;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-
+        networkJTable.getTableHeader().setDefaultRenderer(new TableColors());
         populateNetworkTable();
     }
 
@@ -63,6 +64,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         nameJTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));

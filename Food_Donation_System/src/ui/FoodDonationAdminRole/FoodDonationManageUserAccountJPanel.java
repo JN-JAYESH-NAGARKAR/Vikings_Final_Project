@@ -34,6 +34,7 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         this.rightSystemAdminPanel = rightSystemAdminPanel;
         this.enterprise = enterprise;
         this.ecosystem = ecosystem;
+        System.out.println("fooddonationmanageuseraccountjpanel line number 37" + ecosystem);
         
         userJTable.getTableHeader().setDefaultRenderer(new TableColors());
         popOrganizationComboBox();
@@ -74,6 +75,7 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         createUserJButton.setBackground(new java.awt.Color(255, 255, 255));

@@ -31,6 +31,19 @@ public class OrganizationDirectory {
             organization.setType(type);
             organizationList.add(organization);
         }
+        else if(type.getValue().equals(Type.PartyOrganizer.getValue())){
+            organization = new PartyOrganizerOrganizatioin(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+            System.out.println("org dir line number 39" + organization);
+        }
+        else if(type.getValue().equals(Type.IndividualDonator.getValue())){
+            organization = new IndividualFoodDonorOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+        }
         return organization;
     }
 }

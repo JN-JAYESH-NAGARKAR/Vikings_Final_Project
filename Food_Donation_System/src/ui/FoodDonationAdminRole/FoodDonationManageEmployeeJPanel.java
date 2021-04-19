@@ -5,8 +5,13 @@
  */
 package ui.FoodDonationAdminRole;
 
+import Business.Employee.Employee;
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Utils.TableColors;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,10 +22,50 @@ public class FoodDonationManageEmployeeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form FoodDonationManageEmployeeJPanel
      */
+    private OrganizationDirectory organizationDir;
+    private JPanel userProcessContainer;
+    
     public FoodDonationManageEmployeeJPanel(JPanel rightSystemAdminPanel, OrganizationDirectory organizationDirectory) {
         initComponents();
+        this.userProcessContainer = rightSystemAdminPanel;
+        this.organizationDir = organizationDirectory;
+        organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
+        populateOrganizationComboBox();
+        populateOrganizationEmpComboBox();
+        populateTable((Organization) organizationEmpJComboBox.getSelectedItem());
     }
-
+    private void populateTable(Organization organization){
+        organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
+        DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            Object[] row = new Object[2];
+            row[0] = employee.getId();
+            row[1] = employee.getName();
+            model.addRow(row);
+        }
+    }
+    
+    public void resetFields() {
+        nameJTextField.setText("");
+    }
+    public void populateOrganizationEmpComboBox(){
+        organizationEmpJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            organizationEmpJComboBox.addItem(organization);
+        }
+    }
+    
+    public void populateOrganizationComboBox(){
+        organizationJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            organizationJComboBox.addItem(organization);
+        }
+    }
    
 
     /**
@@ -45,6 +90,7 @@ public class FoodDonationManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setPreferredSize(new java.awt.Dimension(1029, 763));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -145,25 +191,25 @@ public class FoodDonationManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
-//        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
-//        String name = nameJTextField.getText();
-//        if(!name.isEmpty()){
-//            organization.getEmployeeDirectory().createEmployee(name);
-//            populateTable(organization);
-//            nameJTextField.setText("");
-//            JOptionPane.showMessageDialog(null, "Employee created sucessfully!");
-//            resetFields();
-//        } else{
-//            JOptionPane.showMessageDialog(null, "Enter employee name!");
-//        }
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        String name = nameJTextField.getText();
+        if(!name.isEmpty()){
+            organization.getEmployeeDirectory().createEmployee(name);
+            populateTable(organization);
+            nameJTextField.setText("");
+            JOptionPane.showMessageDialog(null, "Employee created sucessfully!");
+            resetFields();
+        } else{
+            JOptionPane.showMessageDialog(null, "Enter employee name!");
+        }
 
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
-//        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-//        if (organization != null){
-//            populateTable(organization);
-//        }
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        if (organization != null){
+            populateTable(organization);
+        }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
     private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed

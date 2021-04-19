@@ -6,10 +6,12 @@
 package ui.FoodDonationAdminRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import static Business.Organization.Organization.Type.Restaurant;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.Organization.RestaurantOrganization;
 import Business.Utils.TableColors;
 import javax.swing.JOptionPane;
@@ -62,10 +64,10 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
         
         for (Organization organization : directory.getOrganizationList()){
         {
-            System.out.println(organization.getLocationPoint() + " EMERGENCY LOCATION");
-//             if(organization instanceof DisasterOrganization || organization instanceof FireSafetyOrganization 
-//                     || organization instanceof MedicalOrganization || organization instanceof PoliceOrganization){
-              if(organization instanceof RestaurantOrganization){
+            System.out.println(organization.getLocationPoint() + " Food LOCATION");
+
+              if(organization instanceof RestaurantOrganization || organization instanceof PartyOrganizerOrganizatioin || 
+                      organization instanceof IndividualFoodDonorOrganization){
                 Object[] row = new Object[3];
                 row[0] = organization.getType().getValue();
                 row[1] = organization.getName();
@@ -103,6 +105,7 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
