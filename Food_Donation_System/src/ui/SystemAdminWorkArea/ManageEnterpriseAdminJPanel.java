@@ -8,9 +8,11 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Role.DeliveryEnterpriseAdminRole;
 //import Business.Role.AdminRole;
 import Business.Role.FoodDonationEnterpriseAdminRole;
 import Business.Role.FoodSafetyEnterpriseAdminRole;
+import Business.Role.ReceiverEnterpriseAdminRole;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import java.awt.CardLayout;
@@ -242,9 +244,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.FoodSafety) {
                     account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new FoodSafetyEnterpriseAdminRole());
                 } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Delivery) {
-                    //account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new VoluntaryUnitAdmin());
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new DeliveryEnterpriseAdminRole());
                 }else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.FoodReceiver) {
-                   //account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new VoluntaryUnitAdmin());
+                   account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ReceiverEnterpriseAdminRole());
                 }
                 
                 usernameJTextField.setText("");

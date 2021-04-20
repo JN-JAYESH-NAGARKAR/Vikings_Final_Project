@@ -33,8 +33,12 @@ public class FoodDonationManageEmployeeJPanel extends javax.swing.JPanel {
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
         populateTable((Organization) organizationEmpJComboBox.getSelectedItem());
+        
+            
+        
     }
     private void populateTable(Organization organization){
+        if((Organization) organizationEmpJComboBox.getSelectedItem() == null) return;
         organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
         

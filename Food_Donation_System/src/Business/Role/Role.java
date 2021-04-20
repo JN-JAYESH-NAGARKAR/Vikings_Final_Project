@@ -26,7 +26,11 @@ public abstract class Role {
         RestaurantAdminRole("Restaurant Admin"),
         PartyOrganizerAdminRole("Party Organizer Admin"),
         IndividualDonorRole("Individual Donor"),
-        FoodInspector("Food Inspector");
+        FoodInspector("Food Inspector"),
+        Driver("Driver"),
+        OrphanageAdmin("Orphanage"),
+        OldAgeAdmin("OldAge"),
+        IndividualReceiverAdmin("Individual Receiver");
         
         
         private String value;

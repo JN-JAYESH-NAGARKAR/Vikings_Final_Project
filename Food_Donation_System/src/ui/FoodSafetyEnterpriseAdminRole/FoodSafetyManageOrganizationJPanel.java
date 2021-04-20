@@ -7,6 +7,7 @@ package ui.FoodSafetyEnterpriseAdminRole;
 
 import ui.FoodDonationAdminRole.*;
 import Business.Enterprise.Enterprise;
+import Business.Organization.FoodInspectorOrganization;
 import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
@@ -23,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jayesh Nagarkar
  */
-public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
+public class FoodSafetyManageOrganizationJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form FoodDonationManageOrganizationJPanel
@@ -32,7 +33,7 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private String locationPoint;
-    public FoodDonationManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory, Enterprise enterprise) {
+    public FoodSafetyManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.directory = directory;
@@ -52,9 +53,8 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
             if (!type.getValue().equals(Type.Admin.getValue()))
                 organizationJComboBox.addItem(type);
         }*/
-        organizationJComboBox.addItem(Type.Restaurant);
-        organizationJComboBox.addItem(Type.PartyOrganizer);
-        organizationJComboBox.addItem(Type.IndividualDonator);
+        organizationJComboBox.addItem(Type.FoodInspector);
+        
         
     }
     private void populateTable(){
@@ -65,10 +65,10 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
         
         for (Organization organization : directory.getOrganizationList()){
         {
-            System.out.println(organization.getLocationPoint() + " Food LOCATION");
+            System.out.println(organization.getLocationPoint() + " Food safety org location");
 
               if(organization instanceof RestaurantOrganization || organization instanceof PartyOrganizerOrganizatioin || 
-                      organization instanceof IndividualFoodDonorOrganization){
+                      organization instanceof IndividualFoodDonorOrganization || organization instanceof FoodInspectorOrganization ){
                 Object[] row = new Object[3];
                 row[0] = organization.getType().getValue();
                 row[1] = organization.getName();
@@ -196,7 +196,7 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("MANAGE FOOD ORGANIZATION");
+        jLabel4.setText("FOOD SAFETY MANAGE FOOD ORGANIZATION");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 34, 581, -1));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

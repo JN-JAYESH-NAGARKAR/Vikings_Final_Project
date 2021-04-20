@@ -43,6 +43,40 @@ public class OrganizationDirectory {
             organization.setLocationPoint(locationPoint);
             organization.setType(type);
             organizationList.add(organization);
+        }else if(type.getValue().equals(Type.FoodInspector.getValue())){
+            organization = new FoodInspectorOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+            System.out.println("org directory line number 51");
+        }
+        else if(type.getValue().equals(Type.Driver.getValue())){
+            organization = new DriverOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+            System.out.println("org directory line number 51");
+        }
+        else if(type.getValue().equals(Type.Orphanage.getValue())){
+            organization = new OrphanageOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+            System.out.println("org directory line number 51");
+        }
+        else if(type.getValue().equals(Type.Oldage.getValue())){
+            organization = new OldAgeOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+            System.out.println("org directory line number 51");
+        }
+        else if(type.getValue().equals(Type.IndividualReceiver.getValue())){
+            organization = new IndividualReceiverOrganization(name);
+            organization.setLocationPoint(locationPoint);
+            organization.setType(type);
+            organizationList.add(organization);
+            System.out.println("org directory line number 51");
         }
         return organization;
     }

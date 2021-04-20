@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.Utils.TableColors;
 import javax.swing.JPanel;
 
 /**
@@ -23,6 +24,7 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
      */
     public FoodInspectorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
         initComponents();
+        organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
     }
 
     /**
@@ -34,19 +36,111 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jScrollPane1 = new javax.swing.JScrollPane();
+        organizationJTable = new javax.swing.JTable();
+        addJButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        addJButton1 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 255, 204));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
+        organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Organization name", "Organization type", "Address", "Cerified", "Inspecteer User Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        organizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
+        jScrollPane1.setViewportView(organizationJTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 165, 700, 116));
+
+        addJButton.setBackground(new java.awt.Color(255, 255, 255));
+        addJButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        addJButton.setForeground(new java.awt.Color(25, 56, 82));
+        addJButton.setText("Certify");
+        addJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJButtonActionPerformed(evt);
+            }
+        });
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel4.setText("MANAGE FOOD INSPECTOR WORK AREA");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+
+        addJButton1.setBackground(new java.awt.Color(255, 255, 255));
+        addJButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        addJButton1.setForeground(new java.awt.Color(25, 56, 82));
+        addJButton1.setText("Assign to me");
+        addJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJButton1ActionPerformed(evt);
+            }
+        });
+        add(addJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
+
+//        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+//        String name = nameJTextField.getText();
+//        if(!name.isEmpty()){
+//            organization.getEmployeeDirectory().createEmployee(name);
+//            populateTable(organization);
+//            nameJTextField.setText("");
+//            JOptionPane.showMessageDialog(null, "Employee created sucessfully!");
+//            resetFields();
+//        } else{
+//            JOptionPane.showMessageDialog(null, "Enter employee name!");
+//        }
+    }//GEN-LAST:event_addJButtonActionPerformed
+
+    private void addJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addJButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addJButton;
+    private javax.swing.JButton addJButton1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable organizationJTable;
     // End of variables declaration//GEN-END:variables
 }

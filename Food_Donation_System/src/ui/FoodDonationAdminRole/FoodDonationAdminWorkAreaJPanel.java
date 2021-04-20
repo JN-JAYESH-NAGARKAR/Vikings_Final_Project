@@ -50,9 +50,7 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(rightSystemAdminPanel);
     }
     private void manageUser(){
-//        manageUserRequest.setBackground(new Color(236,113,107));
-//        manageOrganizationPanel.setBackground(new Color(215,81,81));
-//        manageEmployee.setBackground(new Color(215,81,81));
+
         FoodDonationManageUserAccountJPanel muajp = new FoodDonationManageUserAccountJPanel(rightSystemAdminPanel, enterprise, ecosystem);
         rightSystemAdminPanel.add("FoodDonationManageUserAccountJPanel",muajp);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -243,8 +241,8 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(51, 255, 204));
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setText("Manage Food Organizaiton");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        jLabel1.setText("Manage Food Donation Enterprise");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 9, -1, 20));
 
         jSeparator2.setBackground(new java.awt.Color(51, 255, 204));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));

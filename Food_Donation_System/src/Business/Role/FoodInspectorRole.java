@@ -26,7 +26,7 @@ public class FoodInspectorRole extends Role {
     
     @Override
     public String toString(){
-        return (RoleType.FoodSafetyEnterpriseAdmin.getValue());
+        return (RoleType.FoodInspector.getValue());
     }
     
 }

@@ -24,8 +24,8 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
      */
     public IndividualDonorWokAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
         initComponents();
-       individualDonorDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
-       individualMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
+       individualDonorAdminDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
+       individualDonorAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
     }
 
     /**
@@ -38,7 +38,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        individualDonorDashboardJTable = new javax.swing.JTable();
+        individualDonorAdminDashboardJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtFoodDishName = new javax.swing.JLabel();
@@ -52,14 +52,14 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JButton();
         lblViewImage = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        individualMenuJTable = new javax.swing.JTable();
+        individualDonorAdminMenuJTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        individualDonorDashboardJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        individualDonorDashboardJTable.setForeground(new java.awt.Color(25, 56, 82));
-        individualDonorDashboardJTable.setModel(new javax.swing.table.DefaultTableModel(
+        individualDonorAdminDashboardJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        individualDonorAdminDashboardJTable.setForeground(new java.awt.Color(25, 56, 82));
+        individualDonorAdminDashboardJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -85,8 +85,8 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        individualDonorDashboardJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
-        jScrollPane1.setViewportView(individualDonorDashboardJTable);
+        individualDonorAdminDashboardJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
+        jScrollPane1.setViewportView(individualDonorAdminDashboardJTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 880, 116));
 
@@ -103,7 +103,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel7.setText("Restaurant Admin Work Area");
+        jLabel7.setText("Individual Donor Work Area");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -156,12 +156,12 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 840, -1, 30));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 840, -1, 30));
 
         lblViewImage.setText("jLabel14");
-        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 610, 330, 180));
+        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 610, 270, 180));
 
-        individualMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
+        individualDonorAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -180,7 +180,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(individualMenuJTable);
+        jScrollPane2.setViewportView(individualDonorAdminMenuJTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, 180));
     }// </editor-fold>//GEN-END:initComponents
@@ -214,8 +214,8 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JTable individualDonorDashboardJTable;
-    private javax.swing.JTable individualMenuJTable;
+    private javax.swing.JTable individualDonorAdminDashboardJTable;
+    private javax.swing.JTable individualDonorAdminMenuJTable;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;

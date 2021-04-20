@@ -14,7 +14,9 @@ import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Image;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -44,6 +46,8 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setVisible(false);
         leftPanel.setVisible(false);
         getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        
+        
     }
 
     /**
@@ -82,22 +86,21 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJPanel.setBackground(new java.awt.Color(204, 255, 204));
         loginJPanel.setPreferredSize(new java.awt.Dimension(1338, 900));
 
-        jPanel2.setBackground(new java.awt.Color(227, 73, 78));
+        jPanel2.setBackground(new java.awt.Color(204, 0, 153));
         jPanel2.setPreferredSize(new java.awt.Dimension(554, 840));
 
-        jLabel2.setBackground(new java.awt.Color(227, 73, 78));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/CROPEMERGENCYMAIN (600x.png"))); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(0, 51, 204));
         jLabel2.setPreferredSize(new java.awt.Dimension(600, 840));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));

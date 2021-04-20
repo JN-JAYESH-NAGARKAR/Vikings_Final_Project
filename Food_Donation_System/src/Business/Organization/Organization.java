@@ -28,7 +28,8 @@ public abstract class Organization {
     
     public enum Type{
         Restaurant("Restaurant Organization"), PartyOrganizer("Party Organizer Organization"), IndividualDonator("Individual Donator Organization"),
-        FoodInspector("Food Inspector");
+        FoodInspector("Food Inspector"),Driver("Driver"),Orphanage("Orphanage Organozation"),
+        Oldage("Oldage Organization"),IndividualReceiver("Individual Receiver Organization");
         private String value;
         private Type(String value) {
             this.value = value;
