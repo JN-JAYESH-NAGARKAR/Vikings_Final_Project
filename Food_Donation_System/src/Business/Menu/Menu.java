@@ -33,6 +33,9 @@ public class Menu {
     public void removeItem(Item item){
         itemList.remove(item);
     }
+    public void removeallItem(){
+        itemList.clear();
+    }
     
     
     

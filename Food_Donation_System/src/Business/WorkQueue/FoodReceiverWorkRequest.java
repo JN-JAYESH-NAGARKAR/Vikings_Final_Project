@@ -22,13 +22,17 @@ public class FoodReceiverWorkRequest extends WorkRequest{
     private UserAccount deliveryman;
     private Type requestingOrganizationType;
     private String requestingOrganiztionName;
-    private static int id = 10000;
+    private String receivingOrganiztionName;
+    private Type receivingOrganiztionType;
+    private int id = 10000;
+    private static int counter = 10000;
     
     public FoodReceiverWorkRequest(){
-        id++;
+        id = counter++;
+        
     }
     
-    public String getId(){
+    public  String getId(){
         return "fdr"+id;
     }
 
@@ -63,6 +67,23 @@ public class FoodReceiverWorkRequest extends WorkRequest{
     public void setDonor_organization_name(String donor_organization_name) {
         this.donor_organization_name = donor_organization_name;
     }
+
+    public String getReceivingOrganiztionName() {
+        return receivingOrganiztionName;
+    }
+
+    public void setReceivingOrganiztionName(String receivingOrganiztionName) {
+        this.receivingOrganiztionName = receivingOrganiztionName;
+    }
+
+    public Type getReceivingOrganiztionType() {
+        return receivingOrganiztionType;
+    }
+
+    public void setReceivingOrganiztionType(Type receivingOrganiztionType) {
+        this.receivingOrganiztionType = receivingOrganiztionType;
+    }
+
 
   
     

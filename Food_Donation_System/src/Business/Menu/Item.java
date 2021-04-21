@@ -10,22 +10,22 @@ package Business.Menu;
  * @author acer
  */
 public class Item {
-    private String name;
-    int id;
-    double price;
+    private String description;
+    private int id;
+    private String imagePath;
+    private int numberOfServings;
+    
     static int count = 100;
-    public Item(String name,double price) {
-        this.name = name;
-        this.price = price;
+    public Item() {
         this.id = count++;
     }
     
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String name) {
+        this.description = name;
     }
 
     public int getId() {
@@ -36,17 +36,25 @@ public class Item {
         this.id = id;
     }
 
-    public double getPrice() {
-        return price;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
-    
+
+    public int getNumberOfServings() {
+        return numberOfServings;
+    }
+
+    public void setNumberOfServings(int numberOfServings) {
+        this.numberOfServings = numberOfServings;
+    }
+
     @Override
     public String toString(){
-        return Integer.toString(id);
+        return description;
     }
     
     

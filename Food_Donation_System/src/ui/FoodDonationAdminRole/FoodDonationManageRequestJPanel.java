@@ -15,10 +15,12 @@ import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.Organization.RestaurantOrganization;
+import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import Business.WorkQueue.FoodReceiverWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jayesh Nagarkar
  */
-public class FoodDonationManageRequest extends javax.swing.JPanel {
+public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form FoodDonationManageRequest
@@ -36,7 +38,7 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
     EcoSystem system;
     Network network;
     
-    public FoodDonationManageRequest(JPanel rightSystemAdminPanel, OrganizationDirectory organizationDirectory,
+    public FoodDonationManageRequestJPanel(JPanel rightSystemAdminPanel, OrganizationDirectory organizationDirectory,
             Network network,EcoSystem system) {
         initComponents();
         requestJTable.getTableHeader().setDefaultRenderer(new TableColors());
@@ -62,7 +64,7 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
-                row[2] = org.getNoOfServingsLeft();
+                row[2] = org.calculateNumberOfServings();
                 row[3] = org.getIfCertified();
                 row[4] = org.getLocationPoint();
                 
@@ -110,8 +112,8 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
                             row[2] = foodReceiverReq.getRequestingOrganizationType();
                             row[3] = foodReceiverReq.getNo_of_servings();
                             row[4] = foodReceiverReq.getStatus();
-                            row[5] = foodReceiverReq.getSender();
-                            row[6] = foodReceiverReq.getReceiver();
+                            if(foodReceiverReq.getSender()!=null)row[5] = foodReceiverReq.getSender().getUsername();
+                            row[6] = foodReceiverReq.getReceivingOrganiztionName();
                             model.addRow(row);
                         }
                     }
@@ -135,11 +137,12 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnSubmit = new javax.swing.JLabel();
+        btnReject = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btnProcess = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -154,7 +157,7 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reqest Id", "Receiver Oganization Name", "Receiver Organization Type", "No of Servings Requested", "Request Status", "Sender Username", "Receiver Username"
+                "Reqest Id", "Receiver Oganization Name", "Receiver Organization Type", "No of Servings Requested", "Request Status", "Sender Username", "Assigned Username"
             }
         ) {
             Class[] types = new Class [] {
@@ -175,12 +178,12 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
         requestJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(requestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 990, 116));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 990, 116));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setText("Request For Food Table");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 370, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 370, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -188,18 +191,18 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
-        btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnSubmit.setForeground(new java.awt.Color(25, 56, 82));
-        btnSubmit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSubmit.setText("Process");
-        btnSubmit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnSubmit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnReject.setBackground(new java.awt.Color(255, 255, 255));
+        btnReject.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnReject.setForeground(new java.awt.Color(25, 56, 82));
+        btnReject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnReject.setText("Reject Request");
+        btnReject.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnReject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnProcessPressed(evt);
+                btnRejectPressed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 138, 35));
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 138, 35));
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
@@ -243,15 +246,65 @@ public class FoodDonationManageRequest extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));
         jLabel8.setText("Food Donation Organizations ");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 370, -1));
+
+        btnProcess.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnProcess.setForeground(new java.awt.Color(25, 56, 82));
+        btnProcess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnProcess.setText("Process Request");
+        btnProcess.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnProcess.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnProcessPressed(evt);
+            }
+        });
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 138, 35));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRejectPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRejectPressed
+        int selectedRow = requestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            
+            JOptionPane.showMessageDialog(null, "Please Select a request row from request table!");
+            return;
+        }
+        
+        FoodReceiverWorkRequest request = (FoodReceiverWorkRequest)requestJTable.getValueAt(selectedRow, 0);
+        request.setStatus("Rejected");
+         populateRequestTable();
+    }//GEN-LAST:event_btnRejectPressed
+
     private void btnProcessPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcessPressed
+        // TODO add your handling code here:
+        int selectedRow1 = requestJTable.getSelectedRow();
+        int selectedRow2 = organizationJTable.getSelectedRow();
+        
+        if (selectedRow1 < 0 || selectedRow2 < 0){
+            
+            JOptionPane.showMessageDialog(null, "Please Select a request row from both tables!");
+            return;
+        }
+        
+        FoodReceiverWorkRequest request = (FoodReceiverWorkRequest)requestJTable.getValueAt(selectedRow1, 0);
+        
+        if(request.getStatus() == "Rejected") {
+            JOptionPane.showMessageDialog(null, "Request is Rejected!Can not be Processed");
+        }
+        
+        request.setStatus("Processed");
+        Organization org = (Organization)organizationJTable.getValueAt(selectedRow2, 0);
+        request.setReceivingOrganiztionName(org.getName());
+       
+        
+        populateRequestTable();
         
     }//GEN-LAST:event_btnProcessPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnSubmit;
+    private javax.swing.JLabel btnProcess;
+    private javax.swing.JLabel btnReject;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

@@ -47,7 +47,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.network = network;
         this.business = business;
-        
+        organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
         populateTable();
     }
     
@@ -57,6 +57,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
             FoodReceiverWorkRequest req = (FoodReceiverWorkRequest)request;
+            System.out.println(req);
             Object[] row = new Object[7];
             row[0] = req;         //--jayesh   row[0] = request.getMessage(); 
             row[1] = req.getRequestDate();
@@ -69,6 +70,11 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
+    }
+    public void resetTextField(){
+        txtNoOfServings.setText("");
+        txtContactNumber.setText("");
+        txtEmailId.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -101,7 +107,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         txtNoOfserving1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 255, 204));
-        setMinimumSize(new java.awt.Dimension(1338, 900));
+        setMinimumSize(new java.awt.Dimension(1360, 900));
         setPreferredSize(new java.awt.Dimension(1338, 900));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -305,10 +311,13 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         request.setEmail_id(txtEmailId.getText());
         request.setRequestDate(new Date());
         request.setStatus("Requested");
+        request.setSender(account);
+        request.setRequestingOrganiztionName(organization.getName());
         request.setRequestingOrganizationType(Organization.Type.Restaurant);
         account.getWorkQueue().getWorkRequestList().add(request);
         
         populateTable();
+        resetTextField();
         System.out.println("oraphanage line number 291");
         
         //-- jayesh trying to add request to the respective managerorganization

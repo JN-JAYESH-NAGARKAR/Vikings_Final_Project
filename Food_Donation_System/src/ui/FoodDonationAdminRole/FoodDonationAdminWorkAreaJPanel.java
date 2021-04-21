@@ -63,7 +63,7 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
 //        manageEmployee.setBackground(new Color(236,113,107));
 //        manageOrganizationPanel.setBackground(new Color(215,81,81));
 //        manageUserRequest.setBackground(new Color(215,81,81));
-        FoodDonationManageRequest manageRequestJPanel = new FoodDonationManageRequest(rightSystemAdminPanel, enterprise.getOrganizationDirectory(),network,ecosystem);
+        FoodDonationManageRequestJPanel manageRequestJPanel = new FoodDonationManageRequestJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory(),network,ecosystem);
         rightSystemAdminPanel.add("manageRequestJPanel",manageRequestJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
