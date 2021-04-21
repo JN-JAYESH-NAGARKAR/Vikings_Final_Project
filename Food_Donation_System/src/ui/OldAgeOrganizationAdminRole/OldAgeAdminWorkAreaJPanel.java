@@ -62,7 +62,7 @@ public class OldAgeAdminWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "Order request Time", "Order Delivery Time", "Status", "New servings"
+                "Order ID", "Order request Time", "Order Delivery Time", "Status", "No of Servings"
             }
         ) {
             Class[] types = new Class [] {

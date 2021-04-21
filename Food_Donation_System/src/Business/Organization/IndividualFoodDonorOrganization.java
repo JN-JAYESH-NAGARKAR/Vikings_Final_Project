@@ -15,6 +15,10 @@ import java.util.ArrayList;
  * @author Jayesh Nagarkar
  */
 public class IndividualFoodDonorOrganization extends Organization {
+    private String ifCertified = "not certified";
+    private String officerName = "not assigned";
+    private int NoOfServingsLeft = 10;
+    
     public IndividualFoodDonorOrganization(String name){
         super(name);
     }
@@ -24,5 +28,27 @@ public class IndividualFoodDonorOrganization extends Organization {
         roles.add(new IndividualDonorRole());
         return roles;
     }
+    public String getIfCertified(){
+        System.out.println("indiv food donor org lin number 38 "+ this.ifCertified);
+        return ifCertified;
+        
+    }
+    public String getOfficerName(){
+        return officerName;
+    }
+    public void setIfCertified(String ifCertified){
+        this.ifCertified = ifCertified;
+        
+    }
+    public void setOfficerName(String officer){
+        this.officerName = officer;
+    }
     
+     public int getNoOfServingsLeft() {
+        return NoOfServingsLeft;
+    }
+
+    public void setNoOfServingsLeft(int NoOfServingsLeft) {
+        this.NoOfServingsLeft = NoOfServingsLeft;
+    }
 }

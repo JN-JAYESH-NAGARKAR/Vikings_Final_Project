@@ -209,7 +209,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/opaquesysadmin.png"))); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(1058, 840));
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 620, 590));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 620, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed

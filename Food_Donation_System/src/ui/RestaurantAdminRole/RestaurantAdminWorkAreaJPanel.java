@@ -8,7 +8,10 @@ package ui.RestaurantAdminRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
+import Business.Organization.PartyOrganizerOrganizatioin;
+import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import javax.swing.JPanel;
@@ -26,6 +29,15 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         RestaurantAdminDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
         restaurantAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
+        
+        populateStatus(organization);
+    }
+    public void populateStatus(Organization organization){
+        if(organization instanceof RestaurantOrganization){
+            RestaurantOrganization org = (RestaurantOrganization)organization;
+            lblRestaurantStatus.setText(org.getIfCertified());
+        
+        }
     }
 
     /**
@@ -39,7 +51,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         RestaurantAdminDashboardJTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        lblRestaurantStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -61,20 +73,20 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         RestaurantAdminDashboardJTable.setForeground(new java.awt.Color(25, 56, 82));
         RestaurantAdminDashboardJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User Name", "Food Name", "No Of Serves", "Address", "Contact No", "Status", "Food Prepare Time"
+                "User Name of Receiver orgnization", "No Of Serves", "Address", "Contact No", "Status", "Food Prepare Time"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -90,10 +102,10 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 880, 116));
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel4.setText("approved/not approved");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
+        lblRestaurantStatus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblRestaurantStatus.setForeground(new java.awt.Color(25, 56, 82));
+        lblRestaurantStatus.setText("approved/not approved");
+        add(lblRestaurantStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
@@ -215,7 +227,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RestaurantAdminDashboardJTable;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -224,6 +235,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblFoodDishName;
     private javax.swing.JLabel lblImageUploadBtn;
     private javax.swing.JLabel lblQuantity;
+    private javax.swing.JLabel lblRestaurantStatus;
     private javax.swing.JLabel lblViewImage;
     private javax.swing.JTable restaurantAdminMenuJTable;
     private javax.swing.JLabel txtFoodDishName;

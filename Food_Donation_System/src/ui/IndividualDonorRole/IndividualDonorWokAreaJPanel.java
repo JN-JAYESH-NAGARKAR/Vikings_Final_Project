@@ -8,7 +8,9 @@ package ui.IndividualDonorRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
+import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import javax.swing.JPanel;
@@ -26,6 +28,14 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         initComponents();
        individualDonorAdminDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
        individualDonorAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
+       populateStatus(organization);
+    }
+    public void populateStatus(Organization organization){
+        if(organization instanceof IndividualFoodDonorOrganization){
+            IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
+            lblIndividualDonorStatus.setText(org.getIfCertified());
+        
+        }
     }
 
     /**
@@ -39,7 +49,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         individualDonorAdminDashboardJTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        lblIndividualDonorStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -90,10 +100,10 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 880, 116));
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel4.setText("approved/not approved");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
+        lblIndividualDonorStatus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblIndividualDonorStatus.setForeground(new java.awt.Color(25, 56, 82));
+        lblIndividualDonorStatus.setText("approved/not approved");
+        add(lblIndividualDonorStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
@@ -216,7 +226,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JTable individualDonorAdminDashboardJTable;
     private javax.swing.JTable individualDonorAdminMenuJTable;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -224,6 +233,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFoodDishName;
     private javax.swing.JLabel lblImageUploadBtn;
+    private javax.swing.JLabel lblIndividualDonorStatus;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblViewImage;
     private javax.swing.JLabel txtFoodDishName;

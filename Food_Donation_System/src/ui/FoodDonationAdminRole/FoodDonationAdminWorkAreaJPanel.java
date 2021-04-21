@@ -7,6 +7,7 @@ package ui.FoodDonationAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -22,11 +23,13 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
+    Network network;
     EcoSystem ecosystem;
-    public FoodDonationAdminWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,EcoSystem business) {
+    public FoodDonationAdminWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,Network network,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.network = network;
         this.ecosystem = business;
         System.out.println("fooddonationadminworkarea line number 31" + ecosystem);
         manageOrganization();
@@ -60,7 +63,7 @@ public class FoodDonationAdminWorkAreaJPanel extends javax.swing.JPanel {
 //        manageEmployee.setBackground(new Color(236,113,107));
 //        manageOrganizationPanel.setBackground(new Color(215,81,81));
 //        manageUserRequest.setBackground(new Color(215,81,81));
-        FoodDonationManageRequest manageRequestJPanel = new FoodDonationManageRequest(rightSystemAdminPanel, enterprise.getOrganizationDirectory());
+        FoodDonationManageRequest manageRequestJPanel = new FoodDonationManageRequest(rightSystemAdminPanel, enterprise.getOrganizationDirectory(),network,ecosystem);
         rightSystemAdminPanel.add("manageRequestJPanel",manageRequestJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);

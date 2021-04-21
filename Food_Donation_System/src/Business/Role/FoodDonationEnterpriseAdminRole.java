@@ -22,7 +22,7 @@ public class FoodDonationEnterpriseAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
-        return new FoodDonationAdminWorkAreaJPanel(userProcessContainer, enterprise,business);
+        return new FoodDonationAdminWorkAreaJPanel(userProcessContainer, enterprise,network,business);
     }
     
     @Override

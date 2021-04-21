@@ -17,7 +17,6 @@ public abstract class WorkRequest {
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
-    private UserAccount deliveryman;
     private String status;
     private Date requestDate;
     private Date resolveDate;
@@ -84,17 +83,7 @@ public abstract class WorkRequest {
         this.item = item;
     }
 
-    public UserAccount getDeliveryman() {
-        return deliveryman;
-    }
-
-    public void setDeliveryman(UserAccount deliveryman) {
-        this.deliveryman = deliveryman;
-    }
     
-    
-    public String toString(){
-        return this.item.getName();
-    }
+   
 
 }

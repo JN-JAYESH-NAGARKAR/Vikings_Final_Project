@@ -31,6 +31,8 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
     
     public FoodDonationManageUserAccountJPanel(JPanel rightSystemAdminPanel,Enterprise enterprise,EcoSystem ecosystem) {
         initComponents();
+        employeeJComboBox.removeAllItems();
+        roleJComboBox.removeAllItems();
         this.rightSystemAdminPanel = rightSystemAdminPanel;
         this.enterprise = enterprise;
         this.ecosystem = ecosystem;
@@ -38,6 +40,7 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         
         userJTable.getTableHeader().setDefaultRenderer(new TableColors());
         popOrganizationComboBox();
+        
        // employeeJComboBox.removeAllItems();
         popData();
     }
@@ -175,8 +178,8 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("MANAGE EMERGENCY UNIT USERS");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 38, 375, -1));
+        jLabel6.setText("MANAGE FOOD DONATION ENTERPRISE USERS");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 580, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser128x.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 150));
@@ -221,7 +224,9 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
                 row[1] = ua.getRole();
                 ((DefaultTableModel) userJTable.getModel()).addRow(row);
             }
+            
         }
+        
     }
     public void populateEmployeeComboBox(Organization organization){
         employeeJComboBox.removeAllItems();

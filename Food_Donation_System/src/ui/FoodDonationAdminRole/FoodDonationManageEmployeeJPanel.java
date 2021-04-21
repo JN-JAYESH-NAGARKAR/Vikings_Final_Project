@@ -30,8 +30,12 @@ public class FoodDonationManageEmployeeJPanel extends javax.swing.JPanel {
         this.userProcessContainer = rightSystemAdminPanel;
         this.organizationDir = organizationDirectory;
         organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
+        organizationJComboBox.removeAllItems();
+        organizationEmpJComboBox.removeAllItems();
+        
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
+        
         populateTable((Organization) organizationEmpJComboBox.getSelectedItem());
         
             

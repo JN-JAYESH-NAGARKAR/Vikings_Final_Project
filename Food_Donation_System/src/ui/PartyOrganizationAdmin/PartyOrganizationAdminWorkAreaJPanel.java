@@ -9,6 +9,8 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Organization.PartyOrganizerOrganizatioin;
+import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import javax.swing.JPanel;
@@ -23,9 +25,18 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form PartyOrganizationAdminWorkAreaJPanel
      */
     public PartyOrganizationAdminWorkAreaJPanel(JPanel userProcessContainer,UserAccount account,Organization organization,Enterprise enterprise,Network network,EcoSystem business) {
+       
         initComponents();
        partyOrganizerAdminDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
        partyOrganizerAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
+       populateStatus(organization);
+    }
+    public void populateStatus(Organization organization){
+        if(organization instanceof PartyOrganizerOrganizatioin){
+            PartyOrganizerOrganizatioin org = (PartyOrganizerOrganizatioin)organization;
+            lblPartyStatus.setText(org.getIfCertified());
+        
+        }
     }
 
     /**
@@ -39,7 +50,7 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         partyOrganizerAdminDashboardJTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        lblPartyStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -90,10 +101,10 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 880, 116));
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel4.setText("approved/not approved");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
+        lblPartyStatus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblPartyStatus.setForeground(new java.awt.Color(25, 56, 82));
+        lblPartyStatus.setText("approved/not approved");
+        add(lblPartyStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
@@ -214,7 +225,6 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -222,6 +232,7 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFoodDishName;
     private javax.swing.JLabel lblImageUploadBtn;
+    private javax.swing.JLabel lblPartyStatus;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblViewImage;
     private javax.swing.JTable partyOrganizerAdminDashboardJTable;

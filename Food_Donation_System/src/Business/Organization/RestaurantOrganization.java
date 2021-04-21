@@ -14,6 +14,10 @@ import java.util.ArrayList;
  * @author Jayesh Nagarkar
  */
 public class RestaurantOrganization extends Organization {
+    private String ifCertified = "not certified";
+    private String officerName = "not assigned";
+    private int NoOfServingsLeft = 10;
+    
     public RestaurantOrganization(String name){
         super(name);
     }
@@ -22,6 +26,26 @@ public class RestaurantOrganization extends Organization {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new RestaurantAdminRole());
         return roles;
+    }
+    public String getIfCertified(){
+        return ifCertified;
+    }
+    public String getOfficerName(){
+        return officerName;
+    }
+    public void setIfCertified(String ifCertified){
+        this.ifCertified = ifCertified;
+    }
+    public void setOfficerName(String officer){
+        this.officerName = officer;
+    }
+
+    public int getNoOfServingsLeft() {
+        return NoOfServingsLeft;
+    }
+
+    public void setNoOfServingsLeft(int NoOfServingsLeft) {
+        this.NoOfServingsLeft = NoOfServingsLeft;
     }
     
 }
