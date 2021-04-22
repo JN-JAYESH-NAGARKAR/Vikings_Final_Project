@@ -201,10 +201,10 @@ public class FoodDonationManageOrganizationJPanel extends javax.swing.JPanel {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512x.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 520, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 251, 1030, 550));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyIconBlue128x.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 130));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
