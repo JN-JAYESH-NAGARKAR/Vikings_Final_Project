@@ -83,7 +83,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1338, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginJPanel.setBackground(new java.awt.Color(204, 255, 204));
+        loginJPanel.setBackground(new java.awt.Color(0, 0, 0));
         loginJPanel.setPreferredSize(new java.awt.Dimension(1338, 900));
 
         jPanel2.setBackground(new java.awt.Color(204, 0, 153));
@@ -103,15 +103,15 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
         jPanel3.setPreferredSize(new java.awt.Dimension(302, 34));
 
-        jLabel3.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user (6).png"))); // NOI18N
 
-        userNameJTextField.setBackground(new java.awt.Color(204, 255, 204));
+        userNameJTextField.setBackground(new java.awt.Color(0, 0, 0));
         userNameJTextField.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         userNameJTextField.setForeground(new java.awt.Color(255, 255, 255));
         userNameJTextField.setToolTipText("");
@@ -144,17 +144,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
         jPanel4.setPreferredSize(new java.awt.Dimension(302, 34));
 
-        jLabel4.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setForeground(new java.awt.Color(204, 255, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/house-key (1).png"))); // NOI18N
         jLabel4.setOpaque(true);
 
-        passwordField.setBackground(new java.awt.Color(204, 255, 204));
+        passwordField.setBackground(new java.awt.Color(0, 0, 0));
         passwordField.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
         passwordField.setBorder(null);
@@ -186,6 +186,8 @@ public class MainJFrame extends javax.swing.JFrame {
         loginButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginButton.setText("LOGIN");
         loginButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
+        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        loginButton.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 loginButtonMousePressed(evt);
@@ -364,7 +366,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         if (userAccount == null) {
-            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            JOptionPane.showMessageDialog(null, "Invalid Credentials, Please enter Valid credentials");
             return;
         } else {
             System.out.println("MainJFrame line number 370---------");
