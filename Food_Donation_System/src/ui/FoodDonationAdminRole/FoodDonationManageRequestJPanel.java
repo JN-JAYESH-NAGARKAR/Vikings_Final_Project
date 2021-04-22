@@ -280,22 +280,22 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRejectPressed
 
     private void btnProcessPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcessPressed
-        // TODO add your handling code here:
-        int selectedRowtable1 = requestJTable.getSelectedRow();
-        int selectedRowTable2 = organizationJTable.getSelectedRow();
+        // TODO add your handling code here: 
+        int selectedRequestTableRow = requestJTable.getSelectedRow();            //bottom table
+        int selectedOrganizationTableRow = organizationJTable.getSelectedRow(); //top upper table
         
-        if (selectedRowtable1 < 0 || selectedRowTable2 < 0){
+        if (selectedOrganizationTableRow < 0 || selectedRequestTableRow < 0){
             
             JOptionPane.showMessageDialog(null, "Please Select a request row from both tables!");
             return;
         }
         
-        OrphanWorkRequest orphanRequest = (OrphanWorkRequest)requestJTable.getValueAt(selectedRowtable1, 0);
+        OrphanWorkRequest orphanRequest = (OrphanWorkRequest)requestJTable.getValueAt(selectedRequestTableRow, 0);
         if(orphanRequest.getStatus() == "Rejected") {
             JOptionPane.showMessageDialog(null, "Request is Rejected!Can not be Processed");
         }
         orphanRequest.setStatus("Processed");
-        Organization org = (Organization)organizationJTable.getValueAt(selectedRowTable2, 0);
+        Organization org = (Organization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
         orphanRequest.setDonorOrganization(org);
         orphanRequest.setDonorOrganizationUser(org.getUserAccountDirectory().getUserAccountList().get(0));   //complet this populate account in table1 instead of string
        
@@ -308,6 +308,10 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
             restReq.setAddress(orphanRequest.getLocation());
             restReq.setEmailId(orphanRequest.getEmailId());
             restReq.setStatus(orphanRequest.getStatus());
+            RestaurantOrganization restOrg = (RestaurantOrganization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
+            restOrg.getWorkQueue().getWorkRequestList().add(restReq);
+            System.out.println("line number 313 fooddonationmanage req " + restOrg);
+            JOptionPane.showMessageDialog(null, "Request proceded to Food Donor!");
         }
         
         populateRequestTable();

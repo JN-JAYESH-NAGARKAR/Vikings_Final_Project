@@ -33,10 +33,11 @@ public class OrphanWorkRequest extends WorkRequest{
     
     
     
-    private static int counter = 1000;
+    private static int counter = 1001;
     
     public OrphanWorkRequest(){
         orderId = counter++;
+        System.out.println("----"+orderId);
         
     }
 

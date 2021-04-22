@@ -306,21 +306,16 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         
         OrphanWorkRequest request = new OrphanWorkRequest();
-//        request.setNo_of_servings(txtNoOfServings.getText());
-//        request.setContact_number(txtContactNumber.getText());
-//        request.setEmail_id(txtEmailId.getText());
-//        request.setRequestDate(new Date());
-//        request.setStatus("Requested");
-//        request.setSender(account);
-//        request.setRequestingOrganiztionName(organization.getName());
-//        request.setRequestingOrganizationType(Organization.Type.Restaurant);
+
         
         request.setOrderRequestTime(new Date());
         request.setStatus("Requested");
         request.setNo_of_servings(Integer.parseInt(txtNoOfServings.getText()));
-        request.setDonorOrganization(organization);
-        request.setDonorOrganizationUser(account);
+        request.setRequestingOrganization(organization);
+        request.setRequestingOrganizationUser(account);
+        request.setRequestingOrganizationType(organization.getType());
         request.setLocation(organization.getLocationPoint());
+        request.setEmailId(txtEmailId.getText());
         
         account.getWorkQueue().getWorkRequestList().add(request);
         organization.getWorkQueue().getWorkRequestList().add(request);
