@@ -46,12 +46,12 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="7" rowCount="4">
                 <Column editable="false" title="Reqest Id" type="java.lang.Object"/>
-                <Column editable="false" title="Receiver Oganization Name" type="java.lang.String"/>
-                <Column editable="false" title="Receiver Organization Type" type="java.lang.String"/>
+                <Column editable="false" title="Requesting Oganization Name" type="java.lang.String"/>
+                <Column editable="false" title="Requesting Organization Type" type="java.lang.String"/>
+                <Column editable="false" title="Requesting Username" type="java.lang.Object"/>
                 <Column editable="false" title="No of Servings Requested" type="java.lang.Object"/>
                 <Column editable="false" title="Request Status" type="java.lang.Object"/>
-                <Column editable="false" title="Sender Username" type="java.lang.Object"/>
-                <Column editable="false" title="Assigned Username" type="java.lang.Object"/>
+                <Column editable="true" title="Location" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -111,7 +111,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="52" green="38" red="19" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Request For Food Table"/>
+        <Property name="text" type="java.lang.String" value="Food Request Dashboard"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -192,16 +192,22 @@
               <Color blue="52" green="38" red="19" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
-                <Column editable="false" title="Food donation Organization Name" type="java.lang.String"/>
+              <Table columnCount="6" rowCount="4">
+                <Column editable="false" title="Food Donation Organization Name" type="java.lang.String"/>
                 <Column editable="false" title="Organization Type" type="java.lang.String"/>
-                <Column editable="false" title="No Of Servings Left" type="java.lang.Object"/>
+                <Column editable="false" title="Organization Admin Username" type="java.lang.Object"/>
+                <Column editable="false" title="No of Servings Left" type="java.lang.Object"/>
                 <Column editable="false" title="Certification Status" type="java.lang.Object"/>
                 <Column editable="false" title="Location" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

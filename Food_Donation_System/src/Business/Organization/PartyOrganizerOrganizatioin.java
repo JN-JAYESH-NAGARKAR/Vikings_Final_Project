@@ -5,6 +5,8 @@
  */
 package Business.Organization;
 
+import Business.Menu.Item;
+import Business.Menu.Menu;
 import Business.Role.PartyOrganizerAdminRole;
 import Business.Role.RestaurantAdminRole;
 import Business.Role.Role;
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 public class PartyOrganizerOrganizatioin extends Organization {
     private String ifCertified = "not certified";
     private String officerName = "not assigned";
-    private int NoOfServingsLeft = 10;
+    
+    private Menu menu;
     
     public PartyOrganizerOrganizatioin(String name){
         super(name);
@@ -41,11 +44,23 @@ public class PartyOrganizerOrganizatioin extends Organization {
         this.officerName = officer;
     }
     
-    public int getNoOfServingsLeft() {
-        return NoOfServingsLeft;
+   
+
+    
+    public Menu getMenu() {
+        return menu;
     }
 
-    public void setNoOfServingsLeft(int NoOfServingsLeft) {
-        this.NoOfServingsLeft = NoOfServingsLeft;
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+    
+    public int calculateNumberOfServings(){
+        int numberOfservings = 0;
+        if(menu == null) menu = new Menu();
+        for(Item item : menu.getItemList()){
+            numberOfservings = numberOfservings + item.getNumberOfServings();
+        }
+        return numberOfservings;
     }
 }

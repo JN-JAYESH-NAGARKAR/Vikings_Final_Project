@@ -55,12 +55,13 @@ public class FoodReceiverManagemEmployeeJPanel extends javax.swing.JPanel {
    
 
     private void populateTable(Organization organization){
-        //if((Organization) organizationEmpJComboBox.getSelectedItem() == null) return;
+        if(organization == null) return;
+        
         organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
         
         model.setRowCount(0);
-        
+        System.out.println("line number 63" + organization.getEmployeeDirectory());
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
             Object[] row = new Object[2];
             row[0] = employee.getId();

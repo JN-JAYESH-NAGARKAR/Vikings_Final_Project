@@ -14,7 +14,7 @@ import Business.Organization.Organization;
 import Business.Organization.OrphanageOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
-import Business.WorkQueue.FoodReceiverWorkRequest;
+import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.Image;
@@ -56,7 +56,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
-            FoodReceiverWorkRequest req = (FoodReceiverWorkRequest)request;
+            OrphanWorkRequest req = (OrphanWorkRequest)request;
             System.out.println(req);
             Object[] row = new Object[7];
             row[0] = req;         //--jayesh   row[0] = request.getMessage(); 
@@ -64,8 +64,8 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
             row[2] = req.getResolveDate();
             row[3] = req.getStatus();
             row[4] = req.getNo_of_servings();
-            row[5] = req.getDonor_organization_name();
-            row[6] = req.getDeliveryMan();
+            row[5] = req.getDonorOrganization();
+            row[6] = "TO be assigned";
             
             
             model.addRow(row);
@@ -300,28 +300,37 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         getAccessibleContext().setAccessibleParent(this);
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void btnSubmitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmitMousePressed
         System.out.println("OrphanageAdmin line number 265");
         
         
-        FoodReceiverWorkRequest request = new FoodReceiverWorkRequest();
-        request.setNo_of_servings(txtNoOfServings.getText());
-        request.setContact_number(txtContactNumber.getText());
-        request.setEmail_id(txtEmailId.getText());
-        request.setRequestDate(new Date());
+        OrphanWorkRequest request = new OrphanWorkRequest();
+//        request.setNo_of_servings(txtNoOfServings.getText());
+//        request.setContact_number(txtContactNumber.getText());
+//        request.setEmail_id(txtEmailId.getText());
+//        request.setRequestDate(new Date());
+//        request.setStatus("Requested");
+//        request.setSender(account);
+//        request.setRequestingOrganiztionName(organization.getName());
+//        request.setRequestingOrganizationType(Organization.Type.Restaurant);
+        
+        request.setOrderRequestTime(new Date());
         request.setStatus("Requested");
-        request.setSender(account);
-        request.setRequestingOrganiztionName(organization.getName());
-        request.setRequestingOrganizationType(Organization.Type.Restaurant);
+        request.setNo_of_servings(Integer.parseInt(txtNoOfServings.getText()));
+        request.setDonorOrganization(organization);
+        request.setDonorOrganizationUser(account);
+        request.setLocation(organization.getLocationPoint());
+        
         account.getWorkQueue().getWorkRequestList().add(request);
+        organization.getWorkQueue().getWorkRequestList().add(request);
         
         populateTable();
         resetTextField();
         System.out.println("oraphanage line number 291");
         
-        //-- jayesh trying to add request to the respective managerorganization
-        organization.getWorkQueue().getWorkRequestList().add(request);
+
+        
             
         
     }//GEN-LAST:event_btnSubmitMousePressed

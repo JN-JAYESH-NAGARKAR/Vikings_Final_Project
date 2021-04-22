@@ -13,12 +13,14 @@ import Business.Network.Network;
 import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.OrphanageOrganization;
 import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
-import Business.WorkQueue.FoodReceiverWorkRequest;
+import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
+import Business.WorkQueue.RestaurantRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,7 +41,8 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
     Network network;
     
     public FoodDonationManageRequestJPanel(JPanel rightSystemAdminPanel, OrganizationDirectory organizationDirectory,
-            Network network,EcoSystem system) {
+        
+        Network network,EcoSystem system) {
         initComponents();
         requestJTable.getTableHeader().setDefaultRenderer(new TableColors());
         organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
@@ -47,44 +50,45 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         this.organizationDirectory = organizationDirectory;
         this.network = network;
         this.system = system;
-        populateTable();
+        populateFoodDonationOrganizationTable();
         populateRequestTable();
     }
     
-    public void populateTable(){
+    public void populateFoodDonationOrganizationTable(){
         
        DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
         
         model.setRowCount(0);
         for (Organization organization : organizationDirectory.getOrganizationList()){
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             
             if(organization instanceof RestaurantOrganization){
                 RestaurantOrganization  org = (RestaurantOrganization)organization;
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
-                row[2] = org.calculateNumberOfServings();
-                row[3] = org.getIfCertified();
-                row[4] = org.getLocationPoint();
+                row[2] = org.getUserAccountDirectory().getUserAccountList().get(0);
+                row[3] = org.calculateNumberOfServings();
+                row[4] = org.getIfCertified();
+                row[5] = org.getLocationPoint();
                 
             }else if(organization instanceof PartyOrganizerOrganizatioin){
                 PartyOrganizerOrganizatioin  org = (PartyOrganizerOrganizatioin)organization;
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
-                row[2] = org.getNoOfServingsLeft();
-                row[3] = org.getIfCertified();
-                row[4] = org.getLocationPoint();
+                row[3] = org.calculateNumberOfServings();
+                row[4] = org.getIfCertified();
+                row[5] = org.getLocationPoint();
                 
             }else if(organization instanceof IndividualFoodDonorOrganization){
                 IndividualFoodDonorOrganization  org = (IndividualFoodDonorOrganization)organization;
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
-                row[2] = org.getNoOfServingsLeft();
-                row[3] = org.getIfCertified();
-                row[4] = org.getLocationPoint();
+                row[3] = org.calculateNumberOfServings();
+                row[4] = org.getIfCertified();
+                row[5] = org.getLocationPoint();
                 
             }
             
@@ -101,23 +105,23 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
            if(enterprise instanceof FoodReceiver){
                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-                    for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
-                        FoodReceiverWorkRequest foodReceiverReq = (FoodReceiverWorkRequest)req;
-                        Object[] row = new Object[7];
-            
-                        
-
+                    if(organization instanceof OrphanageOrganization){
+                        for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
+                            OrphanWorkRequest foodReceiverReq = (OrphanWorkRequest)req;
+                            Object[] row = new Object[7];
                             row[0] = foodReceiverReq; 
-                            row[1] = foodReceiverReq.getRequestingOrganiztionName();
+                            row[1] = foodReceiverReq.getRequestingOrganization();
                             row[2] = foodReceiverReq.getRequestingOrganizationType();
-                            row[3] = foodReceiverReq.getNo_of_servings();
-                            row[4] = foodReceiverReq.getStatus();
-                            if(foodReceiverReq.getSender()!=null)row[5] = foodReceiverReq.getSender().getUsername();
-                            row[6] = foodReceiverReq.getReceivingOrganiztionName();
+                            row[3] = foodReceiverReq.getRequestingOrganizationUser();
+                            row[4] = foodReceiverReq.getNo_of_servings();
+                            row[5] = foodReceiverReq.getStatus();
+                            row[6] = foodReceiverReq.getLocation();
+                            
                             model.addRow(row);
                         }
                     }
-               }
+                }
+            }
                 
            
     
@@ -157,14 +161,14 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reqest Id", "Receiver Oganization Name", "Receiver Organization Type", "No of Servings Requested", "Request Status", "Sender Username", "Assigned Username"
+                "Reqest Id", "Requesting Oganization Name", "Requesting Organization Type", "Requesting Username", "No of Servings Requested", "Request Status", "Location"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -182,7 +186,7 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel4.setText("Request For Food Table");
+        jLabel4.setText("Food Request Dashboard");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 370, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
@@ -208,20 +212,20 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Food donation Organization Name", "Organization Type", "No Of Servings Left", "Certification Status", "Location"
+                "Food Donation Organization Name", "Organization Type", "Organization Admin Username", "No of Servings Left", "Certification Status", "Location"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -270,34 +274,44 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
             return;
         }
         
-        FoodReceiverWorkRequest request = (FoodReceiverWorkRequest)requestJTable.getValueAt(selectedRow, 0);
+        OrphanWorkRequest request = (OrphanWorkRequest)requestJTable.getValueAt(selectedRow, 0);
         request.setStatus("Rejected");
          populateRequestTable();
     }//GEN-LAST:event_btnRejectPressed
 
     private void btnProcessPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcessPressed
         // TODO add your handling code here:
-        int selectedRow1 = requestJTable.getSelectedRow();
-        int selectedRow2 = organizationJTable.getSelectedRow();
+        int selectedRowtable1 = requestJTable.getSelectedRow();
+        int selectedRowTable2 = organizationJTable.getSelectedRow();
         
-        if (selectedRow1 < 0 || selectedRow2 < 0){
+        if (selectedRowtable1 < 0 || selectedRowTable2 < 0){
             
             JOptionPane.showMessageDialog(null, "Please Select a request row from both tables!");
             return;
         }
         
-        FoodReceiverWorkRequest request = (FoodReceiverWorkRequest)requestJTable.getValueAt(selectedRow1, 0);
-        
-        if(request.getStatus() == "Rejected") {
+        OrphanWorkRequest orphanRequest = (OrphanWorkRequest)requestJTable.getValueAt(selectedRowtable1, 0);
+        if(orphanRequest.getStatus() == "Rejected") {
             JOptionPane.showMessageDialog(null, "Request is Rejected!Can not be Processed");
         }
-        
-        request.setStatus("Processed");
-        Organization org = (Organization)organizationJTable.getValueAt(selectedRow2, 0);
-        request.setReceivingOrganiztionName(org.getName());
+        orphanRequest.setStatus("Processed");
+        Organization org = (Organization)organizationJTable.getValueAt(selectedRowTable2, 0);
+        orphanRequest.setDonorOrganization(org);
+        orphanRequest.setDonorOrganizationUser(org.getUserAccountDirectory().getUserAccountList().get(0));   //complet this populate account in table1 instead of string
        
+        //create restaurantrequest and put it in restaurant organization workrequest
+        if(org.getType().getValue() == Organization.Type.Restaurant.getValue()){
+            RestaurantRequest restReq = new RestaurantRequest();
+            restReq.setRequestingOrganiztionName(org);
+            restReq.setRequestingOrganizationType(org.getType());
+            restReq.setNoOfServings(orphanRequest.getNo_of_servings());
+            restReq.setAddress(orphanRequest.getLocation());
+            restReq.setEmailId(orphanRequest.getEmailId());
+            restReq.setStatus(orphanRequest.getStatus());
+        }
         
         populateRequestTable();
+        populateFoodDonationOrganizationTable();
         
     }//GEN-LAST:event_btnProcessPressed
 

@@ -182,6 +182,8 @@ public class FoodReceiverManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setText("Location Address");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
+
+        orgLocation.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         add(orgLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 374, 230, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));

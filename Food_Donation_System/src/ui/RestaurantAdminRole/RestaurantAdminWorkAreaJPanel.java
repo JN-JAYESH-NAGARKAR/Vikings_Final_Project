@@ -110,6 +110,9 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnProcess1 = new javax.swing.JLabel();
         txtImagePath = new javax.swing.JTextField();
         btnDeleteItem = new javax.swing.JLabel();
+        comboDeliveryManList = new javax.swing.JComboBox<>();
+        btnDeleteItem1 = new javax.swing.JLabel();
+        lblQuantity1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,20 +121,20 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         RestaurantAdminDashboardJTable.setForeground(new java.awt.Color(25, 56, 82));
         RestaurantAdminDashboardJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "User Name of Receiver orgnization", "No Of Serves", "Address", "Contact No", "Status", "Food Prepare Time"
+                "Order ID", "Requesting Organization", "Requesting Organization Username", "No Of Serves", "Address", "Email ID", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -156,12 +159,12 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
 
         txtFoodDishName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
         jLabel7.setText("Restaurant Admin Work Area");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));
@@ -176,9 +179,9 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         lblQuantity.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblQuantity.setForeground(new java.awt.Color(25, 56, 82));
-        lblQuantity.setText("No Of Servings");
+        lblQuantity.setText("Delivery Man:");
         lblQuantity.setToolTipText("");
-        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 110, -1));
+        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 730, 90, -1));
         add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, 330, 180));
 
         restaurantAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,6 +264,29 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDeleteItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 720, 138, 35));
+
+        comboDeliveryManList.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        comboDeliveryManList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(comboDeliveryManList, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 730, 134, -1));
+
+        btnDeleteItem1.setBackground(new java.awt.Color(255, 255, 255));
+        btnDeleteItem1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnDeleteItem1.setForeground(new java.awt.Color(25, 56, 82));
+        btnDeleteItem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnDeleteItem1.setText("Process Order");
+        btnDeleteItem1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeleteItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnDeleteItem1MousePressed(evt);
+            }
+        });
+        add(btnDeleteItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 720, 138, 35));
+
+        lblQuantity1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblQuantity1.setForeground(new java.awt.Color(25, 56, 82));
+        lblQuantity1.setText("No Of Servings");
+        lblQuantity1.setToolTipText("");
+        add(lblQuantity1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUploadImagePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUploadImagePressed
@@ -312,12 +338,18 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         populateMenuTable();
     }//GEN-LAST:event_btnDeleteItemMousePressed
 
+    private void btnDeleteItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteItem1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteItem1MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RestaurantAdminDashboardJTable;
     private javax.swing.JLabel btnDeleteItem;
+    private javax.swing.JLabel btnDeleteItem1;
     private javax.swing.JLabel btnProcess1;
     private javax.swing.JLabel btnUploadImage;
+    private javax.swing.JComboBox<String> comboDeliveryManList;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -326,6 +358,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblFoodDishName;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblQuantity;
+    private javax.swing.JLabel lblQuantity1;
     private javax.swing.JLabel lblRestaurantStatus;
     private javax.swing.JTable restaurantAdminMenuJTable;
     private javax.swing.JTextField txtFoodDescription;

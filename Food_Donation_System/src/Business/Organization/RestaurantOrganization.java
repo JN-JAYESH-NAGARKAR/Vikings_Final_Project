@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class RestaurantOrganization extends Organization {
     private String ifCertified = "not certified";
     private String officerName = "not assigned";
-    private int NoOfServingsLeft = 10;
+    
     private Menu menu;
     
     public RestaurantOrganization(String name){
@@ -44,13 +44,9 @@ public class RestaurantOrganization extends Organization {
         this.officerName = officer;
     }
 
-    public int getNoOfServingsLeft() {
-        return NoOfServingsLeft;
-    }
+   
 
-    public void setNoOfServingsLeft(int NoOfServingsLeft) {
-        this.NoOfServingsLeft = NoOfServingsLeft;
-    }
+   
 
     public Menu getMenu() {
         return menu;
