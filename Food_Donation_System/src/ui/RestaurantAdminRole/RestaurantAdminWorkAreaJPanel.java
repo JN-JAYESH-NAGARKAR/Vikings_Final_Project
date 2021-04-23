@@ -15,6 +15,7 @@ import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
+import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.RestaurantRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -339,7 +340,22 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnBuildMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuildMousePressed
         // TODO add your handling code here:
-        RestaurantProcessOrderJPanel restaurantProcessOrderJPanel = new RestaurantProcessOrderJPanel();
+        
+        int selectedAdminRequestTableRow = RestaurantAdminDashboardJTable.getSelectedRow();            //bottom table
+        
+        
+        if (selectedAdminRequestTableRow < 0){
+            
+            JOptionPane.showMessageDialog(null, "Please Select a request row from Request tables!");
+            return;
+        }
+        
+        RestaurantRequest requestReq = (RestaurantRequest)RestaurantAdminDashboardJTable.getValueAt(selectedAdminRequestTableRow, 0);
+        
+        
+        
+        
+        RestaurantProcessOrderJPaneln restaurantProcessOrderJPanel = new RestaurantProcessOrderJPaneln(userProcessContainer,account,organization,network,requestReq);
         userProcessContainer.add("restaurantProcessOrder",restaurantProcessOrderJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -18,6 +18,8 @@ public class UserAccount {
     private String password;
     private Employee employee;
     private Role role;
+    private int age;
+    private String sex;
     private WorkQueue workQueue;
 
     public UserAccount() {
@@ -64,6 +66,23 @@ public class UserAccount {
     public void clearAllRequest(){
         workQueue.clearAllRequest();
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    
     
     
     @Override

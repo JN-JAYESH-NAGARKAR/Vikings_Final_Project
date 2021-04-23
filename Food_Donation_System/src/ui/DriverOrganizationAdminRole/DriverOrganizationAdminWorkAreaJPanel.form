@@ -29,7 +29,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="250" y="280" width="650" height="157"/>
+          <AbsoluteConstraints x="30" y="260" width="1000" height="157"/>
         </Constraint>
       </Constraints>
 
@@ -44,17 +44,29 @@
               <Color blue="52" green="38" red="19" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
-                <Column editable="false" title="Driver Name" type="java.lang.String"/>
+              <Table columnCount="8" rowCount="4">
                 <Column editable="false" title="Order ID" type="java.lang.Object"/>
-                <Column editable="false" title="Pick Up Status" type="java.lang.String"/>
-                <Column editable="true" title="Delivery Status" type="java.lang.Object"/>
-                <Column editable="true" title="Pick Up Location" type="java.lang.Object"/>
-                <Column editable="true" title="Delivery Loaction" type="java.lang.Object"/>
+                <Column editable="false" title="Driver Username" type="java.lang.String"/>
+                <Column editable="false" title="Delivery Status" type="java.lang.Object"/>
+                <Column editable="false" title="Pick Up Location" type="java.lang.Object"/>
+                <Column editable="false" title="Delivery Loaction" type="java.lang.Object"/>
+                <Column editable="false" title="Donor Organization" type="java.lang.Object"/>
+                <Column editable="false" title="Requesting Organization" type="java.lang.Object"/>
+                <Column editable="false" title="Delivery TimeStamp" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -115,7 +127,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="300" y="500" width="-1" height="-1"/>
+          <AbsoluteConstraints x="40" y="480" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -137,7 +149,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="580" y="500" width="-1" height="-1"/>
+          <AbsoluteConstraints x="360" y="470" width="-1" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -201,7 +213,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="460" y="500" width="-1" height="-1"/>
+          <AbsoluteConstraints x="240" y="490" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -10,7 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import DriverOrganizationAdminRole.DriverOrganizationAdminWorkAreaJPanel;
+import ui.DriverOrganizationAdminRole.DriverOrganizationAdminWorkAreaJPanel;
 import javax.swing.JPanel;
 import ui.PartyOrganizationAdmin.PartyOrganizationAdminWorkAreaJPanel;
 

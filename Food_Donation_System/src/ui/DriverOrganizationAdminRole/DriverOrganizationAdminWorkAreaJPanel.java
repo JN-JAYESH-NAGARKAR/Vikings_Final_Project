@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DriverOrganizationAdminRole;
+package ui.DriverOrganizationAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -58,20 +58,20 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Driver Name", "Order ID", "Pick Up Status", "Delivery Status", "Pick Up Location", "Delivery Loaction"
+                "Order ID", "Driver Username", "Delivery Status", "Pick Up Location", "Delivery Loaction", "Donor Organization", "Requesting Organization", "Delivery TimeStamp"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -85,7 +85,7 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         organizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(organizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 650, 157));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 1000, 157));
 
         addJButton.setBackground(new java.awt.Color(204, 255, 204));
         addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -96,7 +96,7 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -107,7 +107,7 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, 50));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
@@ -131,7 +131,7 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
                 addJButton1ActionPerformed(evt);
             }
         });
-        add(addJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, -1, -1));
+        add(addJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
