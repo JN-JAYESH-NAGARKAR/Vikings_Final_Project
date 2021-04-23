@@ -52,7 +52,6 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         partyOrganizerAdminDashboardJTable = new javax.swing.JTable();
         lblPartyStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblFoodDishName = new javax.swing.JLabel();
@@ -65,7 +64,7 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         partyOrganizerAdminMenuJTable = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         partyOrganizerAdminDashboardJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -108,9 +107,6 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        txtFoodDishName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
@@ -167,10 +163,10 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 840, -1, 30));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 570, -1, 30));
 
         lblViewImage.setText("jLabel14");
-        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 610, 270, 180));
+        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 570, 270, 180));
 
         partyOrganizerAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -237,7 +233,6 @@ public class PartyOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblViewImage;
     private javax.swing.JTable partyOrganizerAdminDashboardJTable;
     private javax.swing.JTable partyOrganizerAdminMenuJTable;
-    private javax.swing.JLabel txtFoodDishName;
     private javax.swing.JTextField txtFoodName;
     private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables

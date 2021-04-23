@@ -205,14 +205,14 @@ public class FoodReceiverManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("MANAGE RECEIVER ENTERPRISE USERS");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 38, 375, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 375, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser128x.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 150));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/userEmergency512x.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 120, 260, 470));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed

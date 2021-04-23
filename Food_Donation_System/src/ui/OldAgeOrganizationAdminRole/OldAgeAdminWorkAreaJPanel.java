@@ -44,12 +44,10 @@ public class OldAgeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         orgLocation = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         orgLocation1 = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -128,13 +126,6 @@ public class OldAgeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setText("MANAGE OLDAGE ORGANIZATION");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 34, 581, -1));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512x.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 520, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyIconBlue128x.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
         jLabel7.setText("No Of Servings");
@@ -184,8 +175,6 @@ public class OldAgeAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField orgLocation;
