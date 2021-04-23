@@ -85,7 +85,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -158,9 +157,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel6.setText("MANAGE ENTERPRISE ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 16, 523, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/group Enterprise.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 6, 145, 164));
-
         btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(25, 56, 82));
@@ -211,7 +207,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;

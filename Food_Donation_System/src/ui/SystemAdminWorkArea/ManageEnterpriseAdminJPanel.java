@@ -100,7 +100,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         passwordJPasswordField = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -189,10 +188,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel6.setText("MANAGE ENTERPRISE ADMIN");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 6, 680, -1));
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/administratorBig.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 12, 161, 129));
-
         btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(25, 56, 82));
@@ -270,7 +265,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;

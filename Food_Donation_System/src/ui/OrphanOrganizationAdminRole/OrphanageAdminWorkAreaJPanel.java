@@ -14,6 +14,7 @@ import Business.Organization.Organization;
 import Business.Organization.OrphanageOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
+import Business.Utils.Validation;
 import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.RestaurantRequest;
@@ -41,6 +42,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
     Organization organization;Enterprise enterprise;
     Network network;
     EcoSystem business;
+    Validation validation;
     public OrphanageAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
         initComponents();
         organizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
@@ -253,6 +255,11 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
                 txtNoOfServingsActionPerformed(evt);
             }
         });
+        txtNoOfServings.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoOfServingsKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtNoOfServings, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 210, 30));
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -310,8 +317,13 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
  
     private void btnSubmitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmitMousePressed
         System.out.println("OrphanageAdmin line number 265");
-        
-        
+        if (!Validation.emailValidator(txtEmailId.getText())) {
+            JOptionPane.showMessageDialog(null, "entered email is not in valid format");
+            return;
+        }else if(!Validation.phoneNumberValidator(txtContactNumber.getText())){
+            JOptionPane.showMessageDialog(null, "phone number is not in right format");
+            return;
+        }
         RestaurantRequest request = new RestaurantRequest();
 
         
@@ -360,6 +372,11 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void txtContactNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContactNumberActionPerformed
+
+    private void txtNoOfServingsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoOfServingsKeyPressed
+        // TODO add your handling code here:
+        Validation.integerValidator(evt, txtNoOfServings);
+    }//GEN-LAST:event_txtNoOfServingsKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

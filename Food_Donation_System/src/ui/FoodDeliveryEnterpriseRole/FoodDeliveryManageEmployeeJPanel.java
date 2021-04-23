@@ -64,7 +64,10 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
         }
     }
     public void resetFields() {
+        
         nameJTextField.setText("");
+        txtAge.setText("");
+        txtSex.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +90,10 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        txtSex = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -132,7 +139,7 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 371, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, -1, -1));
 
         organizationJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationJComboBox.setForeground(new java.awt.Color(25, 56, 82));
@@ -151,8 +158,8 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel2.setText("Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 345, -1, -1));
+        jLabel2.setText("Sex");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, -1));
 
         nameJTextField.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         nameJTextField.setForeground(new java.awt.Color(25, 56, 82));
@@ -183,20 +190,58 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+
+        txtSex.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        txtSex.setForeground(new java.awt.Color(25, 56, 82));
+        txtSex.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSexFocusLost(evt);
+            }
+        });
+        add(txtSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 200, -1));
+
+        txtAge.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        txtAge.setForeground(new java.awt.Color(25, 56, 82));
+        txtAge.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAgeFocusLost(evt);
+            }
+        });
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgeActionPerformed(evt);
+            }
+        });
+        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 200, -1));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel7.setText("Name");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 345, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel8.setText("Age");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
-        if(!name.isEmpty()){
-            organization.getEmployeeDirectory().createEmployee(name);
+        String age = txtAge.getText();
+        String sex = txtSex.getText();
+        
+        if(!name.isEmpty() || !sex.isEmpty() || !age.isEmpty()){
+            Employee emp = organization.getEmployeeDirectory().createEmployee(name);
+            emp.setAge(Integer.parseInt(age));
+            emp.setSex(sex);
             populateTable(organization);
-            nameJTextField.setText("");
+            
             JOptionPane.showMessageDialog(null, "Employee created sucessfully!");
             resetFields();
         } else{
-            JOptionPane.showMessageDialog(null, "Enter employee name!");
+            JOptionPane.showMessageDialog(null, "Enter all detail !");
         }
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -211,6 +256,18 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameJTextFieldActionPerformed
 
+    private void txtSexFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSexFocusLost
+
+    }//GEN-LAST:event_txtSexFocusLost
+
+    private void txtAgeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAgeFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeFocusLost
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
@@ -220,10 +277,14 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationEmpJComboBox;
     private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtSex;
     // End of variables declaration//GEN-END:variables
 }

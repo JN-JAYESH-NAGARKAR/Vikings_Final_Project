@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ui.registration.Registration;
 
 /**
  *
@@ -388,7 +389,22 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonMousePressed
 
     private void btnRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMousePressed
-        
+         Registration panel = new Registration(container, system);
+        greetingUserLabel.setText( "WELCOME TO FOOD DONATION SYSTEM REGISTRATION!!!");
+        //emoRR panel = new demoRR(container, system);
+        //container.add("UserRegistrationJPanel", panel);
+            loginJPanel.setVisible(false);
+            container.setVisible(true);
+            leftPanel.setVisible(true);
+            btnLogoutLabel.setVisible(false);
+            btnBackLabel.setVisible(true);
+            userNameJTextField.setText("");
+            passwordField.setText("");
+        //cc();
+        //SystemAdminRole r = new SystemAdminRole();
+            container.add("workArea", panel);
+            CardLayout layout = (CardLayout) container.getLayout();
+            layout.next(container);
     }//GEN-LAST:event_btnRegisterMousePressed
 
     private void btnLogoutLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutLabelMousePressed
@@ -402,7 +418,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnBackLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackLabelMousePressed
         // TODO add your handling code here:
-        //logout();
+        btnLogoutLabelMousePressed(evt);
     }//GEN-LAST:event_btnBackLabelMousePressed
 
     /**
