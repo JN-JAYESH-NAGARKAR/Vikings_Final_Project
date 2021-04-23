@@ -103,15 +103,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(51, 255, 204));
+        systemAdminPanel.setBackground(new java.awt.Color(255, 153, 153));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 153, 153));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 148));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 148));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageNetworkPanel.setBackground(new java.awt.Color(51, 255, 204));
+        manageNetworkPanel.setBackground(new java.awt.Color(255, 51, 51));
         manageNetworkPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageNetworkPanelMousePressed(evt);
@@ -153,7 +153,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageNetworkPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 280, -1));
 
-        manageEnterprise.setBackground(new java.awt.Color(51, 255, 204));
+        manageEnterprise.setBackground(new java.awt.Color(255, 51, 51));
         manageEnterprise.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEnterprise.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -195,7 +195,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 48, 280, 50));
 
-        manageEnterpriseAdmin.setBackground(new java.awt.Color(51, 255, 204));
+        manageEnterpriseAdmin.setBackground(new java.awt.Color(255, 51, 51));
         manageEnterpriseAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageEnterpriseAdminMousePressed(evt);
@@ -234,7 +234,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageEnterpriseAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 88, 280, 40));
 
-        noOfSceneGraph.setBackground(new java.awt.Color(51, 255, 204));
+        noOfSceneGraph.setBackground(new java.awt.Color(255, 51, 51));
         noOfSceneGraph.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 noOfSceneGraphMousePressed(evt);
@@ -280,7 +280,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         lblSelectedNode1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jPanel3.add(lblSelectedNode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 230, 30));
 
-        viewGraphScene.setBackground(new java.awt.Color(51, 255, 204));
+        viewGraphScene.setBackground(new java.awt.Color(255, 51, 51));
         viewGraphScene.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 viewGraphSceneMousePressed(evt);
