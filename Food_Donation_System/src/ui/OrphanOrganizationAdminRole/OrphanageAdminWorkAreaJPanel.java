@@ -16,12 +16,14 @@ import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
+import Business.WorkQueue.RestaurantRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.Image;
 import java.io.File;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,16 +58,21 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
-            OrphanWorkRequest req = (OrphanWorkRequest)request;
+            if(request instanceof OrphanWorkRequest) continue;
+            RestaurantRequest req = (RestaurantRequest)request;
             System.out.println(req);
             Object[] row = new Object[7];
             row[0] = req;         //--jayesh   row[0] = request.getMessage(); 
             row[1] = req.getRequestDate();
-            row[2] = req.getResolveDate();
+            row[2] = req.getDeliveryTimestamp();
             row[3] = req.getStatus();
-            row[4] = req.getNo_of_servings();
+            row[4] = req.getNoOfServings();
+            
             row[5] = req.getDonorOrganization();
-            row[6] = "TO be assigned";
+            if(req.getDonorOrganization() == null)row[5] = "To be assigned";
+            
+            row[6] = req.getDeliveryUser();
+            if(req.getDeliveryUser() == null)row[6] = "To be assigned";
             
             
             model.addRow(row);
@@ -305,21 +312,25 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         System.out.println("OrphanageAdmin line number 265");
         
         
-        OrphanWorkRequest request = new OrphanWorkRequest();
+        RestaurantRequest request = new RestaurantRequest();
 
         
-        request.setOrderRequestTime(new Date());
+        //request.setDeliveryTimestamp(new Date());
         request.setStatus("Requested");
-        request.setNo_of_servings(Integer.parseInt(txtNoOfServings.getText()));
-        request.setRequestingOrganization(organization);
+        request.setRequestDate(new Date());
+        
+        request.setNoOfServings(Integer.parseInt(txtNoOfServings.getText()));
+        request.setRequestingOrganiztionName(organization);
         request.setRequestingOrganizationUser(account);
+        
         request.setRequestingOrganizationType(organization.getType());
-        request.setLocation(organization.getLocationPoint());
+        
         request.setEmailId(txtEmailId.getText());
         
         account.getWorkQueue().getWorkRequestList().add(request);
         organization.getWorkQueue().getWorkRequestList().add(request);
         
+        JOptionPane.showMessageDialog(null, "Request Sent To food DonationEnterprise Admin");
         populateTable();
         resetTextField();
         System.out.println("oraphanage line number 291");

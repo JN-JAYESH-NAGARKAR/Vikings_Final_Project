@@ -12,6 +12,8 @@ public class Employee {
     
     private String name;
     private int id;
+    private int age = 28;
+    private String sex = "male";
     private static int count = 1;
 
     public Employee() {
@@ -31,6 +33,26 @@ public class Employee {
     public String getName() {
         return name;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    
+    
+    
+    
 
     @Override
     public String toString() {

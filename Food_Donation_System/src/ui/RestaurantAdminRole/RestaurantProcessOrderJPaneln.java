@@ -21,6 +21,7 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -86,8 +87,13 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         }
     }
     public void backButton(){
-        userProcessContainer.remove(this);
+
         
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        RestaurantAdminWorkAreaJPanel rawp = (RestaurantAdminWorkAreaJPanel) component;
+        rawp.populateRestaurantAdminRequestDashboard();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }
@@ -450,23 +456,7 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
 
     private void btnSendMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMousePressed
         // TODO add your handling code here:
-//        int selectedRow = workRequestJTable.getSelectedRow();
-//        
-//        if (selectedRow < 0){
-//            return;
-//        }
-//        
-//        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-//        requestReq.set(userAccount);
-//        request.setStatus("Accepted");
-//        //--jayesh set deliveryman in request by searching useraccount based on the username
-//        UserAccount ua = null;
-//        for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList()){
-//           ua = org.getUserAccountDirectory().searchUser((String)comboDeliveryManList.getSelectedItem());
-//        }
-//        System.out.println("RestaurantManagerWorkAreaJPanel line number 338--------------------------" + ua.getUsername());
-//        request.setDeliveryman(ua);
-//        ua.getWorkQueue().addRequest(request);
+        
         UserAccount ua = null;
         for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
             if(enterprise instanceof Delivery){
@@ -478,8 +468,11 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
                 }
             }
         }
-        
+        requestReq.setStatus("Sent");
         requestReq.setDeliveryUser(ua);
+        requestReq.setDeliveryTimestamp(new Date());
+        requestReq.setDonorOrganization(organization);
+        requestReq.setDonorOrganizationType(Organization.Type.Restaurant);
         ua.getWorkQueue().addRequest(requestReq);
         JOptionPane.showMessageDialog(null, "Food Order sent successfully!");
         backButton();

@@ -22,6 +22,7 @@ import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.RestaurantRequest;
 import Business.WorkQueue.WorkRequest;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -107,15 +108,25 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
                     if(organization instanceof OrphanageOrganization){
                         for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
-                            OrphanWorkRequest foodReceiverReq = (OrphanWorkRequest)req;
+                            if(!(req instanceof RestaurantRequest) )continue;
+                            RestaurantRequest foodReceiverReq = (RestaurantRequest)req;
                             Object[] row = new Object[7];
                             row[0] = foodReceiverReq; 
-                            row[1] = foodReceiverReq.getRequestingOrganization();
+                            
+                            row[1] = foodReceiverReq.getRequestingOrganiztionName();
+                            
                             row[2] = foodReceiverReq.getRequestingOrganizationType();
+                            row[2] = foodReceiverReq.getRequestingOrganizationType();
+                            
+                            
                             row[3] = foodReceiverReq.getRequestingOrganizationUser();
-                            row[4] = foodReceiverReq.getNo_of_servings();
+                            
+                            
+                            row[4] = foodReceiverReq.getNoOfServings();
+                            
                             row[5] = foodReceiverReq.getStatus();
-                            row[6] = foodReceiverReq.getLocation();
+                            
+                            row[6] = foodReceiverReq.getRequestingOrganiztionName().getLocationPoint();
                             
                             model.addRow(row);
                         }
@@ -290,29 +301,51 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
             return;
         }
         
-        OrphanWorkRequest orphanRequest = (OrphanWorkRequest)requestJTable.getValueAt(selectedRequestTableRow, 0);
-        if(orphanRequest.getStatus() == "Rejected") {
+        Organization donorOrg = (Organization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
+        
+        
+        if(donorOrg instanceof RestaurantOrganization){
+            RestaurantOrganization org = (RestaurantOrganization)donorOrg;
+            if(org.getIfCertified().equals("not certified")){
+                JOptionPane.showMessageDialog(null, "this organization is not certified by food inspector");
+                return;
+            }
+        }
+        else if(donorOrg instanceof PartyOrganizerOrganizatioin){
+            PartyOrganizerOrganizatioin org = (PartyOrganizerOrganizatioin)donorOrg;
+            if(org.getIfCertified().equals("not certified")){
+                JOptionPane.showMessageDialog(null, "this organization is not certified by food inspector");
+                return;
+            }
+        }
+        else if(donorOrg instanceof IndividualFoodDonorOrganization){
+            IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)donorOrg;
+            if(org.getIfCertified().equals("not certified")){
+                JOptionPane.showMessageDialog(null, "this organization is not certified by food inspector");
+                return;
+            }
+        }
+        
+        
+        
+        
+        RestaurantRequest request = (RestaurantRequest)requestJTable.getValueAt(selectedRequestTableRow, 0);
+        if(request.getStatus() == "Rejected") {
             JOptionPane.showMessageDialog(null, "Request is Rejected!Can not be Processed");
         }
-        orphanRequest.setStatus("Processed");
-        Organization org = (Organization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
-        orphanRequest.setDonorOrganization(org);
-        orphanRequest.setDonorOrganizationUser(org.getUserAccountDirectory().getUserAccountList().get(0));   //complet this populate account in table1 instead of string
+        request.setStatus("Approved");
+        request.setDeliveryTimestamp(new Date());
+        //Organization donorOrg = (Organization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
+        request.setDonorOrganization(donorOrg);
+        request.setDonorOrganizationUser(donorOrg.getUserAccountDirectory().getUserAccountList().get(0));   //complet this populate account in table1 instead of string
        
-        //create restaurantrequest and put it in restaurant organization workrequest
-        if(org.getType().getValue() == Organization.Type.Restaurant.getValue()){
-            RestaurantRequest restReq = new RestaurantRequest();
-            restReq.setRequestingOrganiztionName(org);
-            restReq.setRequestingOrganizationType(org.getType());
-            restReq.setNoOfServings(orphanRequest.getNo_of_servings());
-            restReq.setAddress(orphanRequest.getLocation());
-            restReq.setEmailId(orphanRequest.getEmailId());
-            restReq.setStatus(orphanRequest.getStatus());
-            RestaurantOrganization restOrg = (RestaurantOrganization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
-            restOrg.getWorkQueue().getWorkRequestList().add(restReq);
-            System.out.println("line number 313 fooddonationmanage req " + restOrg);
-            JOptionPane.showMessageDialog(null, "Request proceded to Food Donor!");
+        if(donorOrg.getType().getValue() == Organization.Type.Restaurant.getValue()){
+              donorOrg.getWorkQueue().getWorkRequestList().add(request);
+              System.out.println("line number 313 fooddonationmanage req " + request);
+              JOptionPane.showMessageDialog(null, "Request proceded to Food Donor!");
+            
         }
+       
         
         populateRequestTable();
         populateFoodDonationOrganizationTable();

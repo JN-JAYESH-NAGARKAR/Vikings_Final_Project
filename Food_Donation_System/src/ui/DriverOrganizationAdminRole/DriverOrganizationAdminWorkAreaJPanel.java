@@ -13,8 +13,12 @@ import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import Business.WorkQueue.RestaurantRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.RestaurantAdminRole.RestaurantProcessOrderJPaneln;
 
 /**
  *
@@ -42,6 +46,12 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         driverJTable.getTableHeader().setDefaultRenderer(new TableColors());
         populateTable();
+        
+        lblDriverName.setText(account.getEmployee().getName());
+        lblDriverAge.setText(Integer.toString(account.getEmployee().getAge()));
+        lblDriverAge.setText(account.getEmployee().getSex());
+        
+        lblDriverSex.setText("");
     }
 
     /**
@@ -55,9 +65,19 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         for(WorkRequest request : account.getWorkQueue().getWorkRequestList()){
             RestaurantRequest req = (RestaurantRequest)request;
-            Object[] row = new Object[2]; 
+            Object[] row = new Object[7]; 
             row[0] = req;
-            row[1] = req.getDeliveryUser();
+            //row[1] = req.getDeliveryUser();
+            if(req.getDonorOrganization() != null) row[1] = req.getDonorOrganization().getLocationPoint();
+            
+            row[2] = req.getRequestingOrganiztionName().getLocationPoint();
+            row[3] = req.getDonorOrganization();
+            
+            row[4] = req.getRequestingOrganiztionName();
+            row[5] = req.getStatus();
+            
+            row[6]= req.getDeliveryTimestamp();
+            
             model.addRow(row);
         }
     }
@@ -67,18 +87,17 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         driverJTable = new javax.swing.JTable();
-        addJButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        addJButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblDriverSex = new javax.swing.JLabel();
+        lblDriverAge = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblDriverName = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnDeleteItem2 = new javax.swing.JLabel();
+        btnDeleteItem3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,25 +106,18 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         driverJTable.setForeground(new java.awt.Color(25, 56, 82));
         driverJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "Driver Username", "Delivery Status", "Pick Up Location", "Delivery Loaction", "Donor Organization", "Requesting Organization", "Delivery TimeStamp"
+                "Order ID", "Pick Up Location", "Delivery Loaction", "Donor Organization", "Requesting Organization", "Delivery Status", "TimeStamp"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -114,34 +126,12 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         driverJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(driverJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 1000, 157));
-
-        addJButton.setBackground(new java.awt.Color(204, 255, 204));
-        addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        addJButton.setForeground(new java.awt.Color(25, 56, 82));
-        addJButton.setText("Assign To Me ");
-        addJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addJButtonActionPerformed(evt);
-            }
-        });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(25, 56, 82));
-        jButton1.setText("Delivery");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, 50));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 1110, 157));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("MANAGE DRIVER WORK AREA");
+        jLabel4.setText("Delivery Boy Work Area");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 34, 581, -1));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -151,30 +141,19 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyIconBlue128x.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        addJButton1.setBackground(new java.awt.Color(255, 255, 255));
-        addJButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        addJButton1.setForeground(new java.awt.Color(25, 56, 82));
-        addJButton1.setText("Pick Up");
-        addJButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addJButton1ActionPerformed(evt);
-            }
-        });
-        add(addJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, -1, -1));
+        lblDriverSex.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblDriverSex.setForeground(new java.awt.Color(25, 56, 82));
+        lblDriverSex.setText("Organization Type ");
+        add(lblDriverSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel1.setText("Organization Type ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel2.setText("Organization Type ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
+        lblDriverAge.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblDriverAge.setForeground(new java.awt.Color(25, 56, 82));
+        lblDriverAge.setText("Organization Type ");
+        add(lblDriverAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel3.setText("Sex");
+        jLabel3.setText("Gender");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -182,62 +161,97 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7.setText("Driver Name");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, 20));
 
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel9.setText("Organization Type ");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
+        lblDriverName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblDriverName.setForeground(new java.awt.Color(25, 56, 82));
+        lblDriverName.setText("Organization Type ");
+        add(lblDriverName, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(25, 56, 82));
         jLabel10.setText("Age");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
+
+        btnDeleteItem2.setBackground(new java.awt.Color(255, 255, 255));
+        btnDeleteItem2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnDeleteItem2.setForeground(new java.awt.Color(25, 56, 82));
+        btnDeleteItem2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnDeleteItem2.setText("Delievered");
+        btnDeleteItem2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeleteItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnDelieverMousePressed(evt);
+            }
+        });
+        add(btnDeleteItem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 138, 35));
+
+        btnDeleteItem3.setBackground(new java.awt.Color(255, 255, 255));
+        btnDeleteItem3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnDeleteItem3.setForeground(new java.awt.Color(25, 56, 82));
+        btnDeleteItem3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnDeleteItem3.setText("Pick Up");
+        btnDeleteItem3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeleteItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnPickupMousePressed(evt);
+            }
+        });
+        add(btnDeleteItem3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 138, 35));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
-//       Type type = (Type) organizationJComboBox.getSelectedItem();
-//
-//        if("".equals(orgNameTextField.getText())) {
-//            JOptionPane.showMessageDialog(null, "Enter organization name!");
-//        }else if("".equals(orgLocation.getText())) {
-//            JOptionPane.showMessageDialog(null, "Please set a location");
-//        }else {
-//            locationPoint = orgLocation.getText();
-//            Organization organization = directory.createOrganization(type,orgNameTextField.getText(), locationPoint);
-//            JOptionPane.showMessageDialog(null, "Organization Successfully Created");
-//
-//            populateTable();
-//            resetFields();
-//        }
-    }//GEN-LAST:event_addJButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        //        OrganizationLocationJPanel muajp = new OrganizationLocationJPanel(userProcessContainer);
-        //        userProcessContainer.add("OrganizationLocationJPanel", muajp);
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void addJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButton1ActionPerformed
+    private void btnDelieverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelieverMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addJButton1ActionPerformed
+        int selectedAdminRequestTableRow = driverJTable.getSelectedRow();            //bottom table
+        
+        
+        if (selectedAdminRequestTableRow < 0){
+            
+            JOptionPane.showMessageDialog(null, "Please Select a request row from  table!");
+            return;
+        }
+        
+        RestaurantRequest requestReq = (RestaurantRequest)driverJTable.getValueAt(selectedAdminRequestTableRow, 0);
+        
+        requestReq.setStatus("Delivered");
+        requestReq.setDeliveryTimestamp(new Date());
+        
+        populateTable();
+        
+    }//GEN-LAST:event_btnDelieverMousePressed
+
+    private void btnPickupMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPickupMousePressed
+        // TODO add your handling code here:
+        int selectedAdminRequestTableRow = driverJTable.getSelectedRow();            //bottom table
+        
+        
+        if (selectedAdminRequestTableRow < 0){
+            
+            JOptionPane.showMessageDialog(null, "Please Select a request row from  table!");
+            return;
+        }
+        
+        RestaurantRequest requestReq = (RestaurantRequest)driverJTable.getValueAt(selectedAdminRequestTableRow, 0);
+        
+        requestReq.setStatus("Picked Up");
+        requestReq.setDeliveryTimestamp(new Date());
+        
+        populateTable();
+        
+    }//GEN-LAST:event_btnPickupMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addJButton;
-    private javax.swing.JButton addJButton1;
+    private javax.swing.JLabel btnDeleteItem2;
+    private javax.swing.JLabel btnDeleteItem3;
     private javax.swing.JTable driverJTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDriverAge;
+    private javax.swing.JLabel lblDriverName;
+    private javax.swing.JLabel lblDriverSex;
     // End of variables declaration//GEN-END:variables
 }

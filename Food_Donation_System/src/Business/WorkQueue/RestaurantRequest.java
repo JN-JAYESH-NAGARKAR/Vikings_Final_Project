@@ -19,6 +19,11 @@ public class RestaurantRequest extends WorkRequest{
     
     private Organization.Type requestingOrganizationType; //food receiver = food requesting
     private Organization requestingOrganiztionName;
+    private UserAccount requestingOrganizationUser;
+    
+    private Organization.Type donorOrganizationType;
+    private Organization donorOrganization;
+    private UserAccount donorOrganizationUser;
     
     private int noOfServings;
     private String address;
@@ -30,7 +35,7 @@ public class RestaurantRequest extends WorkRequest{
     private UserAccount deliveryUser;
     private String pickupAddress;   
     private String deliveryAddress;
-    private Date deliveryTimestamp;
+    private Date deliveryTimestamp;   //timestamp
     
     
    
@@ -42,6 +47,23 @@ public class RestaurantRequest extends WorkRequest{
         
     }
 
+    public Organization.Type getDonorOrganizationType() {
+        return donorOrganizationType;
+    }
+
+    public void setDonorOrganizationType(Organization.Type donorOrganizationType) {
+        this.donorOrganizationType = donorOrganizationType;
+    }
+
+    public Organization getDonorOrganization() {
+        return donorOrganization;
+    }
+
+    public void setDonorOrganization(Organization donorOrganization) {
+        this.donorOrganization = donorOrganization;
+    }
+
+    
     public Organization getDeliveryOrganization() {
         return deliveryOrganization;
     }
@@ -134,6 +156,24 @@ public class RestaurantRequest extends WorkRequest{
    public String getOrderID(){
        return "SFR" + orderId;
    }
+
+    public UserAccount getRequestingOrganizationUser() {
+        return requestingOrganizationUser;
+    }
+
+    public void setRequestingOrganizationUser(UserAccount requestingOrganizationUser) {
+        this.requestingOrganizationUser = requestingOrganizationUser;
+    }
+
+    public UserAccount getDonorOrganizationUser() {
+        return donorOrganizationUser;
+    }
+
+    public void setDonorOrganizationUser(UserAccount donorOrganizationUser) {
+        this.donorOrganizationUser = donorOrganizationUser;
+    }
+   
+   
     
 
     @Override

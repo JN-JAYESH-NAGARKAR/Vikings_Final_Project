@@ -82,7 +82,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
             row[1] = restReq.getRequestingOrganiztionName();
             row[2] = restReq.getRequestingOrganizationType();
             row[3] = restReq.getNoOfServings();
-            row[4] = restReq.getAddress();
+            row[4] = restReq.getRequestingOrganiztionName().getLocationPoint();
             row[5] = restReq.getEmailId();
             row[6] = restReq.getStatus();
             model.addRow(row);
