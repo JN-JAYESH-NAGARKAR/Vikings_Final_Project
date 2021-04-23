@@ -80,15 +80,15 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(51, 255, 204));
+        systemAdminPanel.setBackground(new java.awt.Color(255, 153, 153));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 153, 153));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(51, 255, 204));
+        manageOrganizationPanel.setBackground(new java.awt.Color(255, 51, 51));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -133,7 +133,7 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(51, 255, 204));
+        manageEmployee.setBackground(new java.awt.Color(255, 51, 51));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,7 +146,7 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeesmallicon24x.png"))); // NOI18N
 
-        manageEmployeeLabel.setBackground(new java.awt.Color(51, 255, 204));
+        manageEmployeeLabel.setBackground(new java.awt.Color(255, 51, 51));
         manageEmployeeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageEmployeeLabel.setText("Manage Employee");
         manageEmployeeLabel.setAutoscrolls(true);
@@ -193,7 +193,7 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 280, -1));
 
-        manageUserAccount.setBackground(new java.awt.Color(51, 255, 204));
+        manageUserAccount.setBackground(new java.awt.Color(255, 51, 51));
         manageUserAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserAccountMousePressed(evt);
@@ -204,7 +204,7 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser24x.png"))); // NOI18N
 
-        manageUserAccountLabel.setBackground(new java.awt.Color(51, 255, 204));
+        manageUserAccountLabel.setBackground(new java.awt.Color(255, 51, 51));
         manageUserAccountLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageUserAccountLabel.setText("Manage User Account");
         manageUserAccountLabel.setPreferredSize(new java.awt.Dimension(115, 16));
@@ -248,13 +248,13 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
             .addGroup(systemAdminPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightSystemAdminPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rightSystemAdminPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         systemAdminPanelLayout.setVerticalGroup(
             systemAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rightSystemAdminPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rightSystemAdminPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         add(systemAdminPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
