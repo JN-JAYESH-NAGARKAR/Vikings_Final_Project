@@ -7,6 +7,7 @@ package Business.WorkQueue;
 
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.util.Date;
 
 /**
  *
@@ -15,12 +16,21 @@ import Business.UserAccount.UserAccount;
 public class RestaurantRequest extends WorkRequest{
     
     private int orderId;
-    private Organization.Type requestingOrganizationType;
+    
+    private Organization.Type requestingOrganizationType; //food receiver = food requesting
     private Organization requestingOrganiztionName;
+    
     private int noOfServings;
     private String address;
     private String emailId;
     private String status;
+    
+    
+    private Organization deliveryOrganization;
+    private UserAccount deliveryUser;
+    private String pickupAddress;   
+    private String deliveryAddress;
+    private Date deliveryTimestamp;
     
     
    
@@ -32,6 +42,47 @@ public class RestaurantRequest extends WorkRequest{
         
     }
 
+    public Organization getDeliveryOrganization() {
+        return deliveryOrganization;
+    }
+
+    public void setDeliveryOrganization(Organization deliveryOrganization) {
+        this.deliveryOrganization = deliveryOrganization;
+    }
+
+    public UserAccount getDeliveryUser() {
+        return deliveryUser;
+    }
+
+    public void setDeliveryUser(UserAccount deliveryUser) {
+        this.deliveryUser = deliveryUser;
+    }
+
+    public String getPickupAddress() {
+        return pickupAddress;
+    }
+
+    public void setPickupAddress(String pickupAddress) {
+        this.pickupAddress = pickupAddress;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public Date getDeliveryTimestamp() {
+        return deliveryTimestamp;
+    }
+
+    public void setDeliveryTimestamp(Date deliveryTimestamp) {
+        this.deliveryTimestamp = deliveryTimestamp;
+    }
+
+    
     public Organization.Type getRequestingOrganizationType() {
         return requestingOrganizationType;
     }

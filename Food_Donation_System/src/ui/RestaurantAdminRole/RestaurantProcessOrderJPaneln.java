@@ -10,12 +10,14 @@ import Business.Enterprise.Enterprise;
 import Business.Menu.Item;
 import Business.Menu.Menu;
 import Business.Network.Network;
+import Business.Organization.DriverOrganization;
 import Business.Organization.Organization;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import Business.WorkQueue.OrphanWorkRequest;
 import Business.WorkQueue.RestaurantRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -188,7 +190,7 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         btnDeleteItem2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnDeleteItem2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnDeleteItem2btnSendMousePressed(evt);
+                btnSendMousePressed(evt);
             }
         });
         add(btnDeleteItem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 650, 138, 35));
@@ -446,9 +448,42 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalNumberOfServingsActionPerformed
 
-    private void btnDeleteItem2btnSendMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteItem2btnSendMousePressed
+    private void btnSendMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteItem2btnSendMousePressed
+//        int selectedRow = workRequestJTable.getSelectedRow();
+//        
+//        if (selectedRow < 0){
+//            return;
+//        }
+//        
+//        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+//        requestReq.set(userAccount);
+//        request.setStatus("Accepted");
+//        //--jayesh set deliveryman in request by searching useraccount based on the username
+//        UserAccount ua = null;
+//        for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList()){
+//           ua = org.getUserAccountDirectory().searchUser((String)comboDeliveryManList.getSelectedItem());
+//        }
+//        System.out.println("RestaurantManagerWorkAreaJPanel line number 338--------------------------" + ua.getUsername());
+//        request.setDeliveryman(ua);
+//        ua.getWorkQueue().addRequest(request);
+        UserAccount ua = null;
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+            if(enterprise instanceof Delivery){
+                for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                    if(organization instanceof DriverOrganization ){
+                        
+                        ua = organization.getUserAccountDirectory().searchUser((String)comboDeliveryManList.getSelectedItem());
+                    }
+                }
+            }
+        }
+        
+        requestReq.setDeliveryUser(ua);
+        ua.getWorkQueue().addRequest(requestReq);
+        JOptionPane.showMessageDialog(null, "Food Order sent successfully!");
+        backButton();
+    }//GEN-LAST:event_btnSendMousePressed
 
     private void btnBackMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMousePressed
         // TODO add your handling code here:

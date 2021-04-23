@@ -21,6 +21,7 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -43,6 +44,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     Network network;
     EcoSystem business;
+    String txtImagePath;
     
     public RestaurantAdminWorkAreaJPanel(JPanel userProcessContainer,UserAccount account,Organization organization,Enterprise enterprise,Network network,EcoSystem business) {
         initComponents();
@@ -53,6 +55,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.network = network;
         this.business = business;
         //deleteMenu();
+        
         RestaurantAdminDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
         restaurantAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
         populateStatus(organization);
@@ -135,7 +138,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         txtNoOfServing = new javax.swing.JTextField();
         txtFoodDescription = new javax.swing.JTextField();
         btnProcess1 = new javax.swing.JLabel();
-        txtImagePath = new javax.swing.JTextField();
         btnDeleteItem = new javax.swing.JLabel();
         btnBuildOrder = new javax.swing.JLabel();
         lblQuantity1 = new javax.swing.JLabel();
@@ -271,7 +273,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnProcess1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 720, 138, 35));
-        add(txtImagePath, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 220, -1));
 
         btnDeleteItem.setBackground(new java.awt.Color(255, 255, 255));
         btnDeleteItem.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -319,10 +320,17 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         Item item = new Item();
         item.setDescription(txtFoodDescription.getText());
         item.setNumberOfServings(Integer.parseInt(txtNoOfServing.getText()));
-        item.setImagePath(txtImagePath.getText());
+        item.setImagePath(txtImagePath);
         organization.getMenu().addItem(item);
         resetFields();
         populateMenuTable();
+        
+        JOptionPane.showMessageDialog(null, "added new item in the menu successfully!");
+        
+        ImageIcon icon = new ImageIcon("");
+        Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(image);
+        lblImage.setIcon(icon);
         
     }//GEN-LAST:event_btnAddItemMousePressed
 
@@ -370,7 +378,8 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
-        txtImagePath.setText(filename);
+        
+        txtImagePath = filename;
         //Image getAbsolutePath = null;
         ImageIcon icon = new ImageIcon(filename);
         Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH );  //Image.SCALE_SMOOTH
@@ -399,7 +408,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable restaurantAdminMenuJTable;
     private javax.swing.JTextField txtFoodDescription;
     private javax.swing.JLabel txtFoodDishName;
-    private javax.swing.JTextField txtImagePath;
     private javax.swing.JTextField txtNoOfServing;
     // End of variables declaration//GEN-END:variables
 }
