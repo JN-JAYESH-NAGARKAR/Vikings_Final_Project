@@ -59,6 +59,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     public void populateMenuTable(){
         IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
         DefaultTableModel model = (DefaultTableModel)individualDonorAdminMenuJTable.getModel();
+        model.setRowCount(0);
         for(Item item : org.getMenu().getItemList()){
             Object[] row = new Object[3];
             row[0] = item;
@@ -219,6 +220,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private void btnAddItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddItemMousePressed
         // TODO add your handling code here:
         IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
+        //org.getMenu().getItemList().clear();
         if(org.getIfCertified().equals("not certified")){
               JOptionPane.showMessageDialog(null, "You are not yet certified by Food Inspector!");
               resetTextField();
@@ -236,11 +238,13 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
           item.setNumberOfServings(Integer.parseInt(txtNoOfServings.getText()));
           item.setImagePath(imagePath);
           org.getMenu().addItem(item);  //added menu
+          
           IndividualWorkRequest request = new IndividualWorkRequest();
           request.setPostedDate(new Date());
           request.setDonorOrganization(organization);
           request.setDonorAccount(account);
           request.setMenu(org.getMenu());
+          
           org.getWorkQueue().addRequest(request);
           JOptionPane.showMessageDialog(null, "Item added in your menu succefully!");
           populateMenuTable();

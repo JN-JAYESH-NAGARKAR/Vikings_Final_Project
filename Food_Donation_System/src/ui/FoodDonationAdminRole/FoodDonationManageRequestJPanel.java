@@ -78,6 +78,7 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
+                row[2] = org.getUserAccountDirectory().getUserAccountList().get(0);
                 row[3] = org.calculateNumberOfServings();
                 row[4] = org.getIfCertified();
                 row[5] = org.getLocationPoint();
@@ -87,6 +88,7 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
+                row[2] = org.getUserAccountDirectory().getUserAccountList().get(0);
                 row[3] = org.calculateNumberOfServings();
                 row[4] = org.getIfCertified();
                 row[5] = org.getLocationPoint();
