@@ -7,11 +7,16 @@ package ui.IndividualReceiverOrganizationAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Menu.Item;
 import Business.Network.Network;
+import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
+import Business.WorkQueue.IndividualWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,11 +27,51 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form IndividualReceiverWorkAreaJPanel
      */
+    JPanel userProcessContainer;
+    UserAccount account;
+    Organization organization;
+    Enterprise enterprise;
+    Network network;
+    EcoSystem business;
+    
     public IndividualReceiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
         initComponents();
         individualReceiverOrganizationJTable.getTableHeader().setDefaultRenderer(new TableColors());
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.business = business;
+        populateTable();
+                
+                
     }
-
+    
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel)individualReceiverOrganizationJTable.getModel();
+        
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+            for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                if(organization instanceof IndividualFoodDonorOrganization){
+                    IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
+                    for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+                        IndividualWorkRequest req = (IndividualWorkRequest)request;
+                        for(Item item : req.getMenu().getItemList()){
+                            Object[] row = new Object[4];
+                            row[0] = item;
+                            row[1] = item.getDescription();
+                            row[2] = item.getNumberOfServings();
+                            row[3] = req.getPostedDate();
+                            row[4] = org.getLocationPoint();
+                            row[5] = req.getStatus();
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,15 +83,13 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         individualReceiverOrganizationJTable = new javax.swing.JTable();
-        addJButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        orgLocation = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        orgLocation1 = new javax.swing.JTextField();
+        txtFoodDishName = new javax.swing.JTextField();
+        btnSubmit3 = new javax.swing.JLabel();
+        btnSubmit4 = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,20 +98,20 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
         individualReceiverOrganizationJTable.setForeground(new java.awt.Color(25, 56, 82));
         individualReceiverOrganizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "Order request Time", "Order Delivery Time", "Status"
+                "Item Id", "Name", "Number Of Servings", "Date Of posting", "Location", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -82,99 +125,87 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
         individualReceiverOrganizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(individualReceiverOrganizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 111, 581, 157));
-
-        addJButton.setBackground(new java.awt.Color(255, 255, 255));
-        addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        addJButton.setForeground(new java.awt.Color(25, 56, 82));
-        addJButton.setText("Submit");
-        addJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addJButtonActionPerformed(evt);
-            }
-        });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel3.setText("Email ID");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 111, 670, 157));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel2.setText("Contact Number");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, -1, -1));
-
-        orgLocation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orgLocationActionPerformed(evt);
-            }
-        });
-        add(orgLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 230, -1));
+        jLabel2.setText("No of Servings");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("MANAGE INDIVIDUAL RECEIVER ORGANIZATION");
+        jLabel4.setText("Individual Receiver");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 34, 581, -1));
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512x.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 520, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyIconBlue128x.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
-        orgLocation1.addActionListener(new java.awt.event.ActionListener() {
+        txtFoodDishName.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        txtFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
+        txtFoodDishName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orgLocation1ActionPerformed(evt);
+                txtFoodDishNameActionPerformed(evt);
             }
         });
-        add(orgLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 230, -1));
+        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 240, 30));
+
+        btnSubmit3.setBackground(new java.awt.Color(255, 255, 255));
+        btnSubmit3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnSubmit3.setForeground(new java.awt.Color(25, 56, 82));
+        btnSubmit3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSubmit3.setText("Claim");
+        btnSubmit3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSubmit3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSubmit3MousePressed(evt);
+            }
+        });
+        add(btnSubmit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 138, 35));
+
+        btnSubmit4.setBackground(new java.awt.Color(255, 255, 255));
+        btnSubmit4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnSubmit4.setForeground(new java.awt.Color(25, 56, 82));
+        btnSubmit4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSubmit4.setText("Add Item in Cart");
+        btnSubmit4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSubmit4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSubmit4MousePressed(evt);
+            }
+        });
+        add(btnSubmit4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 530, 138, 35));
+
+        lblImage.setText("f");
+        add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 270, 180));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
-//        Type type = (Type) organizationJComboBox.getSelectedItem();
-//
-//        if("".equals(orgNameTextField.getText())) {
-//            JOptionPane.showMessageDialog(null, "Enter organization name!");
-//        }else if("".equals(orgLocation.getText())) {
-//            JOptionPane.showMessageDialog(null, "Please set a location");
-//        }else {
-//            locationPoint = orgLocation.getText();
-//            Organization organization = directory.createOrganization(type,orgNameTextField.getText(), locationPoint);
-//            JOptionPane.showMessageDialog(null, "Organization Successfully Created");
-//
-//            populateTable();
-//            resetFields();
-//        }
-    }//GEN-LAST:event_addJButtonActionPerformed
-
-    private void orgLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgLocationActionPerformed
+    private void txtFoodDishNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFoodDishNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_orgLocationActionPerformed
+    }//GEN-LAST:event_txtFoodDishNameActionPerformed
 
-    private void orgLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgLocation1ActionPerformed
+    private void btnSubmit3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmit3MousePressed
+       
+    }//GEN-LAST:event_btnSubmit3MousePressed
+
+    private void btnSubmit4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmit4MousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_orgLocation1ActionPerformed
+    }//GEN-LAST:event_btnSubmit4MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addJButton;
+    private javax.swing.JLabel btnSubmit;
+    private javax.swing.JLabel btnSubmit1;
+    private javax.swing.JLabel btnSubmit2;
+    private javax.swing.JLabel btnSubmit3;
+    private javax.swing.JLabel btnSubmit4;
     private javax.swing.JTable individualReceiverOrganizationJTable;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField orgLocation;
-    private javax.swing.JTextField orgLocation1;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JTextField txtFoodDishName;
     // End of variables declaration//GEN-END:variables
 }

@@ -54,7 +54,7 @@ public class Item {
 
     @Override
     public String toString(){
-        return description;
+        return Integer.toString(id);
     }
     
     

@@ -7,13 +7,22 @@ package ui.IndividualDonorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Menu.Item;
 import Business.Network.Network;
 import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
 import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
+import Business.WorkQueue.IndividualWorkRequest;
+import java.awt.Image;
+import java.io.File;
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,18 +33,52 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form IndividualDonorWokAreaJPanel
      */
+    JPanel userProcessContainer;
+    UserAccount account;
+    Organization organization;
+    Enterprise enterprise;
+    Network network;
+    EcoSystem business;
+    String imagePath;
+    
     public IndividualDonorWokAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
         initComponents();
-       individualDonorAdminDashboardJTable.getTableHeader().setDefaultRenderer(new TableColors());
+       
        individualDonorAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
-       populateStatus(organization);
+       this.userProcessContainer = userProcessContainer;
+       this.account = account;
+       this.organization = organization;
+       this.enterprise = enterprise;
+       this.network = network;
+       this.business = business;
+       lblIndividualDonorStatus.setText(((IndividualFoodDonorOrganization)organization).getIfCertified());
+       
+       
+       populateMenuTable();
     }
-    public void populateStatus(Organization organization){
-        if(organization instanceof IndividualFoodDonorOrganization){
-            IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
-            lblIndividualDonorStatus.setText(org.getIfCertified());
-        
+    public void populateMenuTable(){
+        IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
+        DefaultTableModel model = (DefaultTableModel)individualDonorAdminMenuJTable.getModel();
+        for(Item item : org.getMenu().getItemList()){
+            Object[] row = new Object[3];
+            row[0] = item;
+            row[1] = item.getDescription();
+            row[2] = item.getNumberOfServings();
+            model.addRow(row);
+            
         }
+    }
+    public void resetTextField(){
+        
+        txtFoodDishName.setText("");
+        txtNoOfServings.setText("");
+        
+        
+        ImageIcon icon = new ImageIcon("");
+        Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH );  //Image.SCALE_SMOOTH
+        icon = new ImageIcon( image );
+        lblImage.setIcon(icon);
+        
     }
 
     /**
@@ -47,74 +90,32 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        individualDonorAdminDashboardJTable = new javax.swing.JTable();
         lblIndividualDonorStatus = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblFoodDishName = new javax.swing.JLabel();
         lblImageUploadBtn = new javax.swing.JLabel();
-        txtFoodName = new javax.swing.JTextField();
-        txtQuantity = new javax.swing.JTextField();
         lblQuantity = new javax.swing.JLabel();
-        btnSubmit = new javax.swing.JButton();
-        lblViewImage = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        lblImage = new javax.swing.JLabel();
+        txtNoOfServings = new javax.swing.JTextField();
+        txtFoodDishName = new javax.swing.JTextField();
+        btnProcess1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         individualDonorAdminMenuJTable = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        individualDonorAdminDashboardJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        individualDonorAdminDashboardJTable.setForeground(new java.awt.Color(25, 56, 82));
-        individualDonorAdminDashboardJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "User Name", "Food Name", "No Of Serves", "Address", "Contact No", "Status", "Food Prepare Time"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        individualDonorAdminDashboardJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
-        jScrollPane1.setViewportView(individualDonorAdminDashboardJTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 880, 116));
-
         lblIndividualDonorStatus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblIndividualDonorStatus.setForeground(new java.awt.Color(25, 56, 82));
         lblIndividualDonorStatus.setText("approved/not approved");
-        add(lblIndividualDonorStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        txtFoodDishName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+        add(lblIndividualDonorStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 220, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel7.setText("Individual Donor Work Area");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+        jLabel7.setText("Menu Table");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));
@@ -125,52 +126,59 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         lblFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
         lblFoodDishName.setText("Food DIsh Name");
         lblFoodDishName.setToolTipText("");
-        add(lblFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, 100, -1));
+        add(lblFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 100, -1));
 
         lblImageUploadBtn.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblImageUploadBtn.setForeground(new java.awt.Color(25, 56, 82));
         lblImageUploadBtn.setText("Upload Image");
         lblImageUploadBtn.setToolTipText("");
-        add(lblImageUploadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 570, 110, -1));
-
-        txtFoodName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        txtFoodName.setForeground(new java.awt.Color(25, 56, 82));
-        txtFoodName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFoodNameActionPerformed(evt);
+        lblImageUploadBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblImageUploadBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblImageUploadBtnMousePressed(evt);
             }
         });
-        add(txtFoodName, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 210, -1));
-
-        txtQuantity.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        txtQuantity.setForeground(new java.awt.Color(25, 56, 82));
-        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantityActionPerformed(evt);
-            }
-        });
-        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 210, -1));
+        add(lblImageUploadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 110, -1));
 
         lblQuantity.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblQuantity.setForeground(new java.awt.Color(25, 56, 82));
-        lblQuantity.setText("Quantity");
+        lblQuantity.setText("No of Servings");
         lblQuantity.setToolTipText("");
-        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, 110, -1));
+        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 110, -1));
+        add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 270, 180));
 
-        btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnSubmit.setForeground(new java.awt.Color(25, 56, 82));
-        btnSubmit.setText("Submit");
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+        txtNoOfServings.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        txtNoOfServings.setForeground(new java.awt.Color(25, 56, 82));
+        txtNoOfServings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
+                txtNoOfServingsActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 840, -1, 30));
+        add(txtNoOfServings, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 240, 30));
 
-        lblViewImage.setText("jLabel14");
-        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 610, 270, 180));
+        txtFoodDishName.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        txtFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
+        txtFoodDishName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFoodDishNameActionPerformed(evt);
+            }
+        });
+        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 240, 30));
 
+        btnProcess1.setBackground(new java.awt.Color(255, 255, 255));
+        btnProcess1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnProcess1.setForeground(new java.awt.Color(25, 56, 82));
+        btnProcess1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnProcess1.setText("Add New Item");
+        btnProcess1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnProcess1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAddItemMousePressed(evt);
+            }
+        });
+        add(btnProcess1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 680, 138, 35));
+
+        individualDonorAdminMenuJTable.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         individualDonorAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -179,7 +187,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Food Name", "No Of Serves", "Food prepare time"
+                "Item Id", "Item Name", "No of Servings"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -190,54 +198,89 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(individualDonorAdminMenuJTable);
+        jScrollPane3.setViewportView(individualDonorAdminMenuJTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, 180));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 480, 180));
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel10.setText("Individual Donor Work Area");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFoodNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFoodNameActionPerformed
+    private void txtNoOfServingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfServingsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFoodNameActionPerformed
+    }//GEN-LAST:event_txtNoOfServingsActionPerformed
 
-    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
+    private void txtFoodDishNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFoodDishNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityActionPerformed
+    }//GEN-LAST:event_txtFoodDishNameActionPerformed
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+    private void btnAddItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddItemMousePressed
+        // TODO add your handling code here:
+        IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
+        if(org.getIfCertified().equals("not certified")){
+              JOptionPane.showMessageDialog(null, "You are not yet certified by Food Inspector!");
+              resetTextField();
+              return;
+          }
+           if(txtFoodDishName.getText().equals("") || txtNoOfServings.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "fill all the test fields");
+               return;
+           }
+    
+          
+          
+          Item item = new Item();
+          item.setDescription(txtFoodDishName.getText());
+          item.setNumberOfServings(Integer.parseInt(txtNoOfServings.getText()));
+          item.setImagePath(imagePath);
+          org.getMenu().addItem(item);  //added menu
+          IndividualWorkRequest request = new IndividualWorkRequest();
+          request.setPostedDate(new Date());
+          request.setDonorOrganization(organization);
+          request.setDonorAccount(account);
+          request.setMenu(org.getMenu());
+          org.getWorkQueue().addRequest(request);
+          JOptionPane.showMessageDialog(null, "Item added in your menu succefully!");
+          populateMenuTable();
+          resetTextField();
+          
+          
+          
 
-        //        Type type = (Type) organizationJComboBox.getSelectedItem();
-        //
-        //        if("".equals(orgNameTextField.getText())) {
-            //            JOptionPane.showMessageDialog(null, "Enter organization name!");
-            //        }else if("".equals(orgLocation.getText())) {
-            //            JOptionPane.showMessageDialog(null, "Please set a location");
-            //        }else {
-            //            locationPoint = orgLocation.getText();
-            //            Organization organization = directory.createOrganization(type,orgNameTextField.getText(), locationPoint);
-            //            JOptionPane.showMessageDialog(null, "Organization Successfully Created");
-            //
-            //            populateTable();
-            //            resetFields();
-            //        }
-    }//GEN-LAST:event_btnSubmitActionPerformed
+    }//GEN-LAST:event_btnAddItemMousePressed
+
+    private void lblImageUploadBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImageUploadBtnMousePressed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        
+         imagePath = filename;
+        //Image getAbsolutePath = null;
+        ImageIcon icon = new ImageIcon(filename);
+        Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH );  //Image.SCALE_SMOOTH
+        icon = new ImageIcon( image );
+        lblImage.setIcon(icon);
+        
+    }//GEN-LAST:event_lblImageUploadBtnMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubmit;
-    private javax.swing.JTable individualDonorAdminDashboardJTable;
+    private javax.swing.JLabel btnProcess1;
     private javax.swing.JTable individualDonorAdminMenuJTable;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblFoodDishName;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblImageUploadBtn;
     private javax.swing.JLabel lblIndividualDonorStatus;
     private javax.swing.JLabel lblQuantity;
-    private javax.swing.JLabel lblViewImage;
-    private javax.swing.JLabel txtFoodDishName;
-    private javax.swing.JTextField txtFoodName;
-    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtFoodDishName;
+    private javax.swing.JTextField txtNoOfServings;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,6 +47,7 @@ public class Registration extends javax.swing.JPanel {
         emailSuccessLabel1.setVisible(false);
         emailSuccessLabel1.setVisible(false);
         userNameSuccessLabel.setVisible(false);
+        emailValidateMessage1.setVisible(false);
         populateOrgTypes();
     }
     public void populateNetworkComboBox() {
@@ -291,9 +292,10 @@ public class Registration extends javax.swing.JPanel {
 
     private void uNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uNameKeyReleased
         // TODO add your handling code here:
-        if (!system.checkIfUserIsUnique(uName.getText())) {
-            usernameExistsMessage.setVisible(true);
+        if (!system.checkIfUserIsUnique(uName.getText()) ) {
+            
             userNameSuccessLabel.setVisible(false);
+            usernameExistsMessage.setVisible(true);
             userUnique = false;
         } else {
             uName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -301,7 +303,7 @@ public class Registration extends javax.swing.JPanel {
             usernameExistsMessage.setVisible(false);
             userNameSuccessLabel.setVisible(true);
             userUnique = true;
-            int delay = 2500; //milliseconds
+            int delay = 2500000; //milliseconds
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     userNameSuccessLabel.setVisible(false);

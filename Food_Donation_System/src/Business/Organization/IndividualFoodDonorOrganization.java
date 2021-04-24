@@ -25,6 +25,7 @@ public class IndividualFoodDonorOrganization extends Organization {
     
     public IndividualFoodDonorOrganization(String name){
         super(name);
+        menu = new Menu();
     }
     @Override
     public ArrayList<Role> getSupportedRole() {
