@@ -107,11 +107,9 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
         organizationJTable = new javax.swing.JTable();
         btnCertify = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnAssignTome = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 204, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -161,13 +159,7 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setText("MANAGE FOOD INSPECTOR WORK AREA");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, -1));
 
         btnAssignTome.setBackground(new java.awt.Color(255, 255, 255));
         btnAssignTome.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -235,8 +227,6 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignTome;
     private javax.swing.JButton btnCertify;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable organizationJTable;
     // End of variables declaration//GEN-END:variables

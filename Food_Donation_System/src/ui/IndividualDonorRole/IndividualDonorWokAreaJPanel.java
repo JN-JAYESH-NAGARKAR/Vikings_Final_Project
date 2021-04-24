@@ -50,8 +50,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         individualDonorAdminDashboardJTable = new javax.swing.JTable();
         lblIndividualDonorStatus = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblFoodDishName = new javax.swing.JLabel();
@@ -64,7 +62,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         individualDonorAdminMenuJTable = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         individualDonorAdminDashboardJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -105,12 +103,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         lblIndividualDonorStatus.setText("approved/not approved");
         add(lblIndividualDonorStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        txtFoodDishName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
         jLabel7.setText("Individual Donor Work Area");
@@ -123,7 +115,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
 
         lblFoodDishName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
-        lblFoodDishName.setText("Food DIsh Name");
+        lblFoodDishName.setText("Food Dish Name");
         lblFoodDishName.setToolTipText("");
         add(lblFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, 100, -1));
 
@@ -166,10 +158,10 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 840, -1, 30));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 570, -1, 30));
 
         lblViewImage.setText("jLabel14");
-        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 610, 270, 180));
+        add(lblViewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, 270, 180));
 
         individualDonorAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,7 +218,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JTable individualDonorAdminDashboardJTable;
     private javax.swing.JTable individualDonorAdminMenuJTable;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -236,7 +227,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblIndividualDonorStatus;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblViewImage;
-    private javax.swing.JLabel txtFoodDishName;
     private javax.swing.JTextField txtFoodName;
     private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables

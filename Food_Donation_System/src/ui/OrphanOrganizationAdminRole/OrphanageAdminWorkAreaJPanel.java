@@ -87,7 +87,6 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -104,6 +103,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtEmailId = new javax.swing.JTextField();
         txtContactNumber = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         txtNoOfserving1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 255, 204));
@@ -147,11 +147,6 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 1190, 160));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/food_new.png"))); // NOI18N
-        jLabel5.setOpaque(true);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 460, -1));
-
         btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(25, 56, 82));
@@ -180,7 +175,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9.setText("Email id");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
         jPanel1.setMinimumSize(new java.awt.Dimension(1338, 1048));
         jPanel1.setPreferredSize(new java.awt.Dimension(1338, 1048));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -224,7 +219,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/food_new.png"))); // NOI18N
         jLabel10.setOpaque(true);
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 460, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, 460, 360));
 
         btnSubmit1.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -286,6 +281,11 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtContactNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 210, 30));
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/food_new.png"))); // NOI18N
+        jLabel5.setOpaque(true);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, 460, 360));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
