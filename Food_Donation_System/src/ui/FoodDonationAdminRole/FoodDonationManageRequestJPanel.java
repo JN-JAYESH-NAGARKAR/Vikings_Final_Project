@@ -135,8 +135,6 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         requestJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnReject = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
@@ -184,12 +182,6 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setText("Request For Food Table");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 370, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
         btnReject.setBackground(new java.awt.Color(255, 255, 255));
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -306,8 +298,6 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel btnProcess;
     private javax.swing.JLabel btnReject;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
