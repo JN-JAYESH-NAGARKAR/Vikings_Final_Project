@@ -83,7 +83,7 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
         systemAdminPanel.setBackground(new java.awt.Color(255, 153, 153));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(255, 204, 51));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -237,7 +237,7 @@ public class FoodDeliveryEnterpriseAdminWorkArea extends javax.swing.JPanel {
 
         jPanel3.add(manageUserAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 280, 40));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 153));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 
