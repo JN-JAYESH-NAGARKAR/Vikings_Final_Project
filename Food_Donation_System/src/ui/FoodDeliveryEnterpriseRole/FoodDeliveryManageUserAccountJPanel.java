@@ -113,7 +113,7 @@ public class FoodDeliveryManageUserAccountJPanel extends javax.swing.JPanel {
                 createUserJButtonActionPerformed(evt);
             }
         });
-        add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
+        add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, -1, -1));
 
         nameJTextField.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         nameJTextField.setForeground(new java.awt.Color(25, 56, 82));
