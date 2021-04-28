@@ -88,13 +88,12 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
         organizationEmpJComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         txtSex = new javax.swing.JTextField();
         txtAge = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -185,12 +184,6 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel4.setText("MANAGE FOOD DONATION ENTERPRISE EMPLOYEE");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
-
         txtSex.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         txtSex.setForeground(new java.awt.Color(25, 56, 82));
         txtSex.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -198,7 +191,7 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
                 txtSexFocusLost(evt);
             }
         });
-        add(txtSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 200, -1));
+        add(txtSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 210, -1));
 
         txtAge.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         txtAge.setForeground(new java.awt.Color(25, 56, 82));
@@ -212,7 +205,7 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
                 txtAgeActionPerformed(evt);
             }
         });
-        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 200, -1));
+        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 210, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
@@ -275,8 +268,6 @@ public class FoodDeliveryManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;

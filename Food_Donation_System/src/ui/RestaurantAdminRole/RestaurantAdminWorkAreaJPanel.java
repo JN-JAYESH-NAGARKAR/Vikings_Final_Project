@@ -15,8 +15,8 @@ import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
-import Business.WorkQueue.OrphanWorkRequest;
-import Business.WorkQueue.RestaurantRequest;
+import Business.WorkQueue.FoodSafetyInspectionWorkRequest;
+import Business.WorkQueue.FoodWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -75,7 +75,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
             System.out.println(req + "restaurant work area line number 70");
             
-            RestaurantRequest restReq = (RestaurantRequest)req;
+            FoodWorkRequest restReq = (FoodWorkRequest)req;
             System.out.println(restReq.getRequestingOrganiztionName() + "restReq.getRequestingOrganiztionName();");
             Object[] row = new Object[7];
             row[0] = restReq;
@@ -94,9 +94,10 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) restaurantAdminMenuJTable.getModel();
         model.setRowCount(0);
         for(Item item : organization.getMenu().getItemList()){
-            Object[] row = new Object[2];
+            Object[] row = new Object[3];
             row[0] = item;
-            row[1] = item.getNumberOfServings();
+            row[1] = item.getDescription();
+            row[2] = item.getNumberOfServings();
             model.addRow(row);
         }
     }
@@ -126,8 +127,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         RestaurantAdminDashboardJTable = new javax.swing.JTable();
         lblRestaurantStatus = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtFoodDishName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblFoodDishName = new javax.swing.JLabel();
@@ -183,21 +182,15 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         lblRestaurantStatus.setText("approved/not approved");
         add(lblRestaurantStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 190, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        txtFoodDishName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
         jLabel7.setText("Restaurant Admin Work Area");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel8.setText("Food Safety Certify:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 190, -1));
+        jLabel8.setText("Menu Table");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 190, -1));
 
         lblFoodDishName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
@@ -209,17 +202,17 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         restaurantAdminMenuJTable.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         restaurantAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Food Description", "No Of Serves"
+                "Item Id", "Food Description", "No Of Serves"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -228,7 +221,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(restaurantAdminMenuJTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, 180));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, 180));
 
         btnUploadImage.setBackground(new java.awt.Color(255, 255, 255));
         btnUploadImage.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -343,6 +336,7 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         organization.getMenu().removeItem((Item)restaurantAdminMenuJTable.getValueAt(selectedRow, 0));
+        JOptionPane.showMessageDialog(null, "Itm is deleted from menu!");
         populateMenuTable();
     }//GEN-LAST:event_btnDeleteItemMousePressed
 
@@ -358,8 +352,14 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        RestaurantRequest requestReq = (RestaurantRequest)RestaurantAdminDashboardJTable.getValueAt(selectedAdminRequestTableRow, 0);
-        
+        FoodWorkRequest requestReq = (FoodWorkRequest)RestaurantAdminDashboardJTable.getValueAt(selectedAdminRequestTableRow, 0);
+        if(requestReq.getStatus().equals("Delivered")){
+            JOptionPane.showMessageDialog(null, " the Food Order is delivered already!");
+            return;
+        }else if(requestReq.getStatus().equals("Sent")){
+            JOptionPane.showMessageDialog(null, " the Food Order is Sent already!");
+            return;
+        }
         
         
         
@@ -396,7 +396,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel btnDeleteItem;
     private javax.swing.JLabel btnProcess1;
     private javax.swing.JLabel btnUploadImage;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -407,7 +406,6 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblRestaurantStatus;
     private javax.swing.JTable restaurantAdminMenuJTable;
     private javax.swing.JTextField txtFoodDescription;
-    private javax.swing.JLabel txtFoodDishName;
     private javax.swing.JTextField txtNoOfServing;
     // End of variables declaration//GEN-END:variables
 }

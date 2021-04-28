@@ -93,12 +93,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEnterpriseAdminLabel = new javax.swing.JLabel();
         noOfSceneGraph = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        noOfGraphSceneLabel = new javax.swing.JLabel();
+        noOfFoodRequestJLable = new javax.swing.JLabel();
         lblSelectedNode1 = new javax.swing.JLabel();
         viewGraphScene = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         viewGraphSceneDetails = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        viewGraphScene1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        networkFoodRequestComparePieLable = new javax.swing.JLabel();
+        viewGraphScene2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        viewGraphSceneDetails1 = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
@@ -147,7 +153,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(manageNetworkPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(manageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -244,11 +250,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/stats.png"))); // NOI18N
 
-        noOfGraphSceneLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        noOfGraphSceneLabel.setText("No Of Graph Scene");
-        noOfGraphSceneLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        noOfFoodRequestJLable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        noOfFoodRequestJLable.setText("View Food Requests");
+        noOfFoodRequestJLable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                noOfGraphSceneLabelMousePressed(evt);
+                noOfFoodRequestJLableMousePressed(evt);
             }
         });
 
@@ -260,7 +266,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noOfGraphSceneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(noOfFoodRequestJLable, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         noOfSceneGraphLayout.setVerticalGroup(
@@ -270,7 +276,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(noOfSceneGraphLayout.createSequentialGroup()
-                .addComponent(noOfGraphSceneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(noOfFoodRequestJLable, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -293,19 +299,65 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         viewGraphScene.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 37, 31));
 
         viewGraphSceneDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        viewGraphSceneDetails.setText("View Graph Scene Details");
+        viewGraphSceneDetails.setText("View Number Of Certified Donors");
         viewGraphSceneDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                viewGraphSceneDetailsMousePressed(evt);
+                noOfServingsByOrganizationMousePressed(evt);
             }
         });
         viewGraphScene.add(viewGraphSceneDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 231, 31));
 
-        jPanel3.add(viewGraphScene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 280, 40));
+        jPanel3.add(viewGraphScene, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 280, 40));
 
         jSeparator2.setBackground(new java.awt.Color(51, 255, 204));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 280, -1));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 280, -1));
+
+        viewGraphScene1.setBackground(new java.awt.Color(51, 255, 204));
+        viewGraphScene1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                networkFoodRequestPieCharMousePressed(evt);
+            }
+        });
+        viewGraphScene1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/view.png"))); // NOI18N
+        viewGraphScene1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 37, 31));
+
+        networkFoodRequestComparePieLable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        networkFoodRequestComparePieLable.setText("Network Food Request Compare");
+        networkFoodRequestComparePieLable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                networkFoodRequestComparePieLableMousePressed(evt);
+            }
+        });
+        viewGraphScene1.add(networkFoodRequestComparePieLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 231, 31));
+
+        jPanel3.add(viewGraphScene1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 280, 40));
+
+        viewGraphScene2.setBackground(new java.awt.Color(51, 255, 204));
+        viewGraphScene2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                viewGraphScene2MousePressed(evt);
+            }
+        });
+        viewGraphScene2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/stats.png"))); // NOI18N
+        viewGraphScene2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 37, 31));
+
+        viewGraphSceneDetails1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        viewGraphSceneDetails1.setText("Compare Rejecte Requests");
+        viewGraphSceneDetails1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                compareRejectedRequestMousePressed(evt);
+            }
+        });
+        viewGraphScene2.add(viewGraphSceneDetails1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 231, 31));
+
+        jPanel3.add(viewGraphScene2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 280, 40));
 
         rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
@@ -351,25 +403,69 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEnterpriseAdmin();
     }//GEN-LAST:event_manageEnterpriseAdminMousePressed
 
-    private void noOfGraphSceneLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noOfGraphSceneLabelMousePressed
+    private void noOfFoodRequestJLableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noOfFoodRequestJLableMousePressed
         // TODO add your handling code here:
+        ui.SystemAdminWorkArea.NumberOfRequestGraphJPanel numberOfRequestGraphJpanel
+                = new ui.SystemAdminWorkArea.NumberOfRequestGraphJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("NumberOfRequestGraphJpanel",numberOfRequestGraphJpanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+        
+        
        
-    }//GEN-LAST:event_noOfGraphSceneLabelMousePressed
+    }//GEN-LAST:event_noOfFoodRequestJLableMousePressed
 
     private void noOfSceneGraphMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noOfSceneGraphMousePressed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_noOfSceneGraphMousePressed
 
-    private void viewGraphSceneDetailsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewGraphSceneDetailsMousePressed
+    private void noOfServingsByOrganizationMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noOfServingsByOrganizationMousePressed
         // TODO add your handling code here:
+        ui.SystemAdminWorkArea.NoOfCertifiedOrganizatioinGraphJPanel NoOfSevingsByOrganizationGraph
+                = new ui.SystemAdminWorkArea.NoOfCertifiedOrganizatioinGraphJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("NoOfSevingsByOrganizationGraph",NoOfSevingsByOrganizationGraph);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
         
-    }//GEN-LAST:event_viewGraphSceneDetailsMousePressed
+    }//GEN-LAST:event_noOfServingsByOrganizationMousePressed
 
     private void viewGraphSceneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewGraphSceneMousePressed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_viewGraphSceneMousePressed
+
+    private void networkFoodRequestComparePieLableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkFoodRequestComparePieLableMousePressed
+        // TODO add your handling code here:
+        ui.SystemAdminWorkArea.NetworkFoodRequestComparePieGraphJPanel networkFoodRequestCompareBarGraphJPanel
+                = new ui.SystemAdminWorkArea.NetworkFoodRequestComparePieGraphJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("NetworkFoodRequestCompareBarGraphJPanel",networkFoodRequestCompareBarGraphJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }//GEN-LAST:event_networkFoodRequestComparePieLableMousePressed
+
+    private void networkFoodRequestPieCharMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkFoodRequestPieCharMousePressed
+        // TODO add your handling code here:
+        ui.SystemAdminWorkArea.NetworkFoodRequestComparePieGraphJPanel networkFoodRequestCompareBarGraphJPanel
+                = new ui.SystemAdminWorkArea.NetworkFoodRequestComparePieGraphJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("NetworkFoodRequestCompareBarGraphJPanel",networkFoodRequestCompareBarGraphJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }//GEN-LAST:event_networkFoodRequestPieCharMousePressed
+
+    private void compareRejectedRequestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compareRejectedRequestMousePressed
+        // TODO add your handling code here:
+        ui.SystemAdminWorkArea.CompareRejectedRequestsJPanel compareRejectedRequestsJPanel
+                = new ui.SystemAdminWorkArea.CompareRejectedRequestsJPanel(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("CompareRejectedRequestsJPanel",compareRejectedRequestsJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }//GEN-LAST:event_compareRejectedRequestMousePressed
+
+    private void viewGraphScene2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewGraphScene2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewGraphScene2MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -378,6 +474,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblSelectedNode1;
@@ -387,11 +485,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel manageEnterpriseLabel;
     private javax.swing.JLabel manageNetwork;
     private javax.swing.JPanel manageNetworkPanel;
-    private javax.swing.JLabel noOfGraphSceneLabel;
+    private javax.swing.JLabel networkFoodRequestComparePieLable;
+    private javax.swing.JLabel noOfFoodRequestJLable;
     private javax.swing.JPanel noOfSceneGraph;
     private javax.swing.JPanel rightSystemAdminPanel;
     private javax.swing.JPanel systemAdminPanel;
     private javax.swing.JPanel viewGraphScene;
+    private javax.swing.JPanel viewGraphScene1;
+    private javax.swing.JPanel viewGraphScene2;
     private javax.swing.JLabel viewGraphSceneDetails;
+    private javax.swing.JLabel viewGraphSceneDetails1;
     // End of variables declaration//GEN-END:variables
 }

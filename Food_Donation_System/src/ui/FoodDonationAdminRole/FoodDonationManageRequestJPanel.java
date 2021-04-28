@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.Enterprise.FoodReceiver;
 import Business.Network.Network;
 import Business.Organization.IndividualFoodDonorOrganization;
+import Business.Organization.OldAgeOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Organization.OrphanageOrganization;
@@ -18,9 +19,9 @@ import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
-import Business.WorkQueue.OrphanWorkRequest;
+import Business.WorkQueue.FoodSafetyInspectionWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
-import Business.WorkQueue.RestaurantRequest;
+import Business.WorkQueue.FoodWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -68,7 +69,9 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                 
                 row[0] = org;  //--jayesh   row[0] = request.getMessage(); 
                 row[1] = org.getType();
-                row[2] = org.getUserAccountDirectory().getUserAccountList().get(0);
+                if(org.getUserAccountDirectory().getUserAccountList().size() != 0){
+                  row[2] = org.getUserAccountDirectory().getUserAccountList().get(0);
+                }
                 row[3] = org.calculateNumberOfServings();
                 row[4] = org.getIfCertified();
                 row[5] = org.getLocationPoint();
@@ -110,8 +113,8 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
                     if(organization instanceof OrphanageOrganization){
                         for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
-                            if(!(req instanceof RestaurantRequest) )continue;
-                            RestaurantRequest foodReceiverReq = (RestaurantRequest)req;
+                            if(!(req instanceof FoodWorkRequest) )continue;
+                            FoodWorkRequest foodReceiverReq = (FoodWorkRequest)req;
                             Object[] row = new Object[7];
                             row[0] = foodReceiverReq; 
                             
@@ -132,6 +135,30 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
                             
                             model.addRow(row);
                         }
+                    }else if(organization instanceof OldAgeOrganization){
+                        for(WorkRequest req : organization.getWorkQueue().getWorkRequestList()){
+                            if(!(req instanceof FoodWorkRequest) )continue;
+                            FoodWorkRequest foodReceiverReq = (FoodWorkRequest)req;
+                            Object[] row = new Object[7];
+                            row[0] = foodReceiverReq; 
+                            
+                            row[1] = foodReceiverReq.getRequestingOrganiztionName();
+                            
+                            row[2] = foodReceiverReq.getRequestingOrganizationType();
+                            row[2] = foodReceiverReq.getRequestingOrganizationType();
+                            
+                            
+                            row[3] = foodReceiverReq.getRequestingOrganizationUser();
+                            
+                            
+                            row[4] = foodReceiverReq.getNoOfServings();
+                            
+                            row[5] = foodReceiverReq.getStatus();
+                            
+                            row[6] = foodReceiverReq.getRequestingOrganiztionName().getLocationPoint();
+                            
+                            model.addRow(row);
+                        
                     }
                 }
             }
@@ -139,6 +166,7 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
            
     
         }
+    }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,8 +180,6 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         requestJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnReject = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
@@ -201,12 +227,6 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setText("Food Request Dashboard");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 370, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
         btnReject.setBackground(new java.awt.Color(255, 255, 255));
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -287,8 +307,9 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
             return;
         }
         
-        OrphanWorkRequest request = (OrphanWorkRequest)requestJTable.getValueAt(selectedRow, 0);
+        FoodWorkRequest request = (FoodWorkRequest)requestJTable.getValueAt(selectedRow, 0);
         request.setStatus("Rejected");
+        
          populateRequestTable();
     }//GEN-LAST:event_btnRejectPressed
 
@@ -304,10 +325,23 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         }
         
         Organization donorOrg = (Organization)organizationJTable.getValueAt(selectedOrganizationTableRow, 0);
+        FoodWorkRequest request = (FoodWorkRequest)requestJTable.getValueAt(selectedRequestTableRow, 0);
+        
+        if(request.getStatus().equals("Approved")){
+            JOptionPane.showMessageDialog(null, "You have already approved the request!");
+            return;
+        }
+        
+        
         
         
         if(donorOrg instanceof RestaurantOrganization){
             RestaurantOrganization org = (RestaurantOrganization)donorOrg;
+            
+            if(request.getNoOfServings() > org.calculateNumberOfServings()){
+                JOptionPane.showMessageDialog(null, "Selected Organization does not have enough stock currently!");
+                return;
+            }
             if(org.getIfCertified().equals("not certified")){
                 JOptionPane.showMessageDialog(null, "this organization is not certified by food inspector");
                 return;
@@ -315,6 +349,10 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         }
         else if(donorOrg instanceof PartyOrganizerOrganizatioin){
             PartyOrganizerOrganizatioin org = (PartyOrganizerOrganizatioin)donorOrg;
+            if(request.getNoOfServings() > org.calculateNumberOfServings()){
+                JOptionPane.showMessageDialog(null, "Selected Organization does not have enough stock currently!");
+                return;
+            }
             if(org.getIfCertified().equals("not certified")){
                 JOptionPane.showMessageDialog(null, "this organization is not certified by food inspector");
                 return;
@@ -322,16 +360,16 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
         }
         else if(donorOrg instanceof IndividualFoodDonorOrganization){
             IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)donorOrg;
-            if(org.getIfCertified().equals("not certified")){
-                JOptionPane.showMessageDialog(null, "this organization is not certified by food inspector");
-                return;
+            if(org.getType().getValue().equals(Organization.Type.IndividualDonator.getValue())){
+                JOptionPane.showMessageDialog(null,"Individual Donors work Independently.Select Other Organizations!");
+            
             }
         }
         
         
         
         
-        RestaurantRequest request = (RestaurantRequest)requestJTable.getValueAt(selectedRequestTableRow, 0);
+        //FoodWorkRequest request = (FoodWorkRequest)requestJTable.getValueAt(selectedRequestTableRow, 0);
         if(request.getStatus() == "Rejected") {
             JOptionPane.showMessageDialog(null, "Request is Rejected!Can not be Processed");
         }
@@ -359,8 +397,6 @@ public class FoodDonationManageRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel btnProcess;
     private javax.swing.JLabel btnReject;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;

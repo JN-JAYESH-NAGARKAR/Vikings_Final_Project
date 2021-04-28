@@ -10,6 +10,13 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Organization.RestaurantOrganization;
+import Business.Role.DriverRole;
+import Business.Role.IndividualDonorRole;
+import Business.Role.IndividualReceiverOrganaizationAdminRole;
+import Business.Role.OldAgeOrganaizationAdminRole;
+import Business.Role.OrphanageOrganaizationAdminRole;
+import Business.Role.PartyOrganizerAdminRole;
 import Business.Role.RestaurantAdminRole;
 import Business.Utils.Validation;
 import Business.WorkQueue.RegistrationRequest;
@@ -20,6 +27,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ui.DriverOrganizationAdminRole.DriverOrganizationAdminWorkAreaJPanel;
 
 /**
  *
@@ -110,7 +118,7 @@ public class Registration extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setText("Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 170, 70, -1));
 
         userName2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         userName2.setForeground(new java.awt.Color(25, 56, 82));
@@ -472,19 +480,39 @@ public class Registration extends javax.swing.JPanel {
             
            
            
-            for (Network network1 : system.getNetworkList()) {
-                for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
-                    if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.FoodDonation) {
-                        Organization org = enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Restaurant, "Boston New Restaurant",uAddress.getText());
-                        org.getUserAccountDirectory()
-                                .createUserAccount(userName2.getText(),uPass.getText(), new Employee(),
-                                        new RestaurantAdminRole());
-                        org.getUserAccountDirectory().createUserAccount(uName.getText(), uPass.getText(),
-                                new Employee(), new RestaurantAdminRole());
-                        
+            System.out.println(type+"----------------------------------------");
+            
+            for(Network nw : system.getNetworkList()){
+                if(nw == network){
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FoodDonation.getValue())) {
+                            System.out.println("line number 486 " + type);
+                            Organization org = enterprise.getOrganizationDirectory().createOrganization(type,uName.getText(),uAddress.getText());
+                            if(type.getValue().equals(Organization.Type.Restaurant.getValue())){
+                                System.out.println("line number 489 " + type);
+                                org.getUserAccountDirectory()
+                                    .createUserAccount(uName.getText(),uPass.getText(), new Employee(),
+                                            new RestaurantAdminRole());
+                            }else if(type.getValue().equals(Organization.Type.PartyOrganizer.getValue())){
+                                System.out.println("line number 489 " + type);
+                                org.getUserAccountDirectory()
+                                    .createUserAccount(uName.getText(),uPass.getText(), new Employee(),
+                                            new PartyOrganizerAdminRole());
+                            }
+                            else if(type.getValue().equals(Organization.Type.IndividualDonator.getValue())){
+                                System.out.println("line number 489 " + type);
+                                org.getUserAccountDirectory()
+                                    .createUserAccount(uName.getText(),uPass.getText(), new Employee(),
+                                            new IndividualDonorRole());
+                            }
+
+
+                        }
                     }
+                    
                 }
             }
+            
             
             
             

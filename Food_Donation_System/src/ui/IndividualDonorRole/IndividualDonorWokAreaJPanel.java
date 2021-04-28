@@ -15,6 +15,7 @@ import Business.Organization.PartyOrganizerOrganizatioin;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import Business.WorkQueue.IndividualWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.Image;
 import java.io.File;
 import java.util.Date;
@@ -72,7 +73,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     public void resetTextField(){
         
         txtFoodDishName.setText("");
-        txtNoOfServings.setText("");
+        //txtNoOfServings.setText("");
         
         
         ImageIcon icon = new ImageIcon("");
@@ -96,9 +97,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         lblFoodDishName = new javax.swing.JLabel();
         lblImageUploadBtn = new javax.swing.JLabel();
-        lblQuantity = new javax.swing.JLabel();
         lblImage = new javax.swing.JLabel();
-        txtNoOfServings = new javax.swing.JTextField();
         txtFoodDishName = new javax.swing.JTextField();
         btnProcess1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -140,22 +139,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(lblImageUploadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 110, -1));
-
-        lblQuantity.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        lblQuantity.setForeground(new java.awt.Color(25, 56, 82));
-        lblQuantity.setText("No of Servings");
-        lblQuantity.setToolTipText("");
-        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 110, -1));
         add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 270, 180));
-
-        txtNoOfServings.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        txtNoOfServings.setForeground(new java.awt.Color(25, 56, 82));
-        txtNoOfServings.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNoOfServingsActionPerformed(evt);
-            }
-        });
-        add(txtNoOfServings, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 240, 30));
 
         txtFoodDishName.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         txtFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
@@ -182,17 +166,17 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         individualDonorAdminMenuJTable.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         individualDonorAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Item Id", "Item Name", "No of Servings"
+                "Item Id", "Item Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -209,10 +193,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNoOfServingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfServingsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoOfServingsActionPerformed
-
     private void txtFoodDishNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFoodDishNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFoodDishNameActionPerformed
@@ -226,7 +206,7 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
               resetTextField();
               return;
           }
-           if(txtFoodDishName.getText().equals("") || txtNoOfServings.getText().equals("")){
+           if(txtFoodDishName.getText().equals("")){
                JOptionPane.showMessageDialog(null, "fill all the test fields");
                return;
            }
@@ -235,17 +215,15 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
           
           Item item = new Item();
           item.setDescription(txtFoodDishName.getText());
-          item.setNumberOfServings(Integer.parseInt(txtNoOfServings.getText()));
+          //item.setNumberOfServings(Integer.parseInt(txtNoOfServings.getText()));
           item.setImagePath(imagePath);
+          item.setPostdate(new Date());
+          item.setItemStatus("Available");
+          item.setLocationOfIndividual(organization.getLocationPoint());
           org.getMenu().addItem(item);  //added menu
           
-          IndividualWorkRequest request = new IndividualWorkRequest();
-          request.setPostedDate(new Date());
-          request.setDonorOrganization(organization);
-          request.setDonorAccount(account);
-          request.setMenu(org.getMenu());
+         
           
-          org.getWorkQueue().addRequest(request);
           JOptionPane.showMessageDialog(null, "Item added in your menu succefully!");
           populateMenuTable();
           resetTextField();
@@ -283,8 +261,6 @@ public class IndividualDonorWokAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblImageUploadBtn;
     private javax.swing.JLabel lblIndividualDonorStatus;
-    private javax.swing.JLabel lblQuantity;
     private javax.swing.JTextField txtFoodDishName;
-    private javax.swing.JTextField txtNoOfServings;
     // End of variables declaration//GEN-END:variables
 }

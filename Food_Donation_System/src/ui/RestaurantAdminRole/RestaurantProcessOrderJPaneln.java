@@ -15,8 +15,8 @@ import Business.Organization.Organization;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
-import Business.WorkQueue.OrphanWorkRequest;
-import Business.WorkQueue.RestaurantRequest;
+import Business.WorkQueue.FoodSafetyInspectionWorkRequest;
+import Business.WorkQueue.FoodWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -40,10 +40,10 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
     UserAccount account;
     Organization organization;
     Network network;
-    RestaurantRequest requestReq;
+    FoodWorkRequest requestReq;
     int totalNumberOfServings;
     
-    public RestaurantProcessOrderJPaneln(JPanel userProcessContainer,UserAccount account,Organization organization,Network network,RestaurantRequest requestReq) {
+    public RestaurantProcessOrderJPaneln(JPanel userProcessContainer,UserAccount account,Organization organization,Network network,FoodWorkRequest requestReq) {
         initComponents();
         restaurantAdminMenuJTable.getTableHeader().setDefaultRenderer(new TableColors());
         this.userProcessContainer = userProcessContainer;
@@ -79,9 +79,10 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         model.setRowCount(0);
         RestaurantOrganization org = (RestaurantOrganization)organization;
         for(Item item : org.getMenu().getItemList() ){
-            Object[] row = new Object[2];
+            Object[] row = new Object[3];
             row[0] = item;
-            row[1] = item.getNumberOfServings();
+            row[1] = item.getDescription();
+            row[2] = item.getNumberOfServings();
             model.addRow(row);
             
         }
@@ -94,6 +95,7 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         RestaurantAdminWorkAreaJPanel rawp = (RestaurantAdminWorkAreaJPanel) component;
         rawp.populateRestaurantAdminRequestDashboard();
+        rawp.populateMenuTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }
@@ -106,12 +108,9 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        txtFoodDishName = new javax.swing.JLabel();
         lblImage = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         restaurantAdminMenuJTable = new javax.swing.JTable();
-        txtImagePath = new javax.swing.JTextField();
         lblQuantity1 = new javax.swing.JLabel();
         btnDeleteItem2 = new javax.swing.JLabel();
         comboDeliveryManList = new javax.swing.JComboBox<>();
@@ -121,13 +120,10 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         btnUploadImage1 = new javax.swing.JLabel();
         txtNoOfServing = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        txtFoodDishName1 = new javax.swing.JLabel();
         lblImage1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         restaurantAdminMenuJTable1 = new javax.swing.JTable();
         txtTotalNumberOfRequiredServings = new javax.swing.JTextField();
-        txtImagePath1 = new javax.swing.JTextField();
         lblQuantity2 = new javax.swing.JLabel();
         btnDeleteItem4 = new javax.swing.JLabel();
         comboDeliveryManList1 = new javax.swing.JComboBox<>();
@@ -140,32 +136,27 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         btnUploadImage2 = new javax.swing.JLabel();
         txtTotalNumberOfServings = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txtImagePath = new javax.swing.JTextField();
         txtTotalNumberOfServings2 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        txtFoodDishName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, -1, -1));
         add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 330, 180));
 
         restaurantAdminMenuJTable.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         restaurantAdminMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Food Description", "No Of Serves"
+                "Item ID", "Food Description", "No Of Serves"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -180,7 +171,6 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         jScrollPane2.setViewportView(restaurantAdminMenuJTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, 180));
-        add(txtImagePath, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 220, -1));
 
         lblQuantity1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblQuantity1.setForeground(new java.awt.Color(25, 56, 82));
@@ -261,12 +251,6 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        txtFoodDishName1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        jPanel1.add(txtFoodDishName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, -1, -1));
         jPanel1.add(lblImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 330, 180));
 
         restaurantAdminMenuJTable1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -302,7 +286,6 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtTotalNumberOfRequiredServings, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 60, 30));
-        jPanel1.add(txtImagePath1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 220, -1));
 
         lblQuantity2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblQuantity2.setForeground(new java.awt.Color(25, 56, 82));
@@ -422,6 +405,9 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         jLabel8.setText("Build Order Panel");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 190, -1));
 
+        txtImagePath.setFont(new java.awt.Font("SansSerif", 2, 10)); // NOI18N
+        jPanel1.add(txtImagePath, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 310, -1));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         txtTotalNumberOfServings2.setEditable(false);
@@ -511,6 +497,7 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(image);
         lblImage.setIcon(icon);
+        txtImagePath.setText("");
 
         
         
@@ -606,6 +593,7 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
         Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(image);
         lblImage.setIcon(icon);
+        txtImagePath.setText(imagePath);
 
         
     }//GEN-LAST:event_restaurantAdminMenuJTableMousePressed
@@ -624,8 +612,6 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
     private javax.swing.JLabel btnUploadImage4;
     private javax.swing.JComboBox<String> comboDeliveryManList;
     private javax.swing.JComboBox<String> comboDeliveryManList1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -638,10 +624,7 @@ public class RestaurantProcessOrderJPaneln extends javax.swing.JPanel {
     private javax.swing.JLabel lblQuantity3;
     private javax.swing.JTable restaurantAdminMenuJTable;
     private javax.swing.JTable restaurantAdminMenuJTable1;
-    private javax.swing.JLabel txtFoodDishName;
-    private javax.swing.JLabel txtFoodDishName1;
     private javax.swing.JTextField txtImagePath;
-    private javax.swing.JTextField txtImagePath1;
     private javax.swing.JTextField txtNoOfServing;
     private javax.swing.JTextField txtNoOfServing1;
     private javax.swing.JTextField txtTotalNumberOfRequiredServings;

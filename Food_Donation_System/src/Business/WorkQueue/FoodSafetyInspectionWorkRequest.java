@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author Jayesh Nagarkar
  */
-public class OrphanWorkRequest extends WorkRequest{
+public class FoodSafetyInspectionWorkRequest extends WorkRequest{
     
     private int orderId;
     private Date OrderRequestTime;
@@ -35,7 +35,7 @@ public class OrphanWorkRequest extends WorkRequest{
     
     private static int counter = 1001;
     
-    public OrphanWorkRequest(){
+    public FoodSafetyInspectionWorkRequest(){
         orderId = counter++;
         System.out.println("----"+orderId);
         

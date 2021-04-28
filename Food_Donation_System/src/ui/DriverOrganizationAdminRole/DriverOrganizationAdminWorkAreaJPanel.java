@@ -11,7 +11,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
-import Business.WorkQueue.RestaurantRequest;
+import Business.WorkQueue.FoodWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -49,9 +49,9 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         lblDriverName.setText(account.getEmployee().getName());
         lblDriverAge.setText(Integer.toString(account.getEmployee().getAge()));
-        lblDriverAge.setText(account.getEmployee().getSex());
+        lblDriverAge.setText(Integer.toString(account.getEmployee().getAge()));
         
-        lblDriverSex.setText("");
+        lblDriverSex.setText(account.getEmployee().getSex());
     }
 
     /**
@@ -64,7 +64,7 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(WorkRequest request : account.getWorkQueue().getWorkRequestList()){
-            RestaurantRequest req = (RestaurantRequest)request;
+            FoodWorkRequest req = (FoodWorkRequest)request;
             Object[] row = new Object[7]; 
             row[0] = req;
             //row[1] = req.getDeliveryUser();
@@ -88,8 +88,6 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         driverJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         lblDriverSex = new javax.swing.JLabel();
         lblDriverAge = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -133,13 +131,6 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Delivery Boy Work Area");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 34, 581, -1));
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512x.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 520, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyIconBlue128x.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblDriverSex.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblDriverSex.setForeground(new java.awt.Color(25, 56, 82));
@@ -200,6 +191,7 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnDelieverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelieverMousePressed
         // TODO add your handling code here:
+        
         int selectedAdminRequestTableRow = driverJTable.getSelectedRow();            //bottom table
         
         
@@ -209,8 +201,11 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        RestaurantRequest requestReq = (RestaurantRequest)driverJTable.getValueAt(selectedAdminRequestTableRow, 0);
-        
+        FoodWorkRequest requestReq = (FoodWorkRequest)driverJTable.getValueAt(selectedAdminRequestTableRow, 0);
+        if(requestReq.getStatus().equals("Delivered")){
+            JOptionPane.showMessageDialog(null, "You have already delivered the Food Order!");
+            return;
+        }
         requestReq.setStatus("Delivered");
         requestReq.setDeliveryTimestamp(new Date());
         
@@ -229,11 +224,15 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        RestaurantRequest requestReq = (RestaurantRequest)driverJTable.getValueAt(selectedAdminRequestTableRow, 0);
         
+        FoodWorkRequest requestReq = (FoodWorkRequest)driverJTable.getValueAt(selectedAdminRequestTableRow, 0);
+        if(requestReq.getStatus().equals("Picked Up")){
+            JOptionPane.showMessageDialog(null, "You have already Picked Up the Order!");
+            return;
+        }
         requestReq.setStatus("Picked Up");
         requestReq.setDeliveryTimestamp(new Date());
-        
+        JOptionPane.showMessageDialog(null, "PickUp Task Completed Succefully");
         populateTable();
         
     }//GEN-LAST:event_btnPickupMousePressed
@@ -246,8 +245,6 @@ public class DriverOrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDriverAge;

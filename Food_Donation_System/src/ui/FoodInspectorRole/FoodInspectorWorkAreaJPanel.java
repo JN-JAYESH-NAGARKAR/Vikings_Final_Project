@@ -34,7 +34,8 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount account;
     Organization organization;
-    Enterprise enterprise;Network network;
+    Enterprise enterprise;
+    Network network;
     EcoSystem business;
     
     public FoodInspectorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
@@ -56,42 +57,44 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterprise instanceof FoodDonation){
-                for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList()){
-                    if(org instanceof RestaurantOrganization){
-                        RestaurantOrganization restorg = (RestaurantOrganization)org;
-                        Object[] row = new Object[5];
-                        row[0] = restorg;
-                        row[1] = restorg.getType();
-                        row[2] = restorg.getLocationPoint();
-                        row[3] = restorg.getIfCertified();
-                        row[4] = restorg.getOfficerName();
-                        model.addRow(row);
-                    }else if(org instanceof PartyOrganizerOrganizatioin){
-                        PartyOrganizerOrganizatioin restorg = (PartyOrganizerOrganizatioin)org;
-                        Object[] row = new Object[5];
-                        row[0] = restorg;
-                        row[1] = restorg.getType();
-                        row[2] = restorg.getLocationPoint();
-                        row[3] = restorg.getIfCertified();
-                        row[4] = restorg.getOfficerName();
-                        model.addRow(row);
-                    }else if(org instanceof IndividualFoodDonorOrganization){
-                        IndividualFoodDonorOrganization restorg = (IndividualFoodDonorOrganization)org;
-                        Object[] row = new Object[5];
-                        row[0] = restorg;
-                        row[1] = restorg.getType();
-                        row[2] = restorg.getLocationPoint();
-                        row[3] = restorg.getIfCertified();
-                        row[4] = restorg.getOfficerName();
-                        model.addRow(row);
+        for(Network network : business.getNetworkList()){
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof FoodDonation){
+                    for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(org instanceof RestaurantOrganization){
+                            RestaurantOrganization restorg = (RestaurantOrganization)org;
+                            Object[] row = new Object[5];
+                            row[0] = restorg;
+                            row[1] = restorg.getType();
+                            row[2] = restorg.getLocationPoint();
+                            row[3] = restorg.getIfCertified();
+                            row[4] = restorg.getOfficerName();
+                            model.addRow(row);
+                        }else if(org instanceof PartyOrganizerOrganizatioin){
+                            PartyOrganizerOrganizatioin restorg = (PartyOrganizerOrganizatioin)org;
+                            Object[] row = new Object[5];
+                            row[0] = restorg;
+                            row[1] = restorg.getType();
+                            row[2] = restorg.getLocationPoint();
+                            row[3] = restorg.getIfCertified();
+                            row[4] = restorg.getOfficerName();
+                            model.addRow(row);
+                        }else if(org instanceof IndividualFoodDonorOrganization){
+                            IndividualFoodDonorOrganization restorg = (IndividualFoodDonorOrganization)org;
+                            Object[] row = new Object[5];
+                            row[0] = restorg;
+                            row[1] = restorg.getType();
+                            row[2] = restorg.getLocationPoint();
+                            row[3] = restorg.getIfCertified();
+                            row[4] = restorg.getOfficerName();
+                            model.addRow(row);
+                        }
+
                     }
-                    
                 }
-            }
             
             
+        }
         }
     }
     /**
@@ -105,11 +108,9 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
-        btnCertify = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        btnAssignTome = new javax.swing.JButton();
+        btnCertifyLable = new javax.swing.JLabel();
+        btnAssignTomeLable = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,44 +146,41 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
         organizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(organizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 165, 1050, 116));
-
-        btnCertify.setBackground(new java.awt.Color(255, 255, 255));
-        btnCertify.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnCertify.setForeground(new java.awt.Color(25, 56, 82));
-        btnCertify.setText("Certify");
-        btnCertify.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCertifyActionPerformed(evt);
-            }
-        });
-        add(btnCertify, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 120, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 1050, 190));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setText("MANAGE FOOD INSPECTOR WORK AREA");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergency512icon.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 22, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/emergencyEmployee512xxx.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
-
-        btnAssignTome.setBackground(new java.awt.Color(255, 255, 255));
-        btnAssignTome.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnAssignTome.setForeground(new java.awt.Color(25, 56, 82));
-        btnAssignTome.setText("Assign to me");
-        btnAssignTome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignTomeActionPerformed(evt);
+        btnCertifyLable.setBackground(new java.awt.Color(255, 255, 255));
+        btnCertifyLable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnCertifyLable.setForeground(new java.awt.Color(25, 56, 82));
+        btnCertifyLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCertifyLable.setText("Certify");
+        btnCertifyLable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnCertifyLable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCertifyLablebtnAddItemMousePressed(evt);
             }
         });
-        add(btnAssignTome, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
+        add(btnCertifyLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 138, 35));
+
+        btnAssignTomeLable.setBackground(new java.awt.Color(255, 255, 255));
+        btnAssignTomeLable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnAssignTomeLable.setForeground(new java.awt.Color(25, 56, 82));
+        btnAssignTomeLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAssignTomeLable.setText("Assign To me");
+        btnAssignTomeLable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAssignTomeLable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAssignTomeLablebtnAddItemMousePressed(evt);
+            }
+        });
+        add(btnAssignTomeLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 138, 35));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCertifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCertifyActionPerformed
-        
+    private void btnCertifyLablebtnAddItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCertifyLablebtnAddItemMousePressed
         // TODO add your handling code here:
         int selectedRow = organizationJTable.getSelectedRow();
         
@@ -193,50 +191,77 @@ public class FoodInspectorWorkAreaJPanel extends javax.swing.JPanel {
         Organization org = (Organization)organizationJTable.getValueAt(selectedRow, 0);
         if(org instanceof RestaurantOrganization ){
             RestaurantOrganization restorg = (RestaurantOrganization)org;
+            if(restorg.getIfCertified().equals("Certified")){
+                JOptionPane.showMessageDialog(null, "It is already Certified Food Donor!");
+                return;
+            }
             if(restorg.getOfficerName().equals("not assigned")){JOptionPane.showMessageDialog(null, "assign it to yourself first!");return;}
             restorg.setIfCertified("Certified");
         }else if(org instanceof PartyOrganizerOrganizatioin){
+            
             PartyOrganizerOrganizatioin restorg = (PartyOrganizerOrganizatioin)org;
+            if(restorg.getIfCertified().equals("Certified")){
+                JOptionPane.showMessageDialog(null, "It is already Certified Food Donor!");
+                return;
+            }
             if(restorg.getOfficerName().equals("not assigned")){JOptionPane.showMessageDialog(null, "assign it to yourself first!");return;}
             restorg.setIfCertified("Certified");
         }else if(org instanceof IndividualFoodDonorOrganization){
             IndividualFoodDonorOrganization restorg = (IndividualFoodDonorOrganization)org;
+            if(restorg.getIfCertified().equals("Certified")){
+                JOptionPane.showMessageDialog(null, "It is already Certified Food Donor!");
+                return;
+            }
             if(restorg.getOfficerName().equals("not assigned")){JOptionPane.showMessageDialog(null, "assign it to yourself first!");return;}
             restorg.setIfCertified("Certified");
         }
-     
+        JOptionPane.showMessageDialog(null,"You have Certified the Selected organization");
         populateTable();
-    }//GEN-LAST:event_btnCertifyActionPerformed
+    }//GEN-LAST:event_btnCertifyLablebtnAddItemMousePressed
 
-    private void btnAssignTomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTomeActionPerformed
+    private void btnAssignTomeLablebtnAddItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignTomeLablebtnAddItemMousePressed
+        // TODO add your handling code here:
         int selectedRow = organizationJTable.getSelectedRow();
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "select row!");
             return;
         }
+        
         Organization org = (Organization)organizationJTable.getValueAt(selectedRow, 0);
+        
         if(org instanceof RestaurantOrganization ){
             RestaurantOrganization restorg = (RestaurantOrganization)org;
+            if(!restorg.getOfficerName().equals("not assigned")){
+                JOptionPane.showMessageDialog(null, "selected food donor is already under inspection!");
+                return;
+            }
             restorg.setOfficerName(account.getUsername());
         }else if(org instanceof PartyOrganizerOrganizatioin){
             PartyOrganizerOrganizatioin restorg = (PartyOrganizerOrganizatioin)org;
+            if(!restorg.getOfficerName().equals("not assigned")){
+                JOptionPane.showMessageDialog(null, "selected food donor is already under inspection!");
+                return;
+            }
             restorg.setOfficerName(account.getUsername());
         }else if(org instanceof IndividualFoodDonorOrganization){
             IndividualFoodDonorOrganization restorg = (IndividualFoodDonorOrganization)org;
+            if(!restorg.getOfficerName().equals("not assigned")){
+                JOptionPane.showMessageDialog(null, "selected food donor is already under inspection!");
+                return;
+            }
             restorg.setOfficerName(account.getUsername());
         }
-     
+        JOptionPane.showMessageDialog(null,"You have assigned yourself for Food Quality Inspection,Please Follow All the"
+                + "regulations while on the inspection ");
         populateTable();
-    }//GEN-LAST:event_btnAssignTomeActionPerformed
+    }//GEN-LAST:event_btnAssignTomeLablebtnAddItemMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssignTome;
-    private javax.swing.JButton btnCertify;
+    private javax.swing.JLabel btnAssignTomeLable;
+    private javax.swing.JLabel btnCertifyLable;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable organizationJTable;
     // End of variables declaration//GEN-END:variables

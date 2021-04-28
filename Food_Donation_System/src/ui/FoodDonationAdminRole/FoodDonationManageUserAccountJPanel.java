@@ -61,7 +61,6 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        createUserJButton = new javax.swing.JButton();
         nameJTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -75,22 +74,10 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         roleJComboBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btnCreatLable = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        createUserJButton.setBackground(new java.awt.Color(255, 255, 255));
-        createUserJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        createUserJButton.setForeground(new java.awt.Color(25, 56, 82));
-        createUserJButton.setText("Create");
-        createUserJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createUserJButtonActionPerformed(evt);
-            }
-        });
-        add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
 
         nameJTextField.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         nameJTextField.setForeground(new java.awt.Color(25, 56, 82));
@@ -181,36 +168,19 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel6.setText("MANAGE FOOD DONATION ENTERPRISE USERS");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 580, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser128x.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 150));
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/userEmergency512x.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-        String userName = nameJTextField.getText();
-        String password = passwordJTextField.getText();
-        if(!userName.isEmpty() && !password.isEmpty()){
-            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-            if(ecosystem.checkIfUserIsUnique(userName)){
-                Employee employee = (Employee) employeeJComboBox.getSelectedItem();
-                Role role = (Role) roleJComboBox.getSelectedItem();
-                organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-                popData();
-                JOptionPane.showMessageDialog(null, "User account Created!");
-                nameJTextField.setText("");
-                passwordJTextField.setText("");
-            } else{
-                JOptionPane.showMessageDialog(null, "Username already exists!");
+        btnCreatLable.setBackground(new java.awt.Color(255, 255, 255));
+        btnCreatLable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnCreatLable.setForeground(new java.awt.Color(25, 56, 82));
+        btnCreatLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCreatLable.setText("Create");
+        btnCreatLable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnCreatLable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCreatLablebtnAddItemMousePressed(evt);
             }
-
-        } else{
-            JOptionPane.showMessageDialog(null, "Enter all fields!");
-        }
-
-    }//GEN-LAST:event_createUserJButtonActionPerformed
+        });
+        add(btnCreatLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, 138, 35));
+    }// </editor-fold>//GEN-END:initComponents
     public void popData() {
         userJTable.getTableHeader().setDefaultRenderer(new TableColors());
         DefaultTableModel model = (DefaultTableModel) userJTable.getModel();
@@ -250,9 +220,33 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
+    private void btnCreatLablebtnAddItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreatLablebtnAddItemMousePressed
+        // TODO add your handling code here:
+         String userName = nameJTextField.getText();
+        String password = passwordJTextField.getText();
+        if(!userName.isEmpty() && !password.isEmpty()){
+            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+            if(ecosystem.checkIfUserIsUnique(userName)){
+                Employee employee = (Employee) employeeJComboBox.getSelectedItem();
+                Role role = (Role) roleJComboBox.getSelectedItem();
+                organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+                popData();
+                JOptionPane.showMessageDialog(null, "User account Created!");
+                nameJTextField.setText("");
+                passwordJTextField.setText("");
+            } else{
+                JOptionPane.showMessageDialog(null, "Username already exists!");
+            }
+
+        } else{
+            JOptionPane.showMessageDialog(null, "Enter all fields!");
+        }
+
+    }//GEN-LAST:event_btnCreatLablebtnAddItemMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton createUserJButton;
+    private javax.swing.JLabel btnCreatLable;
     private javax.swing.JComboBox employeeJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -260,8 +254,6 @@ public class FoodDonationManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;

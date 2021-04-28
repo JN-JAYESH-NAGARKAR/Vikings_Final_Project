@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author Jayesh Nagarkar
  */
-public class RestaurantRequest extends WorkRequest{
+public class FoodWorkRequest extends WorkRequest{
     
     private int orderId;
     
@@ -42,7 +42,7 @@ public class RestaurantRequest extends WorkRequest{
     
     private static int counter = 10000;
     
-    public RestaurantRequest(){
+    public FoodWorkRequest(){
         orderId = counter++;
         
     }

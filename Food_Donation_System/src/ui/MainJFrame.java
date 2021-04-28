@@ -63,6 +63,8 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         userNameJTextField = new javax.swing.JTextField();
@@ -84,35 +86,37 @@ public class MainJFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1338, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginJPanel.setBackground(new java.awt.Color(204, 255, 204));
+        loginJPanel.setBackground(new java.awt.Color(51, 51, 51));
         loginJPanel.setPreferredSize(new java.awt.Dimension(1338, 900));
 
-        jPanel2.setBackground(new java.awt.Color(204, 0, 153));
+        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(554, 840));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(0, 51, 204));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/foodui2.jpg"))); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(600, 840));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 554, 900));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("FOOD DONATION SYSTEM");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 50));
 
-        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel6.setFont(new java.awt.Font("SansSerif", 3, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel6.setText("-Giving is about a making a difference");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 550, -1));
+
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
         jPanel3.setPreferredSize(new java.awt.Dimension(302, 34));
 
-        jLabel3.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user (6).png"))); // NOI18N
 
-        userNameJTextField.setBackground(new java.awt.Color(204, 255, 204));
+        userNameJTextField.setBackground(new java.awt.Color(51, 51, 51));
         userNameJTextField.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         userNameJTextField.setForeground(new java.awt.Color(255, 255, 255));
         userNameJTextField.setToolTipText("");
@@ -145,17 +149,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(236, 113, 107)));
         jPanel4.setPreferredSize(new java.awt.Dimension(302, 34));
 
-        jLabel4.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel4.setBackground(new java.awt.Color(51, 51, 51));
         jLabel4.setForeground(new java.awt.Color(204, 255, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/house-key (1).png"))); // NOI18N
         jLabel4.setOpaque(true);
 
-        passwordField.setBackground(new java.awt.Color(204, 255, 204));
+        passwordField.setBackground(new java.awt.Color(51, 51, 51));
         passwordField.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
         passwordField.setBorder(null);
@@ -258,7 +262,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         getContentPane().add(loginJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, -1));
 
-        container.setBackground(new java.awt.Color(25, 56, 82));
+        container.setBackground(new java.awt.Color(204, 255, 204));
         container.setForeground(new java.awt.Color(31, 50, 97));
         container.setPreferredSize(new java.awt.Dimension(1338, 840));
         container.setLayout(new java.awt.CardLayout());
@@ -462,10 +466,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel cancelButton;
     private javax.swing.JPanel container;
     private javax.swing.JLabel greetingUserLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

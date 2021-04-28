@@ -15,9 +15,9 @@ import Business.Organization.OrphanageOrganization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
 import Business.Utils.Validation;
-import Business.WorkQueue.OrphanWorkRequest;
+import Business.WorkQueue.FoodSafetyInspectionWorkRequest;
 import Business.WorkQueue.OrderWorkRequest;
-import Business.WorkQueue.RestaurantRequest;
+import Business.WorkQueue.FoodWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.Image;
 import java.io.File;
@@ -60,8 +60,8 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
-            if(request instanceof OrphanWorkRequest) continue;
-            RestaurantRequest req = (RestaurantRequest)request;
+            if(request instanceof FoodSafetyInspectionWorkRequest) continue;
+            FoodWorkRequest req = (FoodWorkRequest)request;
             System.out.println(req);
             Object[] row = new Object[7];
             row[0] = req;         //--jayesh   row[0] = request.getMessage(); 
@@ -324,7 +324,7 @@ public class OrphanageAdminWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "phone number is not in right format");
             return;
         }
-        RestaurantRequest request = new RestaurantRequest();
+        FoodWorkRequest request = new FoodWorkRequest();
 
         
         //request.setDeliveryTimestamp(new Date());

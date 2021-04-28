@@ -5,6 +5,8 @@
  */
 package Business.Menu;
 
+import java.util.Date;
+
 /**
  *
  * @author acer
@@ -14,11 +16,25 @@ public class Item {
     private int id;
     private String imagePath;
     private int numberOfServings;
+    private Date postdate;
+    private String locationOfIndividual;
+    private String itemStatus;
+    
     
     static int count = 100;
     public Item() {
         this.id = count++;
     }
+
+    public String getItemStatus() {
+        return itemStatus;
+    }
+
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
+    }
+    
+    
     
     public String getDescription() {
         return description;
@@ -52,6 +68,24 @@ public class Item {
         this.numberOfServings = numberOfServings;
     }
 
+    public Date getPostdate() {
+        return postdate;
+    }
+
+    public void setPostdate(Date postdate) {
+        this.postdate = postdate;
+    }
+
+    public String getLocationOfIndividual() {
+        return locationOfIndividual;
+    }
+
+    public void setLocationOfIndividual(String locationOfIndividual) {
+        this.locationOfIndividual = locationOfIndividual;
+    }
+
+    
+    
     @Override
     public String toString(){
         return Integer.toString(id);

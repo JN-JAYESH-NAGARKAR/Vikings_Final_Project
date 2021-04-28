@@ -13,8 +13,14 @@ import Business.Organization.IndividualFoodDonorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Utils.TableColors;
+import Business.WorkQueue.FoodWorkRequest;
 import Business.WorkQueue.IndividualWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,27 +56,33 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)individualReceiverOrganizationJTable.getModel();
-        
+        model.setRowCount(0);
+        System.out.println("-------------lin number 54 small ");
         for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
             for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
                 if(organization instanceof IndividualFoodDonorOrganization){
                     IndividualFoodDonorOrganization org = (IndividualFoodDonorOrganization)organization;
-                    for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-                        IndividualWorkRequest req = (IndividualWorkRequest)request;
-                        for(Item item : req.getMenu().getItemList()){
-                            Object[] row = new Object[4];
-                            row[0] = item;
-                            row[1] = item.getDescription();
-                            row[2] = item.getNumberOfServings();
-                            row[3] = req.getPostedDate();
-                            row[4] = org.getLocationPoint();
-                            row[5] = req.getStatus();
-                        }
-                        
+                    Object[] row = new Object[5];
+                    for(Item item : org.getMenu().getItemList()){
+                        System.out.println("----linenumber 61" + item);
+                        row[0] = item;
+                        row[1] = item.getDescription();
+                        //row[2] = item.getNumberOfServings();
+                        row[2] = item.getPostdate();
+                        row[3] = item.getLocationOfIndividual();
+                        row[4] = item.getItemStatus();
+                        model.addRow(row);
+                                 
                     }
                 }
             }
         }
+    }
+    public void resetFields(){
+        ImageIcon icon = new ImageIcon("");
+        Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH );  //Image.SCALE_SMOOTH
+        icon = new ImageIcon( image );
+        lblImage.setIcon(icon);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,12 +95,9 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         individualReceiverOrganizationJTable = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtFoodDishName = new javax.swing.JTextField();
         btnSubmit3 = new javax.swing.JLabel();
-        btnSubmit4 = new javax.swing.JLabel();
         lblImage = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
@@ -98,20 +107,20 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
         individualReceiverOrganizationJTable.setForeground(new java.awt.Color(25, 56, 82));
         individualReceiverOrganizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Item Id", "Name", "Number Of Servings", "Date Of posting", "Location", "Status"
+                "Item Id", "Name", "Date Of posting", "Location", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,14 +132,14 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         individualReceiverOrganizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
+        individualReceiverOrganizationJTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                individualReceiverOrganizationJTableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(individualReceiverOrganizationJTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 111, 670, 157));
-
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel2.setText("No of Servings");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
@@ -142,15 +151,6 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(25, 56, 82));
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
-        txtFoodDishName.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        txtFoodDishName.setForeground(new java.awt.Color(25, 56, 82));
-        txtFoodDishName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFoodDishNameActionPerformed(evt);
-            }
-        });
-        add(txtFoodDishName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 240, 30));
-
         btnSubmit3.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSubmit3.setForeground(new java.awt.Color(25, 56, 82));
@@ -159,53 +159,54 @@ public class IndividualReceiverWorkAreaJPanel extends javax.swing.JPanel {
         btnSubmit3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnSubmit3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnSubmit3MousePressed(evt);
+                btnClaimMousePressed(evt);
             }
         });
-        add(btnSubmit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 138, 35));
+        add(btnSubmit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, 138, 35));
 
-        btnSubmit4.setBackground(new java.awt.Color(255, 255, 255));
-        btnSubmit4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnSubmit4.setForeground(new java.awt.Color(25, 56, 82));
-        btnSubmit4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSubmit4.setText("Add Item in Cart");
-        btnSubmit4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnSubmit4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnSubmit4MousePressed(evt);
-            }
-        });
-        add(btnSubmit4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 530, 138, 35));
-
-        lblImage.setText("f");
+        lblImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 270, 180));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFoodDishNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFoodDishNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFoodDishNameActionPerformed
-
-    private void btnSubmit3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmit3MousePressed
+    private void btnClaimMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClaimMousePressed
+       int selectedRow = individualReceiverOrganizationJTable.getSelectedRow();
+       if(selectedRow < 0){
+           JOptionPane.showMessageDialog(null, "Please select any item inorder to claim!");
+       }
+       Item item = (Item)individualReceiverOrganizationJTable.getValueAt(selectedRow, 0);
+       item.setItemStatus("Claimed");
+       FoodWorkRequest request = new FoodWorkRequest();
+       request.setRequestingOrganizationType(organization.getType());
+       request.setRequestingOrganizationUser(account);
+       request.setRequestingOrganiztionName(organization);
+       request.setDonorOrganizationType(Organization.Type.IndividualDonator);
+       organization.getWorkQueue().addRequest(request);
        
-    }//GEN-LAST:event_btnSubmit3MousePressed
+       JOptionPane.showMessageDialog(null, "You claimed Food Item successfully!");
+       populateTable();
+       resetFields();
+       
+    }//GEN-LAST:event_btnClaimMousePressed
 
-    private void btnSubmit4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmit4MousePressed
+    private void individualReceiverOrganizationJTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_individualReceiverOrganizationJTableMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubmit4MousePressed
+       int selectedRow = individualReceiverOrganizationJTable.getSelectedRow();
+       
+        Item item = (Item)individualReceiverOrganizationJTable.getValueAt(selectedRow, 0);
+        //Image getAbsolutePath = null;
+        ImageIcon icon = new ImageIcon(item.getImagePath());
+        Image image = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), java.awt.Image.SCALE_SMOOTH );  //Image.SCALE_SMOOTH
+        icon = new ImageIcon( image );
+        lblImage.setIcon(icon);
+    }//GEN-LAST:event_individualReceiverOrganizationJTableMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnSubmit;
-    private javax.swing.JLabel btnSubmit1;
-    private javax.swing.JLabel btnSubmit2;
     private javax.swing.JLabel btnSubmit3;
-    private javax.swing.JLabel btnSubmit4;
     private javax.swing.JTable individualReceiverOrganizationJTable;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblImage;
-    private javax.swing.JTextField txtFoodDishName;
     // End of variables declaration//GEN-END:variables
 }
